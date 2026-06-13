@@ -3,20 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NovaPlant</title>
+    <title>BioQuest - NovaPlant</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* ڕێکخستنی گشتی بەبێ شێوان */
+        /* ڕێکخستنی بنەڕەتی */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             scroll-behavior: smooth;
+            transition: all 0.3s ease;
         }
 
-        /* جیاکردنەوەی فۆنت بەپێی زمانەکان */
+        /* گۆڕینی فۆنت بەپێی زمان */
         :lang(ku) *, :lang(ar) * {
             font-family: 'Noto Kufi Arabic', sans-serif;
         }
@@ -25,20 +26,18 @@
         }
 
         body {
-            background-color: #f8fafc; /* باکگراوندێکی خۆڵەمێشی ئێجگار کاڵ هاوشێوەی وێنەکە */
+            background-color: #0d2318; /* باکگراوندێکی سەوزی تۆخی زانستی وەک وێنەی هێرۆکە */
             color: #2c3e50;
-            overflow-x: hidden;
         }
 
-        /* بەشی لێواری سەرەکی (Hero Section) وەک وێنە ئەسڵییەکە */
+        /* بەشی یەکەم: لێواری سەرەکی (Hero Section) وەک وێنە فەرمییەکەت */
         .hero-container {
-            background: linear-gradient(rgba(14, 55, 35, 0.8), rgba(10, 40, 25, 0.95)), 
+            background: linear-gradient(rgba(13, 35, 24, 0.7), rgba(13, 35, 24, 0.9)), 
                         url('https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&w=1920') no-repeat center center/cover;
-            min-height: 80vh;
+            min-height: 85vh;
             display: flex;
             flex-direction: column;
             color: white;
-            position: relative;
         }
 
         .navbar {
@@ -46,14 +45,12 @@
             justify-content: space-between;
             align-items: center;
             padding: 25px 50px;
-            width: 100%;
         }
 
         .logo {
             font-size: 26px;
-            font-weight: 700;
+            font-weight: bold;
             color: #4ade80;
-            letter-spacing: 0.5px;
         }
 
         .right-controls {
@@ -62,7 +59,6 @@
             align-items: center;
         }
 
-        /* ستایلی دروستی بەشی زمان */
         .lang-select {
             background: rgba(255, 255, 255, 0.15);
             border: 1px solid rgba(255, 255, 255, 0.25);
@@ -72,15 +68,10 @@
             cursor: pointer;
             font-size: 14px;
             outline: none;
-            transition: background 0.2s;
-        }
-
-        .lang-select:hover {
-            background: rgba(255, 255, 255, 0.25);
         }
 
         .lang-select option {
-            color: #000;
+            color: black;
         }
 
         .hero-content {
@@ -90,7 +81,7 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 40px 20px;
+            padding: 0 20px;
         }
 
         .badge {
@@ -100,20 +91,20 @@
             border-radius: 20px;
             font-size: 13px;
             color: #4ade80;
-            font-weight: 700;
+            font-weight: bold;
             margin-bottom: 25px;
         }
 
         .main-title {
-            font-size: 42px;
+            font-size: 46px;
             font-weight: 700;
             margin-bottom: 20px;
-            max-width: 850px;
+            max-width: 900px;
             line-height: 1.5;
         }
 
         .subtitle {
-            font-size: 17px;
+            font-size: 18px;
             color: #cbd5e1;
             margin-bottom: 40px;
             max-width: 650px;
@@ -125,159 +116,173 @@
             color: #0a321e;
             text-decoration: none;
             padding: 14px 45px;
-            font-size: 17px;
-            font-weight: 700;
+            font-size: 18px;
+            font-weight: bold;
             border-radius: 30px;
-            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
-            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .start-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(46, 204, 113, 0.5);
         }
 
-        /* بەشی سەرەکی کارتەکان */
+        /* 🖼️ بەشی سەرەکی کارتە نوێیەکان وەک شێوازی تیکتۆکەکە */
         .chapters-section {
-            padding: 90px 50px;
-            max-width: 1350px;
+            padding: 100px 50px;
+            max-width: 1400px;
             margin: 0 auto;
+            background-color: #091a12; /* ڕەنگی بەشی کارتەکان تۆختر کراوە بۆ ئەوەی کارتەکان لێی دەربکەون */
+            border-radius: 40px 40px 0 0;
         }
 
         .section-main-title {
             text-align: center;
-            font-size: 32px;
-            color: #112c1e;
+            font-size: 34px;
+            color: #ffffff;
             margin-bottom: 12px;
             font-weight: 700;
         }
 
         .section-main-subtitle {
             text-align: center;
-            color: #64748b;
-            margin-bottom: 60px;
+            color: #a7f3d0;
+            margin-bottom: 70px;
             font-size: 16px;
         }
 
-        /* 📱 تۆڕی ڕێکخراوی هاوشێوەی وێنە ئەسڵییەکە */
+        /* تۆڕی کارتەکان */
         .chapters-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 35px;
-            width: 100%;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
         }
 
-        /* گەڕانەوەی دیزاینی کارتەکان بە تەواوی وەک یەکەم وێنە */
+        /* داهێنانی ستایلی کارتەکان وەک وێنە نوێیەکە */
         .chapter-card {
+            background: transparent;
+            border-radius: 28px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            min-height: 440px;
+        }
+
+        /* بەشی وێنەی سەرەوەی کارتەکە */
+        .card-image-area {
+            height: 240px;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 24px;
+            position: relative;
+        }
+
+        .card-image-area img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .chapter-card:hover .card-image-area img {
+            transform: scale(1.08);
+        }
+
+        /* بەشی ناسنامەی چاپتەر لەسەر وێنەکە */
+        .card-chapter-tag {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            color: #4ade80;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        :lang(en) .card-chapter-tag {
+            right: auto;
+            left: 20px;
+        }
+
+        /* 🔲 کارتە سپییەکەی خوارەوە کە دێتە سەر وێنەکە وەک وێنەی نموونەکەت */
+        .card-content-box {
             background: #ffffff;
             border-radius: 24px;
-            padding: 35px;
-            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.03); /* سێبەری نەرم */
-            border: 1px solid rgba(0, 0, 0, 0.01);
+            padding: 30px;
+            margin: -60px 20px 0 20px; /* جوڵاندنی کارتەکە بەرەو سەر وێنەکە */
+            z-index: 2;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            min-height: 290px;
-            position: relative;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .chapter-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(46, 204, 113, 0.08);
-        }
-
-        .chapter-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-        }
-
-        .chapter-num {
-            font-size: 13px;
-            color: #e67e22; 
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .chapter-icon {
-            font-size: 20px;
-            color: #1e293b;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 2px solid #334155;
-            border-radius: 8px;
-        }
-
-        .chapter-body {
-            margin-top: 20px;
             flex-grow: 1;
+            min-height: 220px;
         }
 
-        .chapter-title {
-            font-size: 21px;
-            color: #0f172a;
+        .card-title {
+            font-size: 20px;
+            color: #111827;
             font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .chapter-desc {
-            font-size: 14px;
-            color: #64748b;
-            line-height: 1.65;
-        }
-
-        .chapter-footer {
+            margin-bottom: 10px;
             display: flex;
-            justify-content: flex-end;
-            margin-top: 25px;
-            width: 100%;
-        }
-
-        .circle-arrow-btn {
-            width: 42px;
-            height: 42px;
-            background-color: #27ae60;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
             align-items: center;
-            color: white;
-            text-decoration: none;
+            gap: 10px;
+        }
+
+        .card-title i {
+            color: #27ae60;
             font-size: 18px;
-            transition: background 0.2s ease, transform 0.2s ease;
         }
 
-        .circle-arrow-btn:hover {
-            background-color: #1e8449;
-            transform: scale(1.05);
+        .card-desc {
+            font-size: 14px;
+            color: #4b5563;
+            line-height: 1.6;
+            margin-bottom: 20px;
         }
 
-        /* 📱 ڕێکخستنی Responsive بۆ موبایل و تابلێت */
+        /* دوگمەی خوێندنەوە لە خوارەوەی شەیپە سپییەکە */
+        .card-footer-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #27ae60;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            width: fit-content;
+        }
+
+        .card-footer-btn:hover {
+            color: #1e8449;
+        }
+
+        .card-footer-btn i {
+            font-size: 12px;
+        }
+
+        /* 📱 گونجاندن بۆ موبایل */
         @media (max-width: 768px) {
             .navbar {
-                padding: 20px 25px;
-            }
-            .logo {
-                font-size: 22px;
+                padding: 20px;
             }
             .main-title {
-                font-size: 30px;
-            }
-            .subtitle {
-                font-size: 15px;
+                font-size: 32px;
             }
             .chapters-section {
-                padding: 60px 20px;
+                padding: 60px 15px;
             }
             .chapters-grid {
-                grid-template-columns: 1fr; /* لەسەر موبایل یەک یەک کارت نیشان دەدات */
-                gap: 25px;
+                grid-template-columns: 1fr;
+                gap: 45px;
+            }
+            .card-content-box {
+                margin: -50px 10px 0 10px;
+                padding: 20px;
             }
         }
     </style>
@@ -293,14 +298,14 @@
                     <option value="ar">العربية</option>
                 </select>
             </div>
-            <div class="logo">NovaPlant</div>
+            <div class="logo">BioQuest</div>
         </header>
 
         <main class="hero-content">
-            <span class="badge" id="hero-badge">NOVAPLANT PLATFORM</span>
-            <h1 class="main-title" id="hero-title">پلاتفۆرمی پێشکەوتووی زانستی بایۆلۆجی</h1>
-            <p class="subtitle" id="hero-subtitle">سەرچاوەیەکی دیجیتاڵی گشتگیر بۆ خوێندکاران و توێژەرانی زانستی ڕووەک</p>
-            <a href="#chapters-area" class="start-btn" id="hero-btn">دەستپێبکە</a>
+            <span class="badge" id="hero-badge">BIOQUEST PRO</span>
+            <h1 class="main-title" id="hero-title">ئەتڵەسی پێشکەوتووی زانستی ڕووەک</h1>
+            <p class="subtitle" id="hero-subtitle">گەشتێک بۆ ناو جیهانی مۆرفۆلۆژیا، فیزیۆلۆژیا و تاقیگەی بایۆلۆجی</p>
+            <a href="#chapters-area" class="start-btn" id="hero-btn">دەستپێبکە <i class="fa-solid fa-chevron-down"></i></a>
         </main>
     </div>
 
@@ -315,62 +320,65 @@
         const translations = {
             ku: {
                 dir: "rtl",
-                badge: "NOVAPLANT PLATFORM",
-                title: "پلاتفۆرمی پێشکەوتووی زانستی بایۆلۆجی",
-                subtitle: "سەرچاوەیەکی دیجیتاڵی گشتگیر بۆ خوێندکاران و توێژەرانی زانستی ڕووەک",
+                badge: "BIOQUEST PRO",
+                title: "ئەتڵەسی پێشکەوتووی زانستی ڕووەک",
+                subtitle: "گەشتێک بۆ ناو جیهانی مۆرفۆلۆژیا، فیزیۆلۆژیا و تاقیگەی بایۆلۆجی",
                 btn: "دەستپێبکە",
-                secTitle: "بەشەکانی ماڵپەڕ",
-                secSubtitle: "لێرەوە بڕوانە ناو کایە جیاوازەکانی زانستی ڕووەک و زانیارییەکان",
-                arrow: "←",
+                secTitle: "بەشەکانی پلاتفۆرم",
+                secSubtitle: "لێرەوە بڕوانە ناو کایە جیاوازەکانی زانستی ڕووەک و سەرچاوەکان",
+                readMore: "خوێندنەوەی زیاتر",
+                arrow: "fa-arrow-left",
                 chapters: [
-                    { ch: "Chapter 1", icon: "fa-info", title: "زانیاری زیاتر", desc: "دەربارەی پڕۆژەکە، ناساندنی تیمەکە، ئامانجەکانمان و پەیوەندی زانکۆیی." },
-                    { ch: "Chapter 2", icon: "fa-book-medical", title: "فەرهەنگی بایۆلۆجی", desc: "فەرهەنگێکی دەوڵەمەندی کوردی-ئینگلیزی بۆ وەرگێڕان و تێگەیشتنی زاراوە بایۆلۆجییەکان." },
-                    { ch: "Chapter 3", icon: "fa-file-lines", title: "لێکۆڵینەوە و وتار", desc: "کۆمەڵێک توێژینەوەی نوێ، وتاری زانستی و بابەتگەلی بڵاوکراوە لەسەر زانستی ڕووەک." },
-                    { ch: "Chapter 4", icon: "fa-flask", title: "ڕێنمایی تاقیگە و تەکنەلۆژیا", desc: "پڕۆتۆکۆلەکانی تاقیگە، شێوازی کارکردن لەسەر ئامێرەکان و بەکارهێنانی تەکنەلۆژیا لە بایۆلۆجیدا." },
-                    { ch: "Chapter 5", icon: "fa-video", title: "ڕوونکردنەوەی ڤیدیۆیی", desc: "بینینی ڤیدیۆی فێرکاری تاقیگەیی، ئەنیمەیشنی سێ ڕەهەندی و شیکردنەوەی پرۆسەکان." },
-                    { ch: "Chapter 6", icon: "fa-seedling", title: "ئەناتۆمی و مۆرفۆلۆژیای ڕووەک", desc: "تاوتێکردنی پێکهاتە و شێوەی دەرەکی و ناوەوەی ڕەگ، قەد، و گەڵای ڕووەکەکان." },
-                    { ch: "Chapter 7", icon: "fa-diagram-project", title: "تاکسۆنۆمی و هەمەچەشنی ڕووەک", desc: "پۆلێنکردنی خێزانە ڕووەکییەکان، ناسینەوەی جۆرەکان و فرەچەشنی ڕووەکی." },
-                    { ch: "Chapter 8", icon: "fa-dna", title: "فیزیۆلۆژیای ڕووەک و بایۆکیمیایی", desc: "میکانیزمەکانی ڕۆشنەپێکهاتن، هۆرمۆنە ڕووەکییەکان و کارلێکە کیمیاییەکانی ناو خانەکان." }
+                    { ch: "Chapter 1", icon: "fa-info-circle", img: "https://images.unsplash.com/photo-1463936575829-25148e1db1b8?q=80&w=600", title: "زانیاری زیاتر", desc: "دەربارەی پڕۆژەکە، ناساندنی تیمەکە، ئامانجەکانمان و پەیوەندی زانکۆیی." },
+                    { ch: "Chapter 2", icon: "fa-book-open", img: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=600", title: "فەرهەنگی بایۆلۆجی", desc: "فەرهەنگێکی دەوڵەمەندی کوردی-ئینگلیزی بۆ وەرگێڕان و تێگەیشتنی زاراوە بایۆلۆجییەکان." },
+                    { ch: "Chapter 3", icon: "fa-feather-alt", img: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=600", title: "لێکۆڵینەوە و وتار", desc: "کۆمەڵێک توێژینەوەی نوێ، وتاری زانستی و بابەتگەلی بڵاوکراوە لەسەر زانستی ڕووەک." },
+                    { ch: "Chapter 4", icon: "fa-flask-vial", img: "https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=600", title: "ڕێنمایی تاقیگە و تەکنەلۆژیا", desc: "پڕۆتۆکۆلەکانی تاقیگە، شێوازی کارکردن لەسەر ئامێرەکان و بەکارهێنانی تەکنەلۆژیا لە بایۆلۆجیدا." },
+                    { ch: "Chapter 5", icon: "fa-video", img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600", title: "ڕوونکردنەوەی ڤیدیۆیی", desc: "بینینی ڤیدیۆی فێرکاری تاقیگەیی، ئەنیمەیشنی سێ ڕەهەندی و شیکردنەوەی پرۆسەکان." },
+                    { ch: "Chapter 6", icon: "fa-seedling", img: "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?q=80&w=600", title: "ئەناتۆمی و مۆرفۆلۆژیای ڕووەک", desc: "تاوتێکردنی پێکهاتە و شێوەی دەرەکی و ناوەوەی ڕەگ، قەد، و گەڵای ڕووەکەکان." },
+                    { ch: "Chapter 7", icon: "fa-network-wired", img: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=600", title: "تاکسۆنۆمی و هەمەچەشنی ڕووەک", desc: "پۆلێنکردنی خێزانە ڕووەکییەکان، ناسینەوەی جۆرەکان و فرەچەشنی ڕووەکی." },
+                    { ch: "Chapter 8", icon: "fa-dna", img: "https://images.unsplash.com/photo-1530026405186-ed1ea0ac7a63?q=80&w=600", title: "فیزیۆلۆژیای ڕووەک و بایۆکیمیایی", desc: "میکانیزمەکانی ڕۆشنەپێکهاتن، هۆرمۆنە ڕووەکییەکان و کارلێکە کیمیاییەکانی ناو خانەکان." }
                 ]
             },
             en: {
                 dir: "ltr",
-                badge: "NOVAPLANT PLATFORM",
-                title: "Advanced Botanical Science Platform",
-                subtitle: "A comprehensive digital resource for students and researchers of plant sciences.",
+                badge: "BIOQUEST PRO",
+                title: "Advanced Botanical Science Atlas",
+                subtitle: "A deep journey into the world of plant morphology, physiology, and biological laboratories.",
                 btn: "Get Started",
                 secTitle: "Platform Chapters",
-                secSubtitle: "Explore various domains of plant science and biological resources from here.",
-                arrow: "→",
+                secSubtitle: "Explore various domains of plant science and research resources from here.",
+                readMore: "Read More",
+                arrow: "fa-arrow-right",
                 chapters: [
-                    { ch: "Chapter 1", icon: "fa-info", title: "More Information", desc: "About the project, team introduction, our core objectives, and academic relations." },
-                    { ch: "Chapter 2", icon: "fa-book-medical", title: "Biological Dictionary", desc: "A rich multilingual dictionary for translating and understanding complex biological terms." },
-                    { ch: "Chapter 3", icon: "fa-file-lines", title: "Research & Articles", desc: "A collection of modern research papers, scientific articles, and botanical publications." },
-                    { ch: "Chapter 4", icon: "fa-flask", title: "Lab Guide & Technology", desc: "Laboratory protocols, equipment operation methods, and tech integration in biology." },
-                    { ch: "Chapter 5", icon: "fa-video", title: "Video Explanations", desc: "Watch educational lab tutorials, 3D animations, and dynamic biological process breakdowns." },
-                    { ch: "Chapter 6", icon: "fa-seedling", title: "Plant Anatomy & Morphology", desc: "Detailed study of external morphology and internal anatomy of roots, stems, and leaves." },
-                    { ch: "Chapter 7", icon: "fa-diagram-project", title: "Taxonomy & Diversity", desc: "Classification of plant families, species identification, and ecological biodiversity." },
-                    { ch: "Chapter 8", icon: "fa-dna", title: "Plant Physiology & Biochem", desc: "Mechanisms of photosynthesis, plant hormones, and cellular chemical reactions." }
+                    { ch: "Chapter 1", icon: "fa-info-circle", img: "https://images.unsplash.com/photo-1463936575829-25148e1db1b8?q=80&w=600", title: "More Information", desc: "About the project, team introduction, our core objectives, and academic relations." },
+                    { ch: "Chapter 2", icon: "fa-book-open", img: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=600", title: "Biological Dictionary", desc: "A rich multilingual dictionary for translating and understanding complex biological terms." },
+                    { ch: "Chapter 3", icon: "fa-feather-alt", img: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=600", title: "Research & Articles", desc: "A collection of modern research papers, scientific articles, and botanical publications." },
+                    { ch: "Chapter 4", icon: "fa-flask-vial", img: "https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=600", title: "Lab Guide & Technology", desc: "Laboratory protocols, equipment operation methods, and tech integration in biology." },
+                    { ch: "Chapter 5", icon: "fa-video", img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600", title: "Video Explanations", desc: "Watch educational lab tutorials, 3D animations, and dynamic biological process breakdowns." },
+                    { ch: "Chapter 6", icon: "fa-seedling", img: "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?q=80&w=600", title: "Plant Anatomy & Morphology", desc: "Detailed study of external morphology and internal anatomy of roots, stems, and leaves." },
+                    { ch: "Chapter 7", icon: "fa-network-wired", img: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=600", title: "Taxonomy & Diversity", desc: "Classification of plant families, species identification, and ecological biodiversity." },
+                    { ch: "Chapter 8", icon: "fa-dna", title: "Plant Physiology & Biochem", img: "https://images.unsplash.com/photo-1530026405186-ed1ea0ac7a63?q=80&w=600", desc: "Mechanisms of photosynthesis, plant hormones, and cellular chemical reactions." }
                 ]
             },
             ar: {
                 dir: "rtl",
-                badge: "منصة نوفا بلانت",
-                title: "منصة علوم النبات المتقدمة",
-                subtitle: "مصدر رقمي شامل لطلاب وباحثي علوم النبات والأحياء.",
+                badge: "بایوکوێست برو",
+                title: "أطلس علوم النبات المتقدم",
+                subtitle: "رحلة عميقة في عالم مورفولوجيا النبات، الفسيولوجيا، والمختبرات البيولوجية.",
                 btn: "ابدأ الآن",
                 secTitle: "أقسام المنصة",
-                secSubtitle: "استكشف المجالات المختلفة لعلوم النبات والموارد البيولوجية من هنا.",
-                arrow: "←",
+                secSubtitle: "استكشف المجالات المختلفة لعلوم النبات والموارد العلمية من هنا.",
+                readMore: "اقرأ المزيد",
+                arrow: "fa-arrow-left",
                 chapters: [
-                    { ch: "الفصل ١", icon: "fa-info", title: "مزيد من المعلومات", desc: "حول المشروع، التعريف بالفريق، أهدافنا الأساسية، والعلاقات الأكاديمية." },
-                    { ch: "الفصل ٢", icon: "fa-book-medical", title: "القاموس البيولوجي", desc: "قاموس غني ومصطلحات متعددة اللغات لترجمة وفهم المصطلحات البيولوجية المعقدة." },
-                    { ch: "الفصل ٣", icon: "fa-file-lines", title: "الأبحاث والمقالات", desc: "مجموعة من الأوراق البحثية الحديثة، المقالات العلمية، والمنشورات البوتانية." },
-                    { ch: "الفصل ٤", icon: "fa-flask", title: "دليل المختبر والتكنولوجيا", desc: "بروتوكولات المختبر، طرق تشغيل الأجهزة، ودمج التكنولوجيا في علم الأحياء." },
-                    { ch: "الفصل ٥", icon: "fa-video", title: "شروحات مرئية", desc: "شاهد الدروس التعليمية المختبرية، الرسوم المتحركة ثلاثية الأبعاد، وتفاعلات الخلايا." },
-                    { ch: "الفصل ٦", icon: "fa-seedling", title: "تشريح وشكل النبات", desc: "دراسة مفصلة للمورفولوجيا الخارجية والتشريح الداخلي للجذور، السيقان، والأوراق." },
-                    { ch: "الفصل ٧", icon: "fa-diagram-project", title: "تصنيف وتنوع النبات", desc: "تصنيف العائلات النباتية، تحديد الأنواع، والتنوع البيولوجي البيئي." },
-                    { ch: "الفصل ٨", icon: "fa-dna", title: "فسيولوجيا النبات والكيمياء الحيوية", desc: "آليات البناء الضوئي، الهرمونات النباتية، والتفاعلات الكيميائية الخلوية." }
+                    { ch: "الفصل ١", icon: "fa-info-circle", img: "https://images.unsplash.com/photo-1463936575829-25148e1db1b8?q=80&w=600", title: "مزيد من المعلومات", desc: "حول المشروع، التعريف بالفريق، أهدافنا الأساسية، والعلاقات الأكاديمية." },
+                    { ch: "الفصل ٢", icon: "fa-book-open", img: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=600", title: "القاموس البيولوجي", desc: "قاموس غني ومصطلحات متعددة اللغات لترجمة وفهم المصطلحات البيولوجية المعقدة." },
+                    { ch: "الفصل ٣", icon: "fa-feather-alt", img: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=600", title: "الأبحاث والمقالات", desc: "مجموعة من الأوراق البحثية الحديثة، المقالات العلمية، والمنشورات البوتانية." },
+                    { ch: "الفصل ٤", icon: "fa-flask-vial", img: "https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=600", title: "دليل المختبر والتكنولوجيا", desc: "بروتوكولات المختبر، طرق تشغيل الأجهزة، ودمج التكنولوجيا في علم الأحياء." },
+                    { ch: "الفصل ٥", icon: "fa-video", img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600", title: "شروحات مرئية", desc: "شاهد الدروس التعليمية المختبرية، الرسوم المتحركة ثلاثية الأبعاد، وتفاعلات الخلايا." },
+                    { ch: "الفصل ٦", icon: "fa-seedling", img: "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?q=80&w=600", title: "تشريح وشكل النبات", desc: "دراسة مفصلة للمورفولوجيا الخارجية والتشريح الداخلي للجذور، السيقان، والأوراق." },
+                    { ch: "الفصل ٧", icon: "fa-network-wired", img: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=600", title: "تصنيف وتنوع النبات", desc: "تصنيف العائلات النباتية، تحديد الأنواع، والتنوع البيولوجي البيئي." },
+                    { ch: "الفصل ٨", icon: "fa-dna", img: "https://images.unsplash.com/photo-1530026405186-ed1ea0ac7a63?q=80&w=600", title: "فسيولوجيا النبات والكيمياء الحيوية", desc: "آليات البناء الضوئي، الهرمونات النباتية، والتفاعلات الكيميائية الخلوية." }
                 ]
             }
         };
@@ -384,7 +392,7 @@
             document.getElementById("hero-badge").innerText = data.badge;
             document.getElementById("hero-title").innerText = data.title;
             document.getElementById("hero-subtitle").innerText = data.subtitle;
-            document.getElementById("hero-btn").innerText = data.btn;
+            document.getElementById("hero-btn").innerHTML = data.btn + ' <i class="fa-solid fa-chevron-down"></i>';
             document.getElementById("sec-title").innerText = data.secTitle;
             document.getElementById("sec-subtitle").innerText = data.secSubtitle;
             
@@ -394,16 +402,18 @@
             data.chapters.forEach(item => {
                 const cardHTML = `
                     <div class="chapter-card">
-                        <div class="chapter-header">
-                            <span class="chapter-num">${item.ch}</span>
-                            <div class="chapter-icon"><i class="fa-solid ${item.icon}"></i></div>
+                        <div class="card-image-area">
+                            <span class="card-chapter-tag">${item.ch}</span>
+                            <img src="${item.img}" alt="${item.title}">
                         </div>
-                        <div class="chapter-body">
-                            <h3 class="chapter-title">${item.title}</h3>
-                            <p class="chapter-desc">${item.desc}</p>
-                        </div>
-                        <div class="chapter-footer">
-                            <a href="#" class="circle-arrow-btn">${data.arrow}</a>
+                        <div class="card-content-box">
+                            <div>
+                                <h3 class="card-title"><i class="fa-solid ${item.icon}"></i> ${item.title}</h3>
+                                <p class="card-desc">${item.desc}</p>
+                            </div>
+                            <a href="#" class="card-footer-btn">
+                                ${data.readMore} <i class="fa-solid ${data.arrow}"></i>
+                            </a>
                         </div>
                     </div>
                 `;
@@ -411,7 +421,7 @@
             });
         }
 
-        // دانانی زمانی کوردی وەک بنەڕەتی لە کاتی باربوونی یەکەمجار
+        // دەستپێکردنی سایتەکە بە زمانی کوردی
         changeLanguage('ku');
     </script>
 </body>
