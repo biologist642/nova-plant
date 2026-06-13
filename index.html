@@ -1,23 +1,40 @@
 <!DOCTYPE html>
-<html lang="ku" dir="rtl">
+<html lang="ku" dir="rtl" id="html-tag">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NovaPlant - ئەتڵەسی پێشکەوتووی ڕووەک</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>NovaPlant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
+        /* ڕێکخستنی بنەڕەتی */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Noto Kufi Arabic', sans-serif;
+            scroll-behavior: smooth;
+            transition: all 0.3s ease;
         }
 
+        /* گۆڕینی فۆنت بەپێی زمان */
+        :lang(ku) *, :lang(ar) * {
+            font-family: 'Noto Kufi Arabic', sans-serif;
+        }
+        :lang(en) * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f5;
+            color: #2c3e50;
+        }
+
+        /* بەشی یەکەم: هێرۆ (Hero Section) */
         .hero-container {
-            background: linear-gradient(rgba(10, 50, 30, 0.7), rgba(10, 50, 30, 0.7)), 
+            background: linear-gradient(rgba(10, 50, 30, 0.75), rgba(10, 50, 30, 0.95)), 
                         url('https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&w=1920') no-repeat center center/cover;
-            height: 100vh;
+            min-height: 75vh;
             display: flex;
             flex-direction: column;
             color: white;
@@ -34,7 +51,6 @@
             font-size: 26px;
             font-weight: bold;
             color: #4ade80;
-            letter-spacing: 1px;
         }
 
         .right-controls {
@@ -43,13 +59,15 @@
             align-items: center;
         }
 
-        .theme-toggle, .lang-select {
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+        .lang-select {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.25);
             color: white;
             padding: 8px 15px;
             border-radius: 20px;
             cursor: pointer;
+            font-size: 14px;
+            outline: none;
         }
 
         .lang-select option {
@@ -63,31 +81,30 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 0 20px;
+            padding: 40px 20px;
         }
 
         .badge {
-            background: rgba(255, 255, 255, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.25);
+            background: rgba(74, 222, 128, 0.1);
+            border: 1px solid rgba(74, 222, 128, 0.3);
             padding: 6px 20px;
             border-radius: 20px;
             font-size: 14px;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
             color: #4ade80;
             font-weight: bold;
+            margin-bottom: 20px;
         }
 
         .main-title {
-            font-size: 48px;
+            font-size: 44px;
             font-weight: 700;
             margin-bottom: 15px;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            max-width: 800px;
         }
 
         .subtitle {
             font-size: 18px;
-            color: #e2e8f0;
+            color: #cbd5e1;
             margin-bottom: 40px;
             max-width: 600px;
         }
@@ -95,45 +112,289 @@
         .start-btn {
             background: #2ecc71;
             color: #0a321e;
-            border: none;
-            padding: 12px 40px;
+            text-decoration: none;
+            padding: 14px 45px;
             font-size: 18px;
             font-weight: bold;
             border-radius: 30px;
-            cursor: pointer;
             box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4);
-            transition: 0.3s ease;
         }
 
         .start-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 6px 20px rgba(46, 204, 113, 0.6);
         }
+
+        /* بەشی کارتەکان (Chapters Area) */
+        .chapters-section {
+            padding: 80px 50px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .section-main-title {
+            text-align: center;
+            font-size: 32px;
+            color: #1e3a2f;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .section-main-subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 60px;
+            font-size: 16px;
+        }
+
+        /* 📱 سیستەمی وەڵامدەرەوەی چەند قەبارەیی (Responsive Grid) */
+        .chapters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .chapter-card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03); 
+            border: 1px solid rgba(0, 0, 0, 0.01);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 280px;
+        }
+
+        .chapter-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(46, 204, 113, 0.1);
+        }
+
+        .chapter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .chapter-num {
+            font-size: 14px;
+            color: #e67e22; 
+            font-weight: bold;
+        }
+
+        .chapter-icon {
+            font-size: 22px;
+            color: #2c3e50;
+            width: 42px;
+            height: 42px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #2c3e50;
+            border-radius: 8px;
+        }
+
+        .chapter-body {
+            margin-top: 20px;
+            flex-grow: 1;
+        }
+
+        .chapter-title {
+            font-size: 20px;
+            color: #1e3a2f;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .chapter-desc {
+            font-size: 14px;
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+
+        .chapter-footer {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 25px;
+        }
+
+        .circle-arrow-btn {
+            width: 40px;
+            height: 40px;
+            background-color: #27ae60;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .circle-arrow-btn:hover {
+            background-color: #1e8449;
+        }
+
+        /* 📱 رێکخستنی تایبەت بۆ مۆبایل و تابلێت (Media Queries) */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 20px 20px;
+            }
+            .logo {
+                font-size: 22px;
+            }
+            .main-title {
+                font-size: 32px;
+            }
+            .subtitle {
+                font-size: 16px;
+            }
+            .chapters-section {
+                padding: 50px 20px;
+            }
+            .section-main-title {
+                font-size: 26px;
+            }
+        }
     </style>
 </head>
 <body>
 
     <div class="hero-container">
-        
         <header class="navbar">
             <div class="right-controls">
-                <button class="theme-toggle">🌙</button>
-                <select class="lang-select">
-                    <option>Kurdî</option>
-                    <option>English</option>
+                <select class="lang-select" id="langChange" onchange="changeLanguage(this.value)">
+                    <option value="ku">Kurdî</option>
+                    <option value="en">English</option>
+                    <option value="ar">العربية</option>
                 </select>
             </div>
             <div class="logo">NovaPlant</div>
         </header>
 
         <main class="hero-content">
-            <span class="badge">NOVAPLANT PRO</span>
-            <h1 class="main-title">ئەتڵەسی پێشکەوتووی زانستی ڕووەک</h1>
-            <p class="subtitle">گەشتێک بۆ ناو جیهانی مۆرفۆلۆژیا، فیسیۆلۆژیا و تاقیگەی بایۆلۆجی</p>
-            <button class="start-btn">دەستپێبکە</button>
+            <span class="badge" id="hero-badge">NOVAPLANT PLATFORM</span>
+            <h1 class="main-title" id="hero-title">پلاتفۆرمی پێشکەوتووی زانستی بایۆلۆجی</h1>
+            <p class="subtitle" id="hero-subtitle">سەرچاوەیەکی دیجیتاڵی گشتگیر بۆ خوێندکاران و توێژەرانی زانستی ڕووەک</p>
+            <a href="#chapters-area" class="start-btn" id="hero-btn">دەستپێبکە</a>
         </main>
-
     </div>
 
+    <section id="chapters-area" class="chapters-section">
+        <h2 class="section-main-title" id="sec-title">بەشەکانی ماڵپەڕ</h2>
+        <p class="section-main-subtitle" id="sec-subtitle">لێرەوە بڕوانەە ناو کایە جیاوازەکانی زانستی ڕووەک و زانیارییەکان</p>
+
+        <div class="chapters-grid" id="grid-container"></div>
+    </section>
+
+    <script>
+        // داتای تەواوی زانیارییەکان بە سێ زمان
+        const translations = {
+            ku: {
+                dir: "rtl",
+                badge: "NOVAPLANT PLATFORM",
+                title: "پلاتفۆرمی پێشکەوتووی زانستی بایۆلۆجی",
+                subtitle: "سەرچاوەیەکی دیجیتاڵی گشتگیر بۆ خوێندکاران و توێژەرانی زانستی ڕووەک",
+                btn: "دەستپێبکە",
+                secTitle: "بەشەکانی ماڵپەڕ",
+                secSubtitle: "لێرەوە بڕوانەە ناو کایە جیاوازەکانی زانستی ڕووەک و زانیارییەکان",
+                arrow: "←",
+                chapters: [
+                    { ch: "Chapter 1", icon: "fa-info", title: "زانیاری زیاتر", desc: "دەربارەی پڕۆژەکە، ناساندنی تیمەکە، ئامانجەکانمان و پەیوەندی زانکۆیی." },
+                    { ch: "Chapter 2", icon: "fa-book-medical", title: "فەرهەنگی بایۆلۆجی", desc: "فەرهەنگێکی دەوڵەمەندی کوردی-ئینگلیزی بۆ وەرگێڕان و تێگەیشتنی زاراوە بایۆلۆجییەکان." },
+                    { ch: "Chapter 3", icon: "fa-file-lines", title: "لێکۆڵینەوە و وتار", desc: "کۆمەڵێک توێژینەوەی نوێ، وتاری زانستی و بابەتگەلی بڵاوکراوە لەسەر زانستی ڕووەک." },
+                    { ch: "Chapter 4", icon: "fa-flask", title: "ڕێنمایی تاقیگە و تەکنەلۆژیا", desc: "پڕۆتۆکۆلەکانی تاقیگە، شێوازی کارکردن لەسەر ئامێرەکان و بەکارهێنانی تەکنەلۆژیا لە بایۆلۆجیدا." },
+                    { ch: "Chapter 5", icon: "fa-video", title: "ڕوونکردنەوەی ڤیدیۆیی", desc: "بینینی ڤیدیۆی فێرکاری تاقیگەیی، ئەنیمەیشنی سێ ڕەهەندی و شیکردنەوەی پرۆسەکان." },
+                    { ch: "Chapter 6", icon: "fa-seedling", title: "ئەناتۆمی و مۆرفۆلۆژیای ڕووەک", desc: "تاوتێکردنی پێکهاتە و شێوەی دەرەکی و ناوەوەی ڕەگ، قەد، و گەڵای ڕووەکەکان." },
+                    { ch: "Chapter 7", icon: "fa-diagram-project", title: "تاکسۆنۆمی و هەمەچەشنی ڕووەک", desc: "پۆلێنکردنی خێزانە ڕووەکییەکان، ناسینەوەی جۆرەکان و فرەچەشنی ڕووەکی." },
+                    { ch: "Chapter 8", icon: "fa-dna", title: "فیزیۆلۆژیای ڕووەک و بایۆکیمیایی", desc: "میکانیزمەکانی ڕۆشنەپێکهاتن، هۆرمۆنە ڕووەکییەکان و کارلێکە کیمیاییەکانی ناو خانەکان." }
+                ]
+            },
+            en: {
+                dir: "ltr",
+                badge: "NOVAPLANT PLATFORM",
+                title: "Advanced Botanical Science Platform",
+                subtitle: "A comprehensive digital resource for students and researchers of plant sciences.",
+                btn: "Get Started",
+                secTitle: "Platform Chapters",
+                secSubtitle: "Explore various domains of plant science and biological resources from here.",
+                arrow: "→",
+                chapters: [
+                    { ch: "Chapter 1", icon: "fa-info", title: "More Information", desc: "About the project, team introduction, our core objectives, and academic relations." },
+                    { ch: "Chapter 2", icon: "fa-book-medical", title: "Biological Dictionary", desc: "A rich multilingual dictionary for translating and understanding complex biological terms." },
+                    { ch: "Chapter 3", icon: "fa-file-lines", title: "Research & Articles", desc: "A collection of modern research papers, scientific articles, and botanical publications." },
+                    { ch: "Chapter 4", icon: "fa-flask", title: "Lab Guide & Technology", desc: "Laboratory protocols, equipment operation methods, and tech integration in biology." },
+                    { ch: "Chapter 5", icon: "fa-video", title: "Video Explanations", desc: "Watch educational lab tutorials, 3D animations, and dynamic biological process breakdowns." },
+                    { ch: "Chapter 6", icon: "fa-seedling", title: "Plant Anatomy & Morphology", desc: "Detailed study of external morphology and internal anatomy of roots, stems, and leaves." },
+                    { ch: "Chapter 7", icon: "fa-diagram-project", title: "Taxonomy & Diversity", desc: "Classification of plant families, species identification, and ecological biodiversity." },
+                    { ch: "Chapter 8", icon: "fa-dna", title: "Plant Physiology & Biochem", desc: "Mechanisms of photosynthesis, plant hormones, and cellular chemical reactions." }
+                ]
+            },
+            ar: {
+                dir: "rtl",
+                badge: "منصة نوفا بلانت",
+                title: "منصة علوم النبات المتقدمة",
+                subtitle: "مصدر رقمي شامل لطلاب وباحثي علوم النبات والأحياء.",
+                btn: "ابدأ الآن",
+                secTitle: "أقسام المنصة",
+                secSubtitle: "استكشف المجالات المختلفة لعلوم النبات والموارد البيولوجية من هنا.",
+                arrow: "←",
+                chapters: [
+                    { ch: "الفصل ١", icon: "fa-info", title: "مزيد من المعلومات", desc: "حول المشروع، التعريف بالفريق، أهدافنا الأساسية، والعلاقات الأكاديمية." },
+                    { ch: "الفصل ٢", icon: "fa-book-medical", title: "القاموس البيولوجي", desc: "قاموس غني ومصطلحات متعددة اللغات لترجمة وفهم المصطلحات البيولوجية المعقدة." },
+                    { ch: "الفصل ٣", icon: "fa-file-lines", title: "الأبحاث والمقالات", desc: "مجموعة من الأوراق البحثية الحديثة، المقالات العلمية، والمنشورات البوتانية." },
+                    { ch: "الفصل ٤", icon: "fa-flask", title: "دليل المختبر والتكنولوجيا", desc: "بروتوكولات المختبر، طرق تشغيل الأجهزة، ودمج التكنولوجيا في علم الأحياء." },
+                    { ch: "الفصل ٥", icon: "fa-video", title: "شروحات مرئية", desc: "شاهد الدروس التعليمية المختبرية، الرسوم المتحركة ثلاثية الأبعاد، وتفاعلات الخلايا." },
+                    { ch: "الفصل ٦", icon: "fa-seedling", title: "تشريح وشكل النبات", desc: "دراسة مفصلة للمورفولوجيا الخارجية والتشريح الداخلي للجذور، السيقان، والأوراق." },
+                    { ch: "الفصل ٧", icon: "fa-diagram-project", title: "تصنيف وتنوع النبات", desc: "تصنيف العائلات النباتية، تحديد الأنواع، والتنوع البيولوجي البيئي." },
+                    { ch: "الفصل ٨", icon: "fa-dna", title: "فسيولوجيا النبات والكيمياء الحيوية", desc: "آليات البناء الضوئي، الهرمونات النباتية، والتفاعلات الكيميائية الخلوية." }
+                ]
+            }
+        };
+
+        // فرمانی گۆڕینی زمان
+        function changeLanguage(lang) {
+            const data = translations[lang];
+            
+            // گۆڕینی ئاڕاستەی لاپەڕە (ڕاست بۆ چەپ یان چەپ بۆ ڕاست)
+            document.getElementById("html-tag").setAttribute("dir", data.dir);
+            document.getElementById("html-tag").setAttribute("lang", lang);
+            
+            // گۆڕینی دەقەکانی بەشی سەرەکی
+            document.getElementById("hero-badge").innerText = data.badge;
+            document.getElementById("hero-title").innerText = data.title;
+            document.getElementById("hero-subtitle").innerText = data.subtitle;
+            document.getElementById("hero-btn").innerText = data.btn;
+            document.getElementById("sec-title").innerText = data.secTitle;
+            document.getElementById("sec-subtitle").innerText = data.secSubtitle;
+            
+            // دروستکردنەوەی کارتەکان بە زمانی نوێ
+            const container = document.getElementById("grid-container");
+            container.innerHTML = ""; // پاكکردنەوەی کارتەکانی پێشوو
+            
+            data.chapters.forEach(item => {
+                const cardHTML = `
+                    <div class="chapter-card">
+                        <div class="chapter-header">
+                            <span class="chapter-num">${item.ch}</span>
+                            <div class="chapter-icon"><i class="fa-solid ${item.icon}"></i></div>
+                        </div>
+                        <div class="chapter-body">
+                            <h3 class="chapter-title">${item.title}</h3>
+                            <p class="chapter-desc">${item.desc}</p>
+                        </div>
+                        <div class="chapter-footer">
+                            <a href="#" class="circle-arrow-btn">${data.arrow}</a>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += cardHTML;
+            });
+        }
+
+        // بەگەڕخستنی زمانی کوردی وەک زمانی بنەڕەتی لە کاتی کردنەوەی سایتەکە
+        changeLanguage('ku');
+    </script>
 </body>
 </html>
