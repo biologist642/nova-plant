@@ -8,16 +8,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* ڕێکخستنی بنەڕەتی */
+        /* ڕێکخستنی گشتی بەبێ شێوان */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             scroll-behavior: smooth;
-            transition: all 0.3s ease;
         }
 
-        /* گۆڕینی فۆنت بەپێی زمان */
+        /* جیاکردنەوەی فۆنت بەپێی زمانەکان */
         :lang(ku) *, :lang(ar) * {
             font-family: 'Noto Kufi Arabic', sans-serif;
         }
@@ -26,31 +25,35 @@
         }
 
         body {
-            background-color: #f4f7f5;
+            background-color: #f8fafc; /* باکگراوندێکی خۆڵەمێشی ئێجگار کاڵ هاوشێوەی وێنەکە */
             color: #2c3e50;
+            overflow-x: hidden;
         }
 
-        /* بەشی یەکەم: هێرۆ (Hero Section) */
+        /* بەشی لێواری سەرەکی (Hero Section) وەک وێنە ئەسڵییەکە */
         .hero-container {
-            background: linear-gradient(rgba(10, 50, 30, 0.75), rgba(10, 50, 30, 0.95)), 
+            background: linear-gradient(rgba(14, 55, 35, 0.8), rgba(10, 40, 25, 0.95)), 
                         url('https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&w=1920') no-repeat center center/cover;
-            min-height: 75vh;
+            min-height: 80vh;
             display: flex;
             flex-direction: column;
             color: white;
+            position: relative;
         }
 
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 50px;
+            padding: 25px 50px;
+            width: 100%;
         }
 
         .logo {
             font-size: 26px;
-            font-weight: bold;
+            font-weight: 700;
             color: #4ade80;
+            letter-spacing: 0.5px;
         }
 
         .right-controls {
@@ -59,19 +62,25 @@
             align-items: center;
         }
 
+        /* ستایلی دروستی بەشی زمان */
         .lang-select {
             background: rgba(255, 255, 255, 0.15);
             border: 1px solid rgba(255, 255, 255, 0.25);
             color: white;
-            padding: 8px 15px;
+            padding: 8px 16px;
             border-radius: 20px;
             cursor: pointer;
             font-size: 14px;
             outline: none;
+            transition: background 0.2s;
+        }
+
+        .lang-select:hover {
+            background: rgba(255, 255, 255, 0.25);
         }
 
         .lang-select option {
-            color: black;
+            color: #000;
         }
 
         .hero-content {
@@ -85,28 +94,30 @@
         }
 
         .badge {
-            background: rgba(74, 222, 128, 0.1);
+            background: rgba(74, 222, 128, 0.15);
             border: 1px solid rgba(74, 222, 128, 0.3);
             padding: 6px 20px;
             border-radius: 20px;
-            font-size: 14px;
+            font-size: 13px;
             color: #4ade80;
-            font-weight: bold;
-            margin-bottom: 20px;
+            font-weight: 700;
+            margin-bottom: 25px;
         }
 
         .main-title {
-            font-size: 44px;
+            font-size: 42px;
             font-weight: 700;
-            margin-bottom: 15px;
-            max-width: 800px;
+            margin-bottom: 20px;
+            max-width: 850px;
+            line-height: 1.5;
         }
 
         .subtitle {
-            font-size: 18px;
+            font-size: 17px;
             color: #cbd5e1;
             margin-bottom: 40px;
-            max-width: 600px;
+            max-width: 650px;
+            line-height: 1.7;
         }
 
         .start-btn {
@@ -114,84 +125,92 @@
             color: #0a321e;
             text-decoration: none;
             padding: 14px 45px;
-            font-size: 18px;
-            font-weight: bold;
+            font-size: 17px;
+            font-weight: 700;
             border-radius: 30px;
-            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4);
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+            transition: all 0.3s ease;
         }
 
         .start-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(46, 204, 113, 0.6);
+            box-shadow: 0 6px 20px rgba(46, 204, 113, 0.5);
         }
 
-        /* بەشی کارتەکان (Chapters Area) */
+        /* بەشی سەرەکی کارتەکان */
         .chapters-section {
-            padding: 80px 50px;
-            max-width: 1300px;
+            padding: 90px 50px;
+            max-width: 1350px;
             margin: 0 auto;
         }
 
         .section-main-title {
             text-align: center;
             font-size: 32px;
-            color: #1e3a2f;
-            margin-bottom: 10px;
+            color: #112c1e;
+            margin-bottom: 12px;
             font-weight: 700;
         }
 
         .section-main-subtitle {
             text-align: center;
-            color: #7f8c8d;
+            color: #64748b;
             margin-bottom: 60px;
             font-size: 16px;
         }
 
-        /* 📱 سیستەمی وەڵامدەرەوەی چەند قەبارەیی (Responsive Grid) */
+        /* 📱 تۆڕی ڕێکخراوی هاوشێوەی وێنە ئەسڵییەکە */
         .chapters-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 35px;
+            width: 100%;
         }
 
+        /* گەڕانەوەی دیزاینی کارتەکان بە تەواوی وەک یەکەم وێنە */
         .chapter-card {
             background: #ffffff;
             border-radius: 24px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03); 
+            padding: 35px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.03); /* سێبەری نەرم */
             border: 1px solid rgba(0, 0, 0, 0.01);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            min-height: 280px;
+            min-height: 290px;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .chapter-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(46, 204, 113, 0.1);
+            box-shadow: 0 15px 40px rgba(46, 204, 113, 0.08);
         }
 
         .chapter-header {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
+            align-items: center;
+            width: 100%;
         }
 
         .chapter-num {
-            font-size: 14px;
+            font-size: 13px;
             color: #e67e22; 
-            font-weight: bold;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .chapter-icon {
-            font-size: 22px;
-            color: #2c3e50;
-            width: 42px;
-            height: 42px;
+            font-size: 20px;
+            color: #1e293b;
+            width: 40px;
+            height: 40px;
             display: flex;
             justify-content: center;
             align-items: center;
-            border: 2px solid #2c3e50;
+            border: 2px solid #334155;
             border-radius: 8px;
         }
 
@@ -201,27 +220,28 @@
         }
 
         .chapter-title {
-            font-size: 20px;
-            color: #1e3a2f;
+            font-size: 21px;
+            color: #0f172a;
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .chapter-desc {
             font-size: 14px;
-            color: #7f8c8d;
-            line-height: 1.6;
+            color: #64748b;
+            line-height: 1.65;
         }
 
         .chapter-footer {
             display: flex;
             justify-content: flex-end;
             margin-top: 25px;
+            width: 100%;
         }
 
         .circle-arrow-btn {
-            width: 40px;
-            height: 40px;
+            width: 42px;
+            height: 42px;
             background-color: #27ae60;
             border-radius: 50%;
             display: flex;
@@ -230,31 +250,34 @@
             color: white;
             text-decoration: none;
             font-size: 18px;
+            transition: background 0.2s ease, transform 0.2s ease;
         }
 
         .circle-arrow-btn:hover {
             background-color: #1e8449;
+            transform: scale(1.05);
         }
 
-        /* 📱 رێکخستنی تایبەت بۆ مۆبایل و تابلێت (Media Queries) */
+        /* 📱 ڕێکخستنی Responsive بۆ موبایل و تابلێت */
         @media (max-width: 768px) {
             .navbar {
-                padding: 20px 20px;
+                padding: 20px 25px;
             }
             .logo {
                 font-size: 22px;
             }
             .main-title {
-                font-size: 32px;
+                font-size: 30px;
             }
             .subtitle {
-                font-size: 16px;
+                font-size: 15px;
             }
             .chapters-section {
-                padding: 50px 20px;
+                padding: 60px 20px;
             }
-            .section-main-title {
-                font-size: 26px;
+            .chapters-grid {
+                grid-template-columns: 1fr; /* لەسەر موبایل یەک یەک کارت نیشان دەدات */
+                gap: 25px;
             }
         }
     </style>
@@ -289,7 +312,6 @@
     </section>
 
     <script>
-        // داتای تەواوی زانیارییەکان بە سێ زمان
         const translations = {
             ku: {
                 dir: "rtl",
@@ -298,7 +320,7 @@
                 subtitle: "سەرچاوەیەکی دیجیتاڵی گشتگیر بۆ خوێندکاران و توێژەرانی زانستی ڕووەک",
                 btn: "دەستپێبکە",
                 secTitle: "بەشەکانی ماڵپەڕ",
-                secSubtitle: "لێرەوە بڕوانەە ناو کایە جیاوازەکانی زانستی ڕووەک و زانیارییەکان",
+                secSubtitle: "لێرەوە بڕوانە ناو کایە جیاوازەکانی زانستی ڕووەک و زانیارییەکان",
                 arrow: "←",
                 chapters: [
                     { ch: "Chapter 1", icon: "fa-info", title: "زانیاری زیاتر", desc: "دەربارەی پڕۆژەکە، ناساندنی تیمەکە، ئامانجەکانمان و پەیوەندی زانکۆیی." },
@@ -353,15 +375,12 @@
             }
         };
 
-        // فرمانی گۆڕینی زمان
         function changeLanguage(lang) {
             const data = translations[lang];
             
-            // گۆڕینی ئاڕاستەی لاپەڕە (ڕاست بۆ چەپ یان چەپ بۆ ڕاست)
             document.getElementById("html-tag").setAttribute("dir", data.dir);
             document.getElementById("html-tag").setAttribute("lang", lang);
             
-            // گۆڕینی دەقەکانی بەشی سەرەکی
             document.getElementById("hero-badge").innerText = data.badge;
             document.getElementById("hero-title").innerText = data.title;
             document.getElementById("hero-subtitle").innerText = data.subtitle;
@@ -369,9 +388,8 @@
             document.getElementById("sec-title").innerText = data.secTitle;
             document.getElementById("sec-subtitle").innerText = data.secSubtitle;
             
-            // دروستکردنەوەی کارتەکان بە زمانی نوێ
             const container = document.getElementById("grid-container");
-            container.innerHTML = ""; // پاكکردنەوەی کارتەکانی پێشوو
+            container.innerHTML = ""; 
             
             data.chapters.forEach(item => {
                 const cardHTML = `
@@ -393,7 +411,7 @@
             });
         }
 
-        // بەگەڕخستنی زمانی کوردی وەک زمانی بنەڕەتی لە کاتی کردنەوەی سایتەکە
+        // دانانی زمانی کوردی وەک بنەڕەتی لە کاتی باربوونی یەکەمجار
         changeLanguage('ku');
     </script>
 </body>
