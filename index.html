@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NovaPlant</title>
+    <title>Nova Plant</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -12,14 +12,14 @@
         :root {
             --bg-main: #f1f5f9;
             --bg-hero: linear-gradient(rgba(13, 35, 24, 0.75), rgba(13, 35, 24, 0.93));
-            --bg-navbar: #0f2b1d; /* ڕەنگی تەنک و تۆخی فەرمی زانکۆ */
-            --border-nav: 1px solid rgba(74, 222, 128, 0.15);
+            --bg-navbar: #0f2b1d; 
+            --border-nav: 1px solid rgba(74, 222, 128, 0.15); /* 🟢 خەتی سەوزی زۆر کاڵی دەوری نەڤبار وەک داواکاریت */
             --bg-chapters: #eef7f2; 
             --card-bg: #ffffff;
             --text-main: #1e293b;
             --text-muted: #64748b;
             --text-nav: #f8fafc;
-            --bg-footer: #0a1c13; /* ڕەنگی تۆخی فووتەر */
+            --bg-footer: #0a1c13; 
         }
 
         /* 🌙 ستایلی دارک مۆد */
@@ -55,14 +55,14 @@
             color: var(--text-main);
         }
 
-        /* 🗺️ ڕێکخستنی نەڤبار هاوشێوەی وێنەی کتێبخانەکە (زمانی کوردی لە ڕاستەوە بەرەو چەپ) */
+        /* 🗺️ ڕێکخستنی نەڤبار بە تەواوی وەک نموونەکە */
         .navbar {
             background-color: var(--bg-navbar);
             border-bottom: var(--border-nav);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 30px;
+            padding: 12px 40px;
             position: fixed;
             top: 0;
             width: 100%;
@@ -70,7 +70,6 @@
             backdrop-filter: blur(10px);
         }
 
-        /* لۆگۆ بەردەوام لە لای ڕاست دەبێت لە زمانی کوردیدا */
         .logo {
             font-size: 24px;
             font-weight: 700;
@@ -78,14 +77,31 @@
             text-decoration: none;
         }
 
-        /* بەشی دوگمەکان لە لای چەپی نەڤبار */
+        /* دوگمەی هێنانە پێشەوەی چاپتەرەکان لە ناوەڕاست یان لای دەستەکان */
+        .nav-links {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: var(--text-nav);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .nav-links a:hover {
+            color: #4ade80;
+        }
+
         .nav-actions {
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
-        /* شێوازی دوگمەی زمانەکان ڕێک وەک وێنەکە */
         .lang-badge-btn {
             background: rgba(255, 255, 255, 0.12);
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -102,7 +118,6 @@
             background: #fff;
         }
 
-        /* دوگمەی لایت و دارک مۆد شێوازی بازنەیی کاڵ */
         .theme-circle-btn {
             background: rgba(255, 255, 255, 0.12);
             border: none;
@@ -144,7 +159,6 @@
             color: #4ade80;
             font-weight: bold;
             margin-bottom: 25px;
-            letter-spacing: 1px;
         }
 
         .main-title {
@@ -300,7 +314,7 @@
             width: fit-content;
         }
 
-        /* 🔻 ستایلی فووتەری نوێ و ڕێکخراو ڕێک وەک داواکاریت */
+        /* 🔻 ستایلی فووتەری ڕێکخراو */
         .main-footer {
             background-color: var(--bg-footer);
             color: #f8fafc;
@@ -384,6 +398,7 @@
         /* 📱 مۆبایل */
         @media (max-width: 768px) {
             .navbar { padding: 12px 20px; }
+            .nav-links { display: none; }
             .main-title { font-size: 28px; }
             .chapters-section { padding: 60px 15px; }
             .chapters-grid { grid-template-columns: 1fr; gap: 45px; }
@@ -404,7 +419,11 @@
             </button>
         </div>
 
-        <a href="#" class="logo">NovaPlant</a>
+        <ul class="nav-links">
+            <li><a href="#chapters-area" id="nav-chapters">چاپتەرەکان</a></li>
+        </ul>
+
+        <a href="#" class="logo">Nova Plant</a>
     </nav>
 
     <div class="hero-container">
@@ -425,7 +444,7 @@
 
     <footer class="main-footer">
         <div class="footer-container">
-            <div class="footer-project-name">NovaPlant Website</div>
+            <div class="footer-project-name">Nova Plant Website</div>
             <div class="footer-title" id="foot-main-title">ئەتڵەسی پێشکەوتووی زانستی ڕووەک</div>
             <div class="footer-dept" id="foot-dept">بەشی بایۆلوجی - کۆلێژی زانست - زانکۆی ڕاپەڕین</div>
             
@@ -443,10 +462,10 @@
     </footer>
 
     <script>
-        // داتای وەرگێڕانی زمانەکان بە هاوتاکردنی فووتەر
         const translations = {
             ku: {
                 dir: "rtl",
+                chaptersNav: "چاپتەرەکان",
                 badge: "BIOQUEST PRO",
                 title: "ئەتڵەسی پێشکەوتووی زانستی ڕووەک",
                 subtitle: "گەشتێک بۆ ناو جیهانی مۆرفۆلۆژیا، فیزیۆلۆژیا و تاقیگەی بایۆلۆجی",
@@ -467,12 +486,13 @@
                     { ch: "Chapter 4", icon: "fa-flask-vial", img: "https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=600", title: "ڕێنمایی تاقیگە و تەکنەلۆژیا", desc: "پڕۆتۆکۆلەکانی تاقیگە، شێوازی کارکردن لەسەر ئامێرەکان و بەکارهێنانی تەکنەلۆژیا لە بایۆلۆجیدا." },
                     { ch: "Chapter 5", icon: "fa-video", img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600", title: "ڕوونکردنەوەی ڤیدیۆیی", desc: "بینینی ڤیدیۆی فێرکاری تاقیگەیی، ئەنیمەیشنی سێ ڕەهەندی و شیکردنەوەی پرۆسەکان." },
                     { ch: "Chapter 6", icon: "fa-seedling", img: "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?q=80&w=600", title: "ئەناتۆمی و مۆرفۆلۆژیای ڕووەک", desc: "تاوتێکردنی پێکهاتە و شێوەی دەرەکی و ناوەوەی ڕەگ، قەد، و گەڵای ڕووەکەکان." },
-                    { ch: "Chapter 7", icon: "fa-network-wired", img: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=600", title: "تاکسۆنۆمی و هەمەچەشنی ڕووەک", desc: "پۆلێنکردنی خێزانە ڕووەکییەکان، ناسینەوەی جۆرەکان و فرەچەشنی ڕووەکی." },
-                    { ch: "Chapter 8", icon: "fa-dna", img: "https://images.unsplash.com/photo-1530026405186-ed1ea0ac7a63?q=80&w=600", title: "Refandini u Biokimiya", desc: "میکانیزمەکانی ڕۆشنەپێکهاتن، هۆرمۆنە ڕووەکییەکان و کارلێکە کیمیاییەکانی ناو خانەکان." }
+                    { ch: "Chapter 7", icon: "fa-network-wired", img: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=600", title: "تاکسۆنۆمی و هەمەچەشنی ڕووەک", desc: "پۆلێنکردنی خێزانە ڕووەکییەکان, ناسینەوەی جۆرەکان و فرەچەشنی ڕووەکی." },
+                    { ch: "Chapter 8", icon: "fa-dna", img: "https://images.unsplash.com/photo-1530026405186-ed1ea0ac7a63?q=80&w=600", title: "فیزیۆلۆژیای ڕووەک و بایۆکیمیایی", desc: "میکانیزمەکانی ڕۆشنەپێکهاتن، هۆرمۆنە ڕووەکییەکان و کارلێکە کیمیاییەکانی ناو خانەکان." }
                 ]
             },
             en: {
                 dir: "ltr",
+                chaptersNav: "Chapters",
                 badge: "BIOQUEST PRO",
                 title: "Advanced Botanical Science Atlas",
                 subtitle: "A deep journey into the world of plant morphology, physiology, and biological laboratories.",
@@ -499,6 +519,7 @@
             },
             ar: {
                 dir: "rtl",
+                chaptersNav: "الفصول",
                 badge: "بایوکوێست برو",
                 title: "أطلس علوم النبات المتقدم",
                 subtitle: "رحلة عميقة في عالم مورفولوجيا النبات، الفسيولوجيا، والمختبرات البيولوجية.",
@@ -525,17 +546,13 @@
             }
         };
 
-        // 👁️ لوجیک و فەنکشن بۆ ئەژمارکردنی بینەران بە شێوازی لۆکاڵی
         function setupViewCounter() {
             let currentViews = localStorage.getItem("novaplant_views");
-            
             if (currentViews === null) {
-                // ئەگەر یەکەمجار بێ سەکردنی بێت، لە 580 دەستپێدەکات (نزیک بە داتای فۆتۆکەت)
-                currentViews = 580;
+                currentViews = 580; // دەستپێکردنی گشتی لە داتای نموونەکەتەوە
             } else {
                 currentViews = parseInt(currentViews) + 1;
             }
-            
             localStorage.setItem("novaplant_views", currentViews);
             document.getElementById("view-count-num").innerText = currentViews;
         }
@@ -546,7 +563,10 @@
             document.getElementById("html-tag").setAttribute("dir", data.dir);
             document.getElementById("html-tag").setAttribute("lang", lang);
             
-            // وەرگێڕانی تێکستەکانی هێرۆ
+            // وەرگێڕانی تێکستەکانی نەڤبار
+            document.getElementById("nav-chapters").innerText = data.chaptersNav;
+
+            // وەرگێڕانی هێرۆ
             document.getElementById("hero-badge").innerText = data.badge;
             document.getElementById("hero-title").innerText = data.title;
             document.getElementById("hero-subtitle").innerText = data.subtitle;
@@ -554,7 +574,7 @@
             document.getElementById("sec-title").innerText = data.secTitle;
             document.getElementById("sec-subtitle").innerText = data.secSubtitle;
             
-            // وەرگێڕانی فۆرمی فووتەر
+            // وەرگێڕانی فووتەر
             document.getElementById("foot-main-title").innerText = data.footTitle;
             document.getElementById("foot-dept").innerText = data.footDept;
             document.getElementById("foot-view-text").innerText = data.footViews;
@@ -598,7 +618,6 @@
             }
         }
 
-        // جێبەجێکردنی فەنکشنەکان لەکاتی کردنەوەی لاپەڕەکە
         setupViewCounter();
         changeLanguage('ku');
     </script>
