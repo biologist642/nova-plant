@@ -387,7 +387,7 @@
                     { ch: "Chapter 2", icon: "fa-book-open", img: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=600", title: "فەرهەنگی بایۆلۆجی", desc: "فەرهەنگێکی دەوڵەمەندی کوردی-ئینگلیزی بۆ وەرگێڕان و تێگەیشتنی زاراوە بایۆلۆجییەکان." },
                     { ch: "Chapter 3", icon: "fa-feather-alt", img: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=600", title: "لێکۆڵینەوە و وتار", desc: "کۆمەڵێک توێژینەوەی نوێ، وتاری زانستی و بابەتگەلی بڵاوکراوە لەسەر زانستی ڕووەک." },
                     { ch: "Chapter 4", icon: "fa-flask-vial", img: "https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=600", title: "ڕێنمایی تاقیگە و تەکنەلۆژیا", desc: "پڕۆتۆکۆلەکانی تاقیگە، شێوازی کارکردن لەسەر ئامێرەکان و بەکارهێنانی تەکنەلۆژیا لە بایۆلۆجیدا." },
-                    { ch: "Chapter 5", icon: "fa-video", img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600", title: "ڕوونکردنەوەی ڤیدیۆیی", desc: "بینینی ڤیدیۆی فێرکاری تاقیگەیی، ئەنیمەیشنی سێ ڕەهەندی و شیکردنەوەی پرۆسەکان." },
+                    { ch: "Chapter 5", icon: "fa-video", img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600", title: "ڕوونکردنەوەی ڤیدیۆیی", desc: "بینینی ڤیدیۆی فێرکاری تاقیگەیی, ئەنیمەیشنی سێ ڕەهەندی و شیکردنەوەی پرۆسەکان." },
                     { ch: "Chapter 6", icon: "fa-seedling", img: "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?q=80&w=600", title: "ئەناتۆمی و مۆرفۆلۆژیای ڕووەک", desc: "تاوتێکردنی پێکهاتە و شێوەی دەرەکی و ناوەوەی ڕەگ، قەد، و گەڵای ڕووەکەکان." },
                     { ch: "Chapter 7", icon: "fa-network-wired", img: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=600", title: "تاکسۆنۆمی و هەمەچەشنی ڕووەک", desc: "پۆلێنکردنی خێزانە ڕووەکییەکان، ناسینەوەی جۆرەکان و فرەچەشنی ڕووەکی." },
                     { ch: "Chapter 8", icon: "fa-dna", img: "https://images.unsplash.com/photo-1530026405186-ed1ea0ac7a63?q=80&w=600", title: "فیزیۆلۆژیای ڕووەک و بایۆکیمیایی", desc: "میکانیزمەکانی ڕۆشنەپێکهاتن، هۆرمۆنە ڕووەکییەکان و کارلێکە کیمیاییەکانی ناو خانەکان." }
@@ -462,7 +462,10 @@
             const container = document.getElementById("grid-container");
             container.innerHTML = ""; 
             
-            data.chapters.forEach(item => {
+            // 🎯 لێرەدا گۆڕانکارییەکە جێبەجێ کراوە (پشکنینی ئاڕاستەی کارتەکان بەپێی ئیندێکس)
+            data.chapters.forEach((item, index) => {
+                const targetLink = (index === 5) ? "anatomy.html" : "#";
+
                 const cardHTML = `
                     <div class="chapter-card">
                         <div class="card-image-area">
@@ -474,7 +477,7 @@
                                 <h3 class="card-title"><i class="fa-solid ${item.icon}"></i> ${item.title}</h3>
                                 <p class="card-desc">${item.desc}</p>
                             </div>
-                            <a href="#" class="card-footer-btn">
+                            <a href="${targetLink}" class="card-footer-btn">
                                 ${data.readMore} <i class="fa-solid ${data.arrow}"></i>
                             </a>
                         </div>

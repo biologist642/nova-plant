@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ku" dir="rtl" id="html-tag">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioQuest - Plant Anatomy & Morphology</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-main: #f1f5f9;
+            --bg-card: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --primary: #27ae60;
+            --bg-navbar: #0e2b1d;
+        }
+        .dark-mode {
+            --bg-main: #0f172a;
+            --bg-card: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --bg-navbar: #0f172a;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; transition: all 0.3s ease; }
+        :lang(ku) *, :lang(ar) * { font-family: 'Noto Kufi Arabic', sans-serif; }
+        :lang(en) * { font-family: 'Poppins', sans-serif; }
+        body { background-color: var(--bg-main); color: var(--text-main); padding-top: 80px; }
+        
+        .navbar {
+            background-color: var(--bg-navbar);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 40px; position: fixed; top: 0; width: 100%; z-index: 1000;
+        }
+        .back-btn { color: #4ade80; text-decoration: none; font-weight: bold; font-size: 15px; display: flex; align-items: center; gap: 8px; }
+        .lang-select { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(74, 222, 128, 0.3); color: white; padding: 6px 12px; border-radius: 12px; cursor: pointer; }
+        .lang-select option { color: black; }
+
+        .container { max-width: 900px; margin: 40px auto; padding: 0 20px; }
+        .header-area { text-align: center; margin-bottom: 40px; }
+        .header-area h1 { font-size: 32px; color: var(--primary); margin-bottom: 10px; }
+        
+        .section-card { background: var(--bg-card); padding: 30px; border-radius: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); margin-bottom: 25px; }
+        .section-card h2 { font-size: 22px; margin-bottom: 15px; border-bottom: 2px solid var(--primary); padding-bottom: 8px; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+        .section-card p { font-size: 15px; line-height: 1.8; color: var(--text-main); margin-bottom: 15px; }
+        
+        .func-list { list-style: none; }
+        .func-item { background: rgba(39, 174, 96, 0.05); padding: 15px; border-radius: 12px; margin-bottom: 15px; border-left: 4px solid var(--primary); }
+        :html[dir="rtl"] .func-item { border-left: none; border-right: 4px solid var(--primary); }
+        .func-title { font-weight: 700; color: var(--text-main); margin-bottom: 5px; font-size: 16px; }
+        .func-desc { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="back-btn" id="back-link"><i class="fa-solid fa-arrow-right"></i> <span id="back-txt">گەڕانەوە</span></a>
+        <select class="lang-select" onchange="changeLanguage(this.value)">
+            <option value="ku">Kurdî</option>
+            <option value="en">English</option>
+            <option value="ar">العربية</option>
+        </select>
+    </nav>
+
+    <div class="container">
+        <div class="header-area">
+            <h1 id="main-title">ئەتڵەسی پێشکەوتووی زانستی ڕووەک</h1>
+            <p id="main-subtitle">مۆرفۆلۆژیا و ئەناتۆمی ڕەگ</p>
+        </div>
+
+        <div class="section-card">
+            <h2 id="def-title"><i class="fa-solid fa-seedling"></i> مۆرفۆلۆژیای ڕەگ (Root Morphology)</h2>
+            <p id="def-desc"></p>
+        </div>
+
+        <div class="section-card">
+            <h2 id="p-title"><i class="fa-solid fa-gears"></i> فرمانە بنچینەییەکان</h2>
+            <div class="func-list" id="primary-funcs"></div>
+        </div>
+
+        <div class="section-card">
+            <h2 id="e-title"><i class="fa-solid fa-earth-americas"></i> فرمانە ژینگەیی و زیندەیییەکان</h2>
+            <div class="func-list" id="eco-funcs"></div>
+        </div>
+
+        <div class="section-card">
+            <h2 id="s-title"><i class="fa-solid fa-flask-vial"></i> فرمانە گۆڕدراوە فسیۆلۆجی و میکانیکییەکان</h2>
+            <div class="func-list" id="spec-funcs"></div>
+        </div>
+    </div>
+
+    <script>
+        const content = {
+            ku: {
+                dir: "rtl", back: "گەڕانەوە", title: "ئەتڵەسی پێشکەوتووی زانستی ڕووەک", subtitle: "مۆرفۆلۆژیا و ئەناتۆمی ڕەگ",
+                defTitle: "مۆرفۆلۆژیای ڕەگ (Root Morphology)",
+                defDesc: "ڕەگ ئەندامێکی سەرەکی و نەبینراوی ڕووەکە کە بەزۆری لە ژێر خاکدا گەشە دەکات. ڕەگ بەوە جیادەکرێتەوە کە بە پێچەوانەی قەدەوە، هیچ گرێ (Nodes) و نێوانەگرێیەکی (Internodes) پێوە نییە، گەڵا و گۆپکە بە شێوەیەکی سروشتی لەسەر ڕەگ دروست نابن، و ئاڕاستەی گەشەکردنی بەرەو خوارەوەیە بەپێی کێشکردنی زەوی (Positive Geotropism).",
+                pTitle: "فرمانە بنچینەیی و داینامیکییەکان",
+                eTitle: "فرمانە ژینگەیی و زیندەیییەکان",
+                sTitle: "فرمانە گۆڕدراوە فسیۆلۆجی و میکانیکییەکان",
+                primary: [
+                    { t: "١. جێگیرکردن لە خاکدا (Anchorage)", d: "ڕەگ وەک لەنگەرێکی سروشتی کاردەکات. بەناو تۆڕەکانی خاکدا بڵاودەبێتەوە بۆ ئەوەی تەواوی بەشەکانی سەرەوەی خاک ڕابگرێت و ڕێگری بکات لە کەوتنی ڕووەکەکە بەهۆی با و زریانەوە." },
+                    { t: "٢. مژینی ئاو و ماددە کانزاییەکان (Absorption)", d: "فرمانەی سەرەکی فسیۆلۆجی ڕەگە. لە ڕێگەی موووەکانی ڕەگەوە (Root Hairs)، ئاو و خوێیە تواوەکانی وەک نایترۆجین، فۆسفۆڕ، و پۆتاسیۆم لە خاکەوە دەمژێت." },
+                    { t: "٣. گواستنەوەی ماددەکان (Conduction)", d: "ئاوە مژراوەکە لە ڕێگەی شانەی دارینەوە (Xylem) بەرەو سەرەوە دەبات، و خۆراکی ئامادەکراویش لە گەڵاوە لە ڕێگەی شانەی ڕیشاڵینەوە (Phloem) بۆ بەشەکانی خوارەوە دەگوازێتەوە." },
+                    { t: "٤. عەمبارکردنی خۆراک (Storage of Nutrients)", d: "زۆرێک لە ڕووەکەکان کاربۆهیدرات و نیشاستەی زیادە لە ناو خانەکانی پارەنکایمای ڕەگدا پاشەکەوت دەکەن بۆ وەرزە سەختەکان." }
+                ],
+                eco: [
+                    { t: "٥. پاراستنی خاک لە داخوران", d: "سیستەمی ڕەگی ڕووەکەکان وەک تۆڕێکی چڕ دەنکۆڵەکانی خاک پێکەوە دەبەستنەوە، ئەمەش ڕێگری دەکات لە شتنەوەی خاک بەهۆی لافاو یان باوە." },
+                    { t: "٦. جێگیرکردنی نایترۆجینی بەرگەهە", d: "لە ڕووەکە پاقلەمەنییەکاندا، ڕەگ گرێی ڕەگی (Root Nodules) تێدا دروست دەبێت کە دەبێتە حەشارگەی بەکتریای هاوژینی Rhizobium بۆ جێگیرکردنی نایترۆجین." },
+                    { t: "٧. هاوژینی لەگەڵ قارچکەکان (Mycorrhizal Association)", d: "ڕەگ پەیوەندی هاوژینی لەگەڵ قارچکەکانی خاکدا پێکدەهێنێت (مایکۆرایزا) بۆ زیادکردنی ڕووبەری مژینی ئاو و فۆسفۆڕ." },
+                    { t: "٨. دەردانی ماددەی کیمیایی بۆ ناو خاک (Exudation)", d: "ڕەگ ماددەی ئەندامی و ترشەڵۆک دەردەکاتە ناو خاکی چواردەوری خۆی (Rhizosphere) بۆ سستکردنی کانزا قورسەکان و ڕاکێشانی مایکرۆبە بەسوودەکان." }
+                ],
+                spec: [
+                    { t: "٩. هەناسەدان لە ناوچە ئاوییەکاندا (Pneumatophores)", d: "لە خاکی تێراودا، ڕەگ بەرەو سەرەوە و دەرەوەی ئاوەکە گەشە دەکات بۆ ئەوەی ئۆکسجینی هەوا هەڵبمژێت." },
+                    { t: "١٠. پاڵپشتی ستوونی زیاتر (Prop Roots)", d: "ڕەگی ستوونی لە لقە بەرزەکانەوە شۆڕ دەبنەوە بۆ ناو خاک بۆ ئەوەی وەک کۆڵەکەیەک ڕێگری لە کەوتنی درەختەکە بکەن." },
+                    { t: "١١. ڕاگرتنی هاوسەنگی لایەنەکان (Buttress Roots)", d: "درەختە زەبەلاحەکان ڕەگی پان و دەرپەڕیویان هەیە وەک باڵ لە بنکەی قەدەکەیاندا بۆ پاراستنی هاوسەنگی." },
+                    { t: "١٢. هەڵکشان و خۆبەستنەوە (Climbing Roots)", d: "ڕەگی نامۆی بچووک لە سەر قەد دروست دەبن بۆ چەسپین و بەرزبوونەوە بە دیوار یان دارەکاندا بەرەو ڕووناکی." },
+                    { t: "١٣. مژینی شێی هەوا (Aerial / Hygroscopic Roots)", d: "وەک ڕووەکی ئۆرکید (Orchids) کە ڕەگی هەواییان هەیە بۆ مژینی نم و شێی ڕاستەوخۆ لە هەواوە." },
+                    { t: "١٤. مشەخۆری و دزینی خۆراک (Haustorial Roots)", d: "لە ڕووەکە مشەخۆرەکاندا، ڕەگ دەگۆڕێت بۆ پێکهاتەیەکی تیژ کە دەچێتە ناو لوولەکانی گواستنەوەی ڕووەکێکی تر." },
+                    { t: "١٥. زاوزێی ناڕەگەزی (Vegetative Reproduction)", d: "توانای دروستکردنی گۆپکەی سەرکێشیان هەیە تا بەبێ تۆو ببنە ڕووەکێکی نوێ و سەربەخۆ." }
+                ]
+            },
+            en: {
+                dir: "ltr", back: "Back", title: "Advanced Botanical Science Atlas", subtitle: "Root Anatomy & Morphology",
+                defTitle: "Root Morphology",
+                defDesc: "Root: A major and subcortical organ of a plant that usually grows underground. It is distinguished by the fact that, unlike the stem, there are no nodes and internodes, leaves and cones do not form naturally on the root, and the direction of growth is downward according to positive geotropism.",
+                pTitle: "Primary Functions",
+                eTitle: "Ecological & Biotic Functions",
+                sTitle: "Specialized Functions",
+                primary: [
+                    { t: "1. Anchorage", d: "Roots act as a natural anchor, spreading through the soil to hold the aerial parts steady against wind and storms." },
+                    { t: "2. Absorption", d: "The primary physiological function, absorbing water and dissolved minerals like N, P, and K via root hairs." },
+                    { t: "3. Conduction", d: "Transports absorbed water up through the Xylem and moves prepared food down from the leaves via Phloem." },
+                    { t: "4. Storage of Nutrients", d: "Stores excess carbohydrates and starch in parenchyma cells to help survival during harsh seasons." }
+                ],
+                eco: [
+                    { t: "5. Prevention of Soil Erosion", d: "The root system binds soil particles tightly together, preventing erosion from floods or strong winds." },
+                    { t: "6. Nitrogen Fixation", d: "Leguminous plants form root nodules harboring Rhizobium bacteria to fix atmospheric nitrogen." },
+                    { t: "7. Mycorrhizal Association", d: "Symbiotic relationship with soil fungi to increase surface area for water and phosphorus absorption." },
+                    { t: "8. Exudation", d: "Secretes organic substances into the Rhizosphere to ease mineral uptake and attract beneficial microbes." }
+                ],
+                spec: [
+                    { t: "9. Respiration (Pneumatophores)", d: "In waterlogged soils, roots grow upward to absorb atmospheric oxygen through specialized pores." },
+                    { t: "10. Prop Roots", d: "Vertical roots descending from high branches to act as pillars supporting heavy trees." },
+                    { t: "11. Buttress Roots", d: "Wide, wing-like roots at the base of giant rainforest trees providing lateral structural stability." },
+                    { t: "12. Climbing Roots", d: "Adventitious roots that help weak-stemmed plants anchor onto walls or other trees to reach sunlight." },
+                    { t: "13. Aerial / Hygroscopic Roots", d: "Found in plants like Orchids, absorbing moisture and humidity directly from the surrounding air." },
+                    { t: "14. Haustorial Roots", d: "Parasitic root modifications that penetrate the vascular bundles of a host plant to steal nutrients." },
+                    { t: "15. Vegetative Reproduction", d: "Develops adventitious buds capable of growing into new independent plants without seeds." }
+                ]
+            },
+            ar: {
+                dir: "rtl", back: "رجوع", title: "أطلس علوم النبات المتقدم", subtitle: "تشريح ومورفولوجيا الجذر",
+                defTitle: "مورفولوجيا الجذر (Root Morphology)",
+                defDesc: "الجذر: عضو رئيسي تحت القشرة في النبات، ينمو عادةً تحت الأرض. يتميز الجذر بأنه، على عكس الساق، لا يحتوي على عقد أو سلاميات، ولا تتشكل عليه الأوراق أو المخاريط بشكل طبيعي، ويكون اتجاه نموه نحو الأسفل وفقًا للانتحاء الأرضي الموجب.",
+                pTitle: "الوظائف الأساسية والديناميكية",
+                eTitle: "الوظائف البيئية والحيوية",
+                sTitle: "الوظائف الفسيولوجية والميكانيكية المتخصصة",
+                primary: [
+                    { t: "١. التثبيت في التربة (Anchorage)", d: "يعمل الجذر كمرساة طبيعية تنتشر في التربة لدعم جميع الأجزاء الهوائية ومنع سقوط النبات بفعل الرياح." },
+                    { t: "٢. امتصاص الماء والملح (Absorption)", d: "الوظيفة الفسيولوجية الرئيسية، حيث يمتص الماء والأملاح الذائبة مثل النيتروجين عبر الشعيرات الجذرية." },
+                    { t: "٣. توصيل المواد (Conduction)", d: "ينقل الماء الممتص عبر نسيج الخشب (Xylem) إلى الأعلى، وينقل الغذاء الجاهز عبر اللحاء (Phloem) إلى الأسفل." },
+                    { t: "٤. تخزين المواد الغذائية (Storage)", d: "تخزن العديد من النباتات الكربوهيدرات والنشا الزائد في خلايا النسيج الحشوي للجذر للاستخدام في المواسم القاسية." }
+                ],
+                eco: [
+                    { t: "٥. حماية التربة من الانجراف", d: "يربط النظام الجذري جزيئات التربة معًا كشبكة كثيفة، مما يمنع غسل التربة بسبب الفيضانات أو الرياح." },
+                    { t: "٦. تثبيت النيتروجين الجوي", d: "في النباتات البقولية، تتكون عقد جذرية (Root Nodules) تأوي بكتيريا Rhizobium التكافلية لتثبيت النيتروجين." },
+                    { t: "٧. التكافل مع الفطريات (Mycorrhizal)", d: "تكوين علاقة تكافلية مع فطريات التربة لزيادة مساحة امتصاص الماء والفوسفور بملايين المرات." },
+                    { t: "٨. إفراز المواد الكيميائية (Exudation)", d: "تفرز الجذور مواد عضوية وأحماضًا في منطقة (Rhizosphere) لتسهيل امتصاص المعادن وجذب الميكروبات المفيدة." }
+                ],
+                spec: [
+                    { t: "٩. التنفس في المناطق المائية (Pneumatophores)", d: "في التربة المغمورة بالمياه، تنمو الجذور لأعلى وخارج الماء لامتصاص الأكسجين من الهواء." },
+                    { t: "١٠. الجذور الدعامية (Prop Roots)", d: "جذور عمودية تتدلى من الفروع العالية إلى التربة لتعمل كأعمدة تمنع سقوط النبات." },
+                    { t: "١١. الجذور اللوحية (Buttress Roots)", d: "جذور عريضة وبارزة كالأجنحة عند قاعدة الأشجار الضخمة لحفظ توازن الشجرة ضد القوى الجانبية." },
+                    { t: "١٢. الجذور المتسلقة (Climbing Roots)", d: "جذور عرضية صغيرة تتشكل على الساق تلتصق كالغراء بالجدران أو الأشجار للارتفاع نحو الضوء." },
+                    { t: "١٣. امتصاص رطوبة الهواء (Aerial Roots)", d: "مثل نباتات الأوركيد (Orchids) التي تمتلك جذوراً هوائية لامتصاص الرطوبة مباشرة من الهواء." },
+                    { t: "١٤. التطفل وسرقة الغذاء (Haustorial Roots)", d: "في النباتات الطفيلية، يتحور الجذر إلى بنية حادة تخترق الأوعية الوعائية لنبات آخر لسرقة الغذاء." },
+                    { t: "١٥. التكاثر الخضري (Vegetative Reproduction)", d: "القدرة على إنتاج براعم عرضية يمكنها الخروج من تحت الأرض لتصبح نباتاً جديداً ومستقلاً بدون بذور." }
+                ]
+            }
+        };
+
+        function changeLanguage(lang) {
+            const data = content[lang];
+            document.getElementById("html-tag").setAttribute("dir", data.dir);
+            document.getElementById("html-tag").setAttribute("lang", lang);
+            
+            document.getElementById("back-txt").innerText = data.back;
+            document.getElementById("main-title").innerText = data.title;
+            document.getElementById("main-subtitle").innerText = data.subtitle;
+            document.getElementById("def-title").innerHTML = `<i class="fa-solid fa-seedling"></i> ` + data.defTitle;
+            document.getElementById("def-desc").innerText = data.defDesc;
+            document.getElementById("p-title").innerHTML = `<i class="fa-solid fa-gears"></i> ` + data.pTitle;
+            document.getElementById("e-title").innerHTML = `<i class="fa-solid fa-earth-americas"></i> ` + data.eTitle;
+            document.getElementById("s-title").innerHTML = `<i class="fa-solid fa-flask-vial"></i> ` + data.sTitle;
+            
+            const iconDir = data.dir === "rtl" ? "fa-arrow-right" : "fa-arrow-left";
+            document.getElementById("back-link").innerHTML = `<i class="fa-solid ${iconDir}"></i> <span>${data.back}</span>`;
+
+            const renderList = (id, list) => {
+                const el = document.getElementById(id); el.innerHTML = "";
+                list.forEach(i => {
+                    el.innerHTML += `<div class="func-item"><div class="func-title">${i.t}</div><div class="func-desc">${i.d}</div></div>`;
+                });
+            };
+            renderList("primary-funcs", data.primary);
+            renderList("eco-funcs", data.eco);
+            renderList("spec-funcs", data.spec);
+        }
+
+        // پشکنینی دارکمۆدی لاپەڕەی پێشوو
+        if (window.opener && window.opener.document.body.classList.contains("dark-mode")) {
+            document.body.classList.add("dark-mode");
+        }
+        changeLanguage('ku');
+    </script>
+</body>
+</html>
