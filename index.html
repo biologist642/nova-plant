@@ -11,7 +11,7 @@
         /* ڕێکخستنی بنەڕەتی و گۆڕاوەکانی ڕەنگ */
         :root {
             --bg-main: #f1f5f9;
-            --bg-hero: linear-gradient(rgba(13, 35, 24, 0.82), rgba(13, 35, 24, 0.95));
+            --bg-hero: linear-gradient(rgba(13, 35, 24, 0.75), rgba(13, 35, 24, 0.93));
             --bg-navbar: #0f2b1d; 
             --border-nav: 1px solid rgba(74, 222, 128, 0.15);
             --bg-chapters: #eef7f2; 
@@ -25,7 +25,7 @@
         /* 🌙 ستایلی دارک مۆد */
         .dark-mode {
             --bg-main: #0f172a;
-            --bg-hero: linear-gradient(rgba(10, 15, 30, 0.85), rgba(10, 15, 30, 0.97));
+            --bg-hero: linear-gradient(rgba(10, 15, 30, 0.8), rgba(10, 15, 30, 0.95));
             --bg-navbar: #0f172a;
             --border-nav: 1px solid rgba(74, 222, 128, 0.3);
             --bg-chapters: #14251c; 
@@ -77,6 +77,7 @@
             text-decoration: none;
         }
 
+        /* بەستەرەکانی سەرەکی و چاپتەرەکان */
         .nav-links {
             display: flex;
             list-style: none;
@@ -95,12 +96,14 @@
             color: #4ade80;
         }
 
+        /* بەشی لای چەپ: زمانەکان لە تەنیشت یەک و دوگمەی دارک مۆد */
         .nav-actions {
             display: flex;
             align-items: center;
             gap: 20px;
         }
 
+        /* کانتێنەری زمانەکان وەک وێبی کتێبخانە */
         .lang-switcher-container {
             display: flex;
             gap: 10px;
@@ -149,103 +152,18 @@
             border-color: #4ade80;
         }
 
-        /* 🌌 بەشی لێواری سەرەکی نوێ لەگەڵ سیستەمی 3D */
+        /* بەشی لێواری سەرەکی (Hero Section) */
         .hero-container {
-            position: relative;
             background: var(--bg-hero), 
                         url('https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&w=1920') no-repeat center center/cover;
-            min-height: 95vh;
+            min-height: 82vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 140px 20px 60px 20px; 
+            padding: 130px 20px 60px 20px; 
             color: white;
-            overflow: hidden;
-            perspective: 1000px; /* پێدانی قوڵایی بە ژینگەی 3D */
-        }
-
-        /* 📦 کانتێنەری چوارچێوەی 3D لە پشتی تێکستەکان */
-        .bg-3d-scene {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 320px;
-            height: 320px;
-            z-index: 1; /* لە پشتی ناوەڕۆکەکە دەبێت */
-            opacity: 0.22; /* کاڵکردنەوە بۆ ئەوەی تێکستەکان بە ڕوونی بخوێندرێنەوە */
-            pointer-events: none;
-        }
-
-        /* دروستکردنی گۆ یان شەشپاڵووی زانیاری 3D */
-        .cube-3d {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            transform-style: preserve-3d;
-            transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .cube-face {
-            position: absolute;
-            width: 320px;
-            height: 320px;
-            background: radial-gradient(circle, rgba(46, 204, 113, 0.2) 0%, rgba(15, 43, 29, 0.8) 100%);
-            border: 3px solid #4ade80;
-            border-radius: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: #ffffff;
-            font-size: 18px;
-            font-weight: bold;
-            padding: 20px;
-            text-align: center;
-            backface-visibility: hidden;
-            box-shadow: 0 0 40px rgba(74, 222, 128, 0.4);
-        }
-
-        .cube-face i {
-            font-size: 65px;
-            color: #4ade80;
-            margin-bottom: 20px;
-            animation: pulseIcon 2s infinite ease-in-out;
-        }
-
-        .cube-face .face-ch {
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #a7f3d0;
-            margin-bottom: 5px;
-        }
-
-        @keyframes pulseIcon {
-            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(74,222,128,0.5)); }
-            50% { transform: scale(1.08); filter: drop-shadow(0 0 20px rgba(74,222,128,0.8)); }
-        }
-
-        /* ڕێکخستنی شوێنی ڕووەکانی 3D لە ناو بۆشاییدا */
-        /* بەهۆی ئەوەی 9 چاپتەرمان هەیە، لێرەدا بە جۆراوجۆری نیشانی دەدەین */
-        .face-1 { transform: rotateY(0deg) translateZ(160px); }
-        .face-2 { transform: rotateY(40deg) translateZ(160px); }
-        .face-3 { transform: rotateY(80deg) translateZ(160px); }
-        .face-4 { transform: rotateY(120deg) translateZ(160px); }
-        .face-5 { transform: rotateY(160deg) translateZ(160px); }
-        .face-6 { transform: rotateY(200deg) translateZ(160px); }
-        .face-7 { transform: rotateY(240deg) translateZ(160px); }
-        .face-8 { transform: rotateY(280deg) translateZ(160px); }
-        .face-9 { transform: rotateY(320deg) translateZ(160px); }
-
-        /* ناوەڕۆکی لای پێشەوە (تێکستەکان هەمیشە دیار بن) */
-        .hero-content {
-            position: relative;
-            z-index: 5; /* بەرزتر لە دیمەنە 3D کە */
-            max-width: 900px;
-            pointer-events: auto;
         }
 
         .badge {
@@ -257,15 +175,14 @@
             color: #4ade80;
             font-weight: bold;
             margin-bottom: 25px;
-            display: inline-block;
         }
 
         .main-title {
-            font-size: 46px;
+            font-size: 44px;
             font-weight: 700;
             margin-bottom: 20px;
+            max-width: 900px;
             line-height: 1.6;
-            text-shadow: 0 4px 12px rgba(0,0,0,0.5);
         }
 
         .subtitle {
@@ -273,10 +190,7 @@
             color: #cbd5e1;
             margin-bottom: 40px;
             max-width: 650px;
-            margin-left: auto;
-            margin-right: auto;
             line-height: 1.8;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
         }
 
         .start-btn {
@@ -504,9 +418,7 @@
             .main-title { font-size: 28px; }
             .chapters-section { padding: 60px 15px; }
             .chapters-grid { grid-template-columns: 1fr; gap: 45px; }
-            .hero-container { padding-top: 40px; min-height: auto; }
-            .bg-3d-scene { width: 240px; height: 240px; }
-            .cube-face { width: 240px; height: 240px; }
+            .hero-container { padding-top: 40px; }
         }
     </style>
 </head>
@@ -533,26 +445,10 @@
     </nav>
 
     <div class="hero-container">
-        <div class="bg-3d-scene">
-            <div class="cube-3d" id="cube-object">
-                <div class="cube-face face-1" id="f1"></div>
-                <div class="cube-face face-2" id="f2"></div>
-                <div class="cube-face face-3" id="f3"></div>
-                <div class="cube-face face-4" id="f4"></div>
-                <div class="cube-face face-5" id="f5"></div>
-                <div class="cube-face face-6" id="f6"></div>
-                <div class="cube-face face-7" id="f7"></div>
-                <div class="cube-face face-8" id="f8"></div>
-                <div class="cube-face face-9" id="f9"></div>
-            </div>
-        </div>
-
-        <div class="hero-content">
-            <span class="badge" id="hero-badge">BIOQUEST PRO</span>
-            <h1 class="main-title" id="hero-title">ئەتڵەسی پێشکەوتووی زانستی ڕووەک</h1>
-            <p class="subtitle" id="hero-subtitle">گەشتێک بۆ ناو جیهانی مۆرفۆلۆژیا, فیزیۆلۆژیا و تاقیگەی بایۆلۆجی</p>
-            <a href="#chapters-area" class="start-btn" id="hero-btn">دەستپێبکە <i class="fa-solid fa-chevron-down"></i></a>
-        </div>
+        <span class="badge" id="hero-badge">BIOQUEST PRO</span>
+        <h1 class="main-title" id="hero-title">ئەتڵەسی پێشکەوتووی زانستی ڕووەک</h1>
+        <p class="subtitle" id="hero-subtitle">گەشتێک بۆ ناو جیهانی مۆرفۆلۆژیا، فیزیۆلۆژیا و تاقیگەی بایۆلۆجی</p>
+        <a href="#chapters-area" class="start-btn" id="hero-btn">دەستپێبکە <i class="fa-solid fa-chevron-down"></i></a>
     </div>
 
     <section id="chapters-area" class="chapters-section">
@@ -674,68 +570,39 @@
             }
         };
 
-        let currentLang = 'ku';
-        let currentStep = 0;
-        let cubeInterval;
-
+        // 👁️ سیستمی نوێ بۆ ڕێگری لە زیادبوون لە کاتی ڕیفرێش (بەکارهێنانی sessionStorage)
         function setupViewCounter() {
             let totalViews = localStorage.getItem("novaplant_total_views");
             if (totalViews === null) {
-                totalViews = 580; 
+                totalViews = 580; // دەستپێکردنی گشتی لۆکاڵی
                 localStorage.setItem("novaplant_total_views", totalViews);
             }
+
+            // ئەگەر لەم سێشنەدا هێشتا زیاد نەکراوە، با یەک جار زیادی بکات
             if (sessionStorage.getItem("novaplant_session_visited") === null) {
                 totalViews = parseInt(totalViews) + 1;
                 localStorage.setItem("novaplant_total_views", totalViews);
                 sessionStorage.setItem("novaplant_session_visited", "true");
             }
+
             document.getElementById("view-count-num").innerText = totalViews;
         }
 
-        // 🔄 ئەنیمەیشنی گۆڕینی لایەنەکانی تەنەکە ٣دی سێ چرکە جارێک
-        function start3DRotation() {
-            if(cubeInterval) clearInterval(cubeInterval);
-            
-            const cube = document.getElementById("cube-object");
-            const totalFaces = 9;
-            const angleStep = 360 / totalFaces; // لێکدانی گۆشە بۆ ٩ لایەنە جیاوازەکە
-
-            cubeInterval = setInterval(() => {
-                currentStep++;
-                // چاککردنی گۆشەی سوڕانەوە بەپێی کات بە دوای یەکدا
-                const currentAngle = -currentStep * angleStep;
-                cube.style.transform = `rotateY(${currentAngle}deg) rotateX(-5deg)`;
-            }, 3000); // ⏱️ ٣ چرکە جارێک
-        }
-
-        // 🛠️ نوێکردنەوەی زانیاری سەر ڕووەکانی 3D بەپێی زمانی هەڵبژێردراو
-        function update3DFacesData(data) {
-            for (let i = 0; i < 9; i++) {
-                const face = document.getElementById(`f${i+1}`);
-                if (face && data.chapters[i]) {
-                    const item = data.chapters[i];
-                    face.innerHTML = `
-                        <span class="face-ch">${item.ch}</span>
-                        <i class="fa-solid ${item.icon}"></i>
-                        <div style="font-size:14px; line-height:1.4;">${item.title}</div>
-                    `;
-                }
-            }
-        }
-
         function changeLanguage(lang) {
-            currentLang = lang;
             const data = translations[lang];
             
             document.getElementById("html-tag").setAttribute("dir", data.dir);
             document.getElementById("html-tag").setAttribute("lang", lang);
             
+            // چالاککردنی ڕەنگی دوگمەی زمانەکان وەک وێبی کتێبخانە
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById(`btn-${lang}`).classList.add('active');
 
+            // وەرگێڕانی دەقەکانی نەڤبار
             document.getElementById("nav-home").innerText = data.homeNav;
             document.getElementById("nav-chapters").innerText = data.chaptersNav;
 
+            // وەرگێڕانی هێرۆ
             document.getElementById("hero-badge").innerText = data.badge;
             document.getElementById("hero-title").innerText = data.title;
             document.getElementById("hero-subtitle").innerText = data.subtitle;
@@ -743,15 +610,13 @@
             document.getElementById("sec-title").innerText = data.secTitle;
             document.getElementById("sec-subtitle").innerText = data.secSubtitle;
             
+            // وەرگێڕانی فووتەر
             document.getElementById("foot-main-title").innerText = data.footTitle;
             document.getElementById("foot-dept").innerText = data.footDept;
             document.getElementById("foot-view-text").innerText = data.footViews;
             document.getElementById("foot-rights").innerText = data.footRights;
             document.getElementById("foot-developer").innerText = data.footDev;
             
-            // نوێکردنەوەی داتای نێو تەنە 3D کە
-            update3DFacesData(data);
-
             const container = document.getElementById("grid-container");
             container.innerHTML = ""; 
             
@@ -791,7 +656,6 @@
 
         setupViewCounter();
         changeLanguage('ku');
-        start3DRotation();
     </script>
 </body>
 </html>
