@@ -13,7 +13,7 @@
             --bg-main: #f1f5f9;
             --bg-hero: linear-gradient(rgba(13, 35, 24, 0.75), rgba(13, 35, 24, 0.93));
             --bg-navbar: #0f2b1d; 
-            --border-nav: 1px solid rgba(74, 222, 128, 0.15); /* 🟢 خەتی سەوزی زۆر کاڵی دەوری نەڤبار وەک داواکاریت */
+            --border-nav: 1px solid rgba(74, 222, 128, 0.15);
             --bg-chapters: #eef7f2; 
             --card-bg: #ffffff;
             --text-main: #1e293b;
@@ -55,7 +55,7 @@
             color: var(--text-main);
         }
 
-        /* 🗺️ ڕێکخستنی نەڤبار بە تەواوی وەک نموونەکە */
+        /* 🗺️ ڕێکخستنی نەڤبار */
         .navbar {
             background-color: var(--bg-navbar);
             border-bottom: var(--border-nav);
@@ -77,12 +77,12 @@
             text-decoration: none;
         }
 
-        /* دوگمەی هێنانە پێشەوەی چاپتەرەکان لە ناوەڕاست یان لای دەستەکان */
+        /* بەستەرەکانی سەرەکی و چاپتەرەکان */
         .nav-links {
             display: flex;
             list-style: none;
             align-items: center;
-            gap: 20px;
+            gap: 25px;
         }
 
         .nav-links a {
@@ -96,26 +96,42 @@
             color: #4ade80;
         }
 
+        /* بەشی لای چەپ: زمانەکان لە تەنیشت یەک و دوگمەی دارک مۆد */
         .nav-actions {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 20px;
         }
 
-        .lang-badge-btn {
-            background: rgba(255, 255, 255, 0.12);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: var(--text-nav);
-            padding: 6px 16px;
+        /* کانتێنەری زمانەکان وەک وێبی کتێبخانە */
+        .lang-switcher-container {
+            display: flex;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 4px 8px;
             border-radius: 8px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: bold;
-            outline: none;
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
-        .lang-badge-btn option {
-            color: #000;
-            background: #fff;
+
+        .lang-btn {
+            background: none;
+            border: none;
+            color: #94a3b8;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 4px 10px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn.active {
+            background: #2ecc71;
+            color: #0a321e;
+        }
+
+        .lang-btn:hover:not(.active) {
+            color: #ffffff;
         }
 
         .theme-circle-btn {
@@ -131,7 +147,7 @@
             justify-content: center;
             font-size: 16px;
         }
-        .theme-circle-btn:hover, .lang-badge-btn:hover {
+        .theme-circle-btn:hover {
             background: rgba(74, 222, 128, 0.2);
             border-color: #4ade80;
         }
@@ -397,11 +413,12 @@
 
         /* 📱 مۆبایل */
         @media (max-width: 768px) {
-            .navbar { padding: 12px 20px; }
-            .nav-links { display: none; }
+            .navbar { padding: 12px 20px; flex-direction: column; gap: 10px; height: auto; position: relative; }
+            .nav-links { gap: 15px; }
             .main-title { font-size: 28px; }
             .chapters-section { padding: 60px 15px; }
             .chapters-grid { grid-template-columns: 1fr; gap: 45px; }
+            .hero-container { padding-top: 40px; }
         }
     </style>
 </head>
@@ -409,17 +426,18 @@
 
     <nav class="navbar">
         <div class="nav-actions">
-            <select class="lang-badge-btn" id="langChange" onchange="changeLanguage(this.value)">
-                <option value="ku">Kurdî</option>
-                <option value="en">English</option>
-                <option value="ar">العربية</option>
-            </select>
+            <div class="lang-switcher-container">
+                <button class="lang-btn active" id="btn-ku" onclick="changeLanguage('ku')">Kurdî</button>
+                <button class="lang-btn" id="btn-en" onclick="changeLanguage('en')">English</button>
+                <button class="lang-btn" id="btn-ar" onclick="changeLanguage('ar')">العربية</button>
+            </div>
             <button class="theme-circle-btn" onclick="toggleTheme()">
                 <i class="fa-solid fa-moon" id="theme-icon"></i>
             </button>
         </div>
 
         <ul class="nav-links">
+            <li><a href="#" id="nav-home">سەرەکی</a></li>
             <li><a href="#chapters-area" id="nav-chapters">چاپتەرەکان</a></li>
         </ul>
 
@@ -465,6 +483,7 @@
         const translations = {
             ku: {
                 dir: "rtl",
+                homeNav: "سەرەکی",
                 chaptersNav: "چاپتەرەکان",
                 badge: "BIOQUEST PRO",
                 title: "ئەتڵەسی پێشکەوتووی زانستی ڕووەک",
@@ -486,12 +505,14 @@
                     { ch: "Chapter 4", icon: "fa-flask-vial", img: "https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=600", title: "ڕێنمایی تاقیگە و تەکنەلۆژیا", desc: "پڕۆتۆکۆلەکانی تاقیگە، شێوازی کارکردن لەسەر ئامێرەکان و بەکارهێنانی تەکنەلۆژیا لە بایۆلۆجیدا." },
                     { ch: "Chapter 5", icon: "fa-video", img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600", title: "ڕوونکردنەوەی ڤیدیۆیی", desc: "بینینی ڤیدیۆی فێرکاری تاقیگەیی، ئەنیمەیشنی سێ ڕەهەندی و شیکردنەوەی پرۆسەکان." },
                     { ch: "Chapter 6", icon: "fa-seedling", img: "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?q=80&w=600", title: "ئەناتۆمی و مۆرفۆلۆژیای ڕووەک", desc: "تاوتێکردنی پێکهاتە و شێوەی دەرەکی و ناوەوەی ڕەگ، قەد، و گەڵای ڕووەکەکان." },
-                    { ch: "Chapter 7", icon: "fa-network-wired", img: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=600", title: "تاکسۆنۆمی و هەمەچەشنی ڕووەک", desc: "پۆلێنکردنی خێزانە ڕووەکییەکان, ناسینەوەی جۆرەکان و فرەچەشنی ڕووەکی." },
-                    { ch: "Chapter 8", icon: "fa-dna", img: "https://images.unsplash.com/photo-1530026405186-ed1ea0ac7a63?q=80&w=600", title: "فیزیۆلۆژیای ڕووەک و بایۆکیمیایی", desc: "میکانیزمەکانی ڕۆشنەپێکهاتن، هۆرمۆنە ڕووەکییەکان و کارلێکە کیمیاییەکانی ناو خانەکان." }
+                    { ch: "Chapter 7", icon: "fa-network-wired", img: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=600", title: "تاکسۆنۆمی و هەمەچەشنی ڕووەک", desc: "پۆلێنکردنی خێزانە ڕووەکییەکان، ناسینەوەی جۆرەکان و فرەچەشنی ڕووەکی." },
+                    { ch: "Chapter 8", icon: "fa-dna", img: "https://images.unsplash.com/photo-1530026405186-ed1ea0ac7a63?q=80&w=600", title: "فیزیۆلۆژیای ڕووەک و بایۆکیمیایی", desc: "میکانیزمەکانی ڕۆشنەپێکهاتن، هۆرمۆنە ڕووەکییەکان و کارلێکە کیمیاییەکانی ناو خانەکان." },
+                    { ch: "Chapter 9", icon: "fa-vial-circle-check", img: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=600", title: "کوئیز و تاقیکردنەوە", desc: "خۆت تاقی بکەرەوە! لێرەدا کۆمەڵێک پرسیار و کویزی زانستی ئامادەکراون بۆ هەڵسەنگاندنی زانیارییەکانت." }
                 ]
             },
             en: {
                 dir: "ltr",
+                homeNav: "Home",
                 chaptersNav: "Chapters",
                 badge: "BIOQUEST PRO",
                 title: "Advanced Botanical Science Atlas",
@@ -514,11 +535,13 @@
                     { ch: "Chapter 5", icon: "fa-video", img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600", title: "Video Explanations", desc: "Watch educational lab tutorials, 3D animations, and dynamic biological process breakdowns." },
                     { ch: "Chapter 6", icon: "fa-seedling", img: "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?q=80&w=600", title: "Plant Anatomy & Morphology", desc: "Detailed study of external morphology and internal anatomy of roots, stems, and leaves." },
                     { ch: "Chapter 7", icon: "fa-network-wired", img: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=600", title: "Taxonomy & Diversity", desc: "Classification of plant families, species identification, and ecological biodiversity." },
-                    { ch: "Chapter 8", icon: "fa-dna", img: "https://images.unsplash.com/photo-1530026405186-ed1ea0ac7a63?q=80&w=600", title: "Plant Physiology & Biochem", desc: "Mechanisms of photosynthesis, plant hormones, and cellular chemical reactions." }
+                    { ch: "Chapter 8", icon: "fa-dna", img: "https://images.unsplash.com/photo-1530026405186-ed1ea0ac7a63?q=80&w=600", title: "Plant Physiology & Biochem", desc: "Mechanisms of photosynthesis, plant hormones, and cellular chemical reactions." },
+                    { ch: "Chapter 9", icon: "fa-vial-circle-check", img: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=600", title: "Quiz & Knowledge Evaluation", desc: "Test yourself! Participate in biological quizzes designed to evaluate your botanical knowledge." }
                 ]
             },
             ar: {
                 dir: "rtl",
+                homeNav: "الرئيسية",
                 chaptersNav: "الفصول",
                 badge: "بایوکوێست برو",
                 title: "أطلس علوم النبات المتقدم",
@@ -541,20 +564,28 @@
                     { ch: "الفصل ٥", icon: "fa-video", img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600", title: "شروحات مرئية", desc: "شاهد الدروس التعليمية المختبرية، الرسوم المتحركة ثلاثية الأبعاد، وتفاعلات الخلايا." },
                     { ch: "الفصل ٦", icon: "fa-seedling", img: "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?q=80&w=600", title: "تشريح وشكل النبات", desc: "دراسة مفصلة للمورفولوجيا الخارجية والتشريح الداخلي للجذور، السيقان، والأوراق." },
                     { ch: "الفصل ٧", icon: "fa-network-wired", img: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=600", title: "تصنيف وتنوع النبات", desc: "تصنيف العائلات النباتية، تحديد الأنواع، والتنوع البيولوجي البيئي." },
-                    { ch: "الفصل ٨", icon: "fa-dna", img: "https://images.unsplash.com/photo-1530026405186-ed1ea0ac7a63?q=80&w=600", title: "فسيولوجيا النبات والكيمياء الحيوية", desc: "آليات البناء الضوئي، الهرمونات النباتية، والتفاعلات الكيميائية الخلوية." }
+                    { ch: "الفصل ٨", icon: "fa-dna", img: "https://images.unsplash.com/photo-1530026405186-ed1ea0ac7a63?q=80&w=600", title: "فسيولوجيا النبات والكيمياء الحيوية", desc: "آليات البناء الضوئي، الهرمونات النباتية، والتفاعلات الكيميائية الخلوية." },
+                    { ch: "الفصل ٩", icon: "fa-vial-circle-check", img: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=600", title: "الاختبارات والكويزات", desc: "اختبر نفسك! شارك في الكويزات العلمية المصممة لتقييم وفحص معلوماتك البوتانية والبيولوجية." }
                 ]
             }
         };
 
+        // 👁️ سیستمی نوێ بۆ ڕێگری لە زیادبوون لە کاتی ڕیفرێش (بەکارهێنانی sessionStorage)
         function setupViewCounter() {
-            let currentViews = localStorage.getItem("novaplant_views");
-            if (currentViews === null) {
-                currentViews = 580; // دەستپێکردنی گشتی لە داتای نموونەکەتەوە
-            } else {
-                currentViews = parseInt(currentViews) + 1;
+            let totalViews = localStorage.getItem("novaplant_total_views");
+            if (totalViews === null) {
+                totalViews = 580; // دەستپێکردنی گشتی لۆکاڵی
+                localStorage.setItem("novaplant_total_views", totalViews);
             }
-            localStorage.setItem("novaplant_views", currentViews);
-            document.getElementById("view-count-num").innerText = currentViews;
+
+            // ئەگەر لەم سێشنەدا هێشتا زیاد نەکراوە، با یەک جار زیادی بکات
+            if (sessionStorage.getItem("novaplant_session_visited") === null) {
+                totalViews = parseInt(totalViews) + 1;
+                localStorage.setItem("novaplant_total_views", totalViews);
+                sessionStorage.setItem("novaplant_session_visited", "true");
+            }
+
+            document.getElementById("view-count-num").innerText = totalViews;
         }
 
         function changeLanguage(lang) {
@@ -563,7 +594,12 @@
             document.getElementById("html-tag").setAttribute("dir", data.dir);
             document.getElementById("html-tag").setAttribute("lang", lang);
             
-            // وەرگێڕانی تێکستەکانی نەڤبار
+            // چالاککردنی ڕەنگی دوگمەی زمانەکان وەک وێبی کتێبخانە
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`btn-${lang}`).classList.add('active');
+
+            // وەرگێڕانی دەقەکانی نەڤبار
+            document.getElementById("nav-home").innerText = data.homeNav;
             document.getElementById("nav-chapters").innerText = data.chaptersNav;
 
             // وەرگێڕانی هێرۆ
