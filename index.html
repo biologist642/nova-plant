@@ -13,8 +13,8 @@
             --bg-main: #f1f5f9;
             --bg-hero: linear-gradient(rgba(13, 35, 24, 0.75), rgba(13, 35, 24, 0.93));
             --bg-navbar: rgba(14, 43, 29, 0.95);
-            --border-nav: 1px solid rgba(74, 222, 128, 0.25); /* خەتی سەوزی کاڵی دەوری نەڤبار */
-            --bg-chapters: #eef7f2; /* 🟢 ڕەنگی سەوزی کاڵکراوەی پشت کارتەکان */
+            --border-nav: 1px solid rgba(74, 222, 128, 0.25); /* خەتی سەوزی کاڵ */
+            --bg-chapters: #eef7f2; /* ڕەنگی سەوزی کاڵکراوەی پشت کارتەکان */
             --card-bg: #ffffff;
             --text-main: #1e293b;
             --text-muted: #64748b;
@@ -53,7 +53,7 @@
             color: var(--text-main);
         }
 
-        /* 🗺️ نەڤبار تەنها بەو بەشانەی داوات کردبوو */
+        /* 🗺️ نەڤبار بە سەرەکی و چاپتەرەکانەوە */
         .navbar {
             background-color: var(--bg-navbar);
             border-bottom: var(--border-nav);
@@ -78,14 +78,15 @@
         .nav-links {
             display: flex;
             list-style: none;
+            gap: 25px; /* بۆشایی گونجاو لە نێوان سەرەکی و چاپتەرەکان */
             align-items: center;
         }
 
         .nav-links a {
             color: var(--text-nav);
             text-decoration: none;
-            font-size: 16px;
-            font-weight: 700; /* تۆختر بۆ ئەوەی جوان دیار بێت */
+            font-size: 15px;
+            font-weight: 400; 
         }
 
         .nav-links a:hover {
@@ -98,7 +99,7 @@
             gap: 20px;
         }
 
-        /* ستایلی دوگمەی زمان */
+        /* دوگمەی زمان */
         .lang-select {
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(74, 222, 128, 0.3);
@@ -182,7 +183,7 @@
             gap: 10px;
         }
 
-        /* 🖼️ بەشی سەرەکی کارتەکان بە باکگراوندی سەوزی کاڵکراوە */
+        /* بەشی سەرەکی کارتەکان */
         .chapters-section {
             padding: 80px 50px;
             max-width: 100%;
@@ -308,13 +309,13 @@
             width: fit-content;
         }
 
-        /* 📱 گونجاندنی موبایل */
+        /* 📱 گونجاندنی مۆبایل */
         @media (max-width: 768px) {
             .navbar {
                 padding: 15px 20px;
             }
             .nav-links {
-                display: none; /* شاردنەوە لەسەر موبایل بۆ ڕێگری لە قەرەباڵغی */
+                display: none; /* شاردنەوە لەسەر مۆبایل */
             }
             .main-title {
                 font-size: 30px;
@@ -335,6 +336,7 @@
         <a href="#" class="logo">BioQuest</a>
         
         <ul class="nav-links">
+            <li><a href="#" id="nav-home">سەرەکی</a></li>
             <li><a href="#chapters-area" id="nav-chapters">چاپتەرەکان</a></li>
         </ul>
 
@@ -370,6 +372,7 @@
         const translations = {
             ku: {
                 dir: "rtl",
+                homeNav: "سەرەکی",
                 chaptersNav: "چاپتەرەکان",
                 badge: "BIOQUEST PRO",
                 title: "ئەتڵەسی پێشکەوتووی زانستی ڕووەک",
@@ -392,6 +395,7 @@
             },
             en: {
                 dir: "ltr",
+                homeNav: "Home",
                 chaptersNav: "Chapters",
                 badge: "BIOQUEST PRO",
                 title: "Advanced Botanical Science Atlas",
@@ -414,6 +418,7 @@
             },
             ar: {
                 dir: "rtl",
+                homeNav: "الرئيسية",
                 chaptersNav: "الفصول",
                 badge: "بایوکوێست برو",
                 title: "أطلس علوم النبات المتقدم",
@@ -427,7 +432,7 @@
                     { ch: "الفصل ١", icon: "fa-info-circle", img: "https://images.unsplash.com/photo-1463936575829-25148e1db1b8?q=80&w=600", title: "مزيد من المعلومات", desc: "حول المشروع، التعريف بالفريق، أهدافنا الأساسية، والعلاقات الأكاديمية." },
                     { ch: "الفصل ٢", icon: "fa-book-open", img: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=600", title: "القاموس البيولوجي", desc: "قاموس غني ومصطلحات متعددة اللغات لترجمة وفهم المصطلحات البيولوجية المعقدة." },
                     { ch: "الفصل ٣", icon: "fa-feather-alt", img: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=600", title: "الأبحاث والمقالات", desc: "مجموعة من الأوراق البحثية الحديثة، المقالات العلمية، والمنشورات البوتانية." },
-                    { ch: "الفصل ٤", icon: "fa-flask-vial", img: "https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=600", title: "دليل المختبر والتكنولوجيا", desc: "بروتوكولات المختبر، طرق تشغيل الأجهزة، ودمج التكنولوجيا في علم الأحياء." },
+                    { ch: "الفصل ١", icon: "fa-flask-vial", img: "https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=600", title: "دليل المختبر والتكنولوجيا", desc: "بروتوكولات المختبر، طرق تشغيل الأجهزة، ودمج التكنولوجيا في علم الأحياء." },
                     { ch: "الفصل ٥", icon: "fa-video", img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600", title: "شروحات مرئية", desc: "شاهد الدروس التعليمية المختبرية، الرسوم المتحركة ثلاثية الأبعاد، وتفاعلات الخلايا." },
                     { ch: "الفصل ٦", icon: "fa-seedling", img: "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?q=80&w=600", title: "تشريح وشكل النبات", desc: "دراسة مفصلة للمورفولوجيا الخارجية والتشريح الداخلي للجذور، السيقان، والأوراق." },
                     { ch: "الفصل ٧", icon: "fa-network-wired", img: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=600", title: "تصنيف وتنوع النبات", desc: "تصنيف العائلات النباتية، تحديد الأنواع، والتنوع البيولوجي البيئي." },
@@ -442,7 +447,8 @@
             document.getElementById("html-tag").setAttribute("dir", data.dir);
             document.getElementById("html-tag").setAttribute("lang", lang);
             
-            // وەرگێڕانی تاقە بەستەری ناونیشانی چاپتەرەکان لە نەڤبار
+            // وەرگێڕانی بەستەرەکانی نەڤبار
+            document.getElementById("nav-home").innerText = data.homeNav;
             document.getElementById("nav-chapters").innerText = data.chaptersNav;
 
             // وەرگێڕانی هێرۆ
