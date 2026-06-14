@@ -8,36 +8,35 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* 🎨 گۆڕاوە سەرەکییەکانی ڕەنگ و ڕووناکی */
+        /* 🎨 گۆڕاوە سەرەکییەکان */
         :root {
             --bg-main: #f8fafc;
-            --bg-navbar: rgba(15, 43, 29, 0.75); /* نەڤباری کاڵ و شووشەیی */
+            --bg-navbar: rgba(15, 43, 29, 0.75); 
             --border-nav: 1px solid rgba(255, 255, 255, 0.1);
-            --bg-chapters: #f0fdf4; 
+            --bg-chapters: #f2fbf5; /* 🌿 گۆڕینی سپی بۆ سەوزێکی ئێجگار کاڵ و ئارامکەرەوە */
             --card-bg: #ffffff;
             --text-main: #0f172a;
             --text-muted: #475569;
             --text-nav: #f8fafc;
-            --bg-footer: #081910;
+            --bg-footer: #06130c; /* کەمێک تۆختر بۆ لێکهەڵوەشانێکی جوانتر */
             --primary: #10b981;
             --primary-hover: #059669;
-            --shadow-sm: 0 5px 15px rgba(0,0,0,0.03);
-            --shadow-md: 0 10px 30px rgba(0,0,0,0.08);
+            --shadow-sm: 0 10px 25px rgba(0,0,0,0.04);
+            --shadow-md: 0 20px 40px rgba(0,0,0,0.08);
             --blur: saturate(180%) blur(12px);
         }
 
-        /* 🌙 ستایلی پێشکەوتووی دارک مۆد */
         .dark-mode {
-            --bg-main: #0b111e;
-            --bg-navbar: rgba(15, 23, 42, 0.7);
+            --bg-main: #070c14;
+            --bg-navbar: rgba(11, 18, 30, 0.75);
             --border-nav: 1px solid rgba(255, 255, 255, 0.05);
-            --bg-chapters: #0f172a; 
-            --card-bg: #1e293b;
+            --bg-chapters: #0b1320; /* سەوزی کاڵی دارک مۆد */
+            --card-bg: #151f32;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --bg-footer: #030712;
-            --shadow-sm: 0 5px 15px rgba(0,0,0,0.2);
-            --shadow-md: 0 10px 30px rgba(0,0,0,0.4);
+            --bg-footer: #03070d;
+            --shadow-sm: 0 10px 25px rgba(0,0,0,0.3);
+            --shadow-md: 0 20px 40px rgba(0,0,0,0.5);
         }
 
         * {
@@ -59,7 +58,7 @@
             overflow-x: hidden;
         }
 
-        /* 🗺️ نەڤباری مۆدێرن و شووشەیی (Blur Effect) */
+        /* 🗺️ نەڤبار */
         .navbar {
             background-color: var(--bg-navbar);
             border-bottom: var(--border-nav);
@@ -68,7 +67,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 14px 6%;
+            padding: 12px 6%;
             position: fixed;
             top: 0;
             width: 100%;
@@ -81,7 +80,6 @@
             color: var(--primary);
             text-decoration: none;
             letter-spacing: -0.5px;
-            position: relative;
         }
 
         .nav-links {
@@ -100,18 +98,15 @@
             transition: 0.3s;
         }
 
-        .nav-links a:hover {
-            color: var(--primary);
-            opacity: 1;
-        }
+        .nav-links a:hover { color: var(--primary); opacity: 1; }
 
         .nav-actions {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
         }
 
-        .lang-switcher-container {
+        .lang-switcher-container, .theme-switcher-container {
             display: flex;
             gap: 4px;
             background: rgba(255, 255, 255, 0.06);
@@ -120,7 +115,7 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .lang-btn {
+        .lang-btn, .theme-btn {
             background: none;
             border: none;
             color: #94a3b8;
@@ -130,38 +125,18 @@
             padding: 6px 14px;
             border-radius: 20px;
             transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
-        .lang-btn.active {
+        .lang-btn.active, .theme-btn.active {
             background: var(--primary);
             color: #ffffff;
             box-shadow: 0 4px 10px rgba(16, 185, 129, 0.2);
         }
 
-        /* 💡 دوگمەی نوێی لایت و دارک مۆد */
-        .theme-circle-btn {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-nav);
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .theme-circle-btn:hover {
-            background: var(--primary);
-            color: #fff;
-            transform: rotate(45deg);
-        }
-
-        /* 🌿 بەشی هێرۆ بە باکگراوندی 3D و مۆشنی سینەمایی */
+        /* 🌿 بەشی هێرۆ */
         .hero-container {
             position: relative;
             min-height: 95vh;
@@ -176,13 +151,9 @@
             background-color: #050c08;
         }
 
-        /* چینەکانی باکگراوند بۆ دروستکردنی مۆشنی سێ ڕەهەندی قووڵ */
         .hero-bg-layer {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background-size: cover;
             background-position: center;
             z-index: 1;
@@ -190,21 +161,17 @@
             transform: scale(1.05);
         }
 
-        .hero-bg-layer.active {
-            opacity: 0.45;
-            transform: scale(1);
-        }
-
+        .hero-bg-layer.active { opacity: 0.45; transform: scale(1); }
         .hero-overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, rgba(11,17,30,0.4) 0%, rgba(11,17,30,0.85) 100%);
+            background: linear-gradient(to bottom, rgba(11,17,30,0.3) 0%, rgba(11,17,30,0.85) 100%);
             z-index: 2;
         }
 
         .hero-content {
             position: relative;
-            z-index: 3; /* دەقەکان هەمیشە بە ڕوونی دەمێننەوە */
+            z-index: 3;
             max-width: 900px;
             animation: fadeInHero 1.2s ease-out;
         }
@@ -214,18 +181,20 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* ✨ گەورەکردنی بەدجەکە و گۆڕینی ناوەکەی */
         .badge {
-            background: rgba(16, 185, 129, 0.15);
-            border: 1px solid rgba(16, 185, 129, 0.4);
-            padding: 6px 22px;
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid rgba(16, 185, 129, 0.5);
+            padding: 8px 28px;
             border-radius: 30px;
-            font-size: 13px;
+            font-size: 16px; /* قەبارەی گەورەتر */
             color: #34d399;
-            font-weight: 700;
-            letter-spacing: 1px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
             margin-bottom: 25px;
             display: inline-block;
             backdrop-filter: blur(5px);
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2);
         }
 
         .main-title {
@@ -245,7 +214,6 @@
             text-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
 
-        /* ⚡ دوگمەی دەستپێکردنی گەشاوە و پڕ مۆشن */
         .start-btn {
             background: linear-gradient(135deg, #10b981, #059669);
             color: #ffffff !important;
@@ -273,272 +241,215 @@
             transition: opacity 0.4s ease;
         }
 
-        .start-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(16, 185, 129, 0.6);
-        }
-
+        .start-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(16, 185, 129, 0.6); }
         .start-btn:hover::before { opacity: 1; }
-
-        .start-btn i {
-            animation: bounceArrow 1.6s infinite;
-        }
+        .start-btn i { animation: bounceArrow 1.6s infinite; }
 
         @keyframes bounceArrow {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(4px); }
         }
 
-        /* 🖼️ بەشی کارتەکان و چاپتەرەکان */
+        /* 🖼️ بەشی کارتەکان - شێوازی شەیپی سەر وێنە (Overlap Floating Style) */
         .chapters-section {
             padding: 100px 6%;
             background-color: var(--bg-chapters);
-            position: relative;
         }
 
-        .section-main-title {
-            text-align: center;
-            font-size: 38px;
-            margin-bottom: 12px;
-            font-weight: 700;
-            letter-spacing: -1px;
-        }
-
-        .section-main-subtitle {
-            text-align: center;
-            color: var(--text-muted);
-            margin-bottom: 70px;
-            font-size: 16px;
-        }
+        .section-main-title { text-align: center; font-size: 38px; margin-bottom: 12px; font-weight: 700; }
+        .section-main-subtitle { text-align: center; color: var(--text-muted); margin-bottom: 80px; font-size: 16px; }
 
         .chapters-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
+            gap: 60px 40px; /* زیادکردنی مەودای ستوونی بەهۆی شەیپە فلوتینگەکەوە */
         }
 
         .chapter-card {
-            background: var(--card-bg);
-            border-radius: 24px;
-            overflow: hidden;
+            background: transparent;
+            position: relative;
             display: flex;
             flex-direction: column;
-            box-shadow: var(--shadow-sm);
-            transition: transform 0.4s cubic-bezier(0.16.5, 0.84, 0.44, 1), box-shadow 0.4s;
-        }
-
-        .chapter-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-md);
+            transition: transform 0.4s ease;
         }
 
         .card-image-area {
-            height: 240px;
+            height: 260px;
             width: 100%;
             overflow: hidden;
+            border-radius: 20px; /* وێنەکە سەربەخۆ خڕە */
+            box-shadow: var(--shadow-sm);
             position: relative;
+            z-index: 1;
         }
 
         .card-image-area img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            width: 100%; height: 100%; object-fit: cover;
             transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
-        .chapter-card:hover .card-image-area img {
-            transform: scale(1.08);
-        }
+        .chapter-card:hover .card-image-area img { transform: scale(1.06); }
 
         .card-chapter-tag {
             position: absolute;
-            top: 20px; right: 20px;
+            top: 15px; right: 15px;
             background: rgba(15, 23, 42, 0.75);
             backdrop-filter: blur(5px);
             color: #34d399;
-            padding: 6px 16px;
+            padding: 4px 12px;
             border-radius: 30px;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 700;
             z-index: 5;
         }
-        
-        :lang(en) .card-chapter-tag { right: auto; left: 20px; }
+        :lang(en) .card-chapter-tag { right: auto; left: 15px; }
 
+        /* 📦 شەیپی ناوەڕۆکەکە کە دەکەوێتە سەر وێنەکە و کەمێک بچووکترە */
         .card-content-box {
-            padding: 28px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 24px;
+            width: 90%; /* کەمێک بچووکتر لە وێنەکە لە لایەکانەوە */
+            margin: -60px auto 0 auto; /* بەرزکردنەوەی بۆ سەر وێنەکە */
+            position: relative;
+            z-index: 2; /* دەکەوێتە سەر وێنەکە */
+            box-shadow: var(--shadow-md);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             flex-grow: 1;
+            border: 1px solid rgba(16, 185, 129, 0.08);
         }
 
         .card-title {
-            font-size: 20px;
+            font-size: 19px;
             color: var(--text-main);
             font-weight: 700;
-            margin-bottom: 8px; /* کەمکردنەوەی مەودای خواروو */
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
-        .card-title i {
-            color: var(--primary);
-            font-size: 18px;
-        }
+        .card-title i { color: var(--primary); font-size: 16px; }
+        .card-desc { font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px; }
 
-        .card-desc {
-            font-size: 14px;
-            color: var(--text-muted);
-            line-height: 1.7;
-            margin-bottom: 14px; /* کەمکردنەوەی بۆشایی لەگەڵ دوگمەکە */
-        }
-
-        /* ✨ لۆجیک و مۆشنی دوگمەی خوێندنەوەی زیاتر */
+        /* ⚡ دیزاینی مۆدێرن و نوێی دوگمەی خوێندنەوەی زیاتر */
         .card-footer-btn {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            justify-content: center;
+            gap: 8px;
+            background: rgba(16, 185, 129, 0.08);
             color: var(--primary);
             text-decoration: none;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 700;
-            width: fit-content;
-            transition: 0.3s ease;
+            padding: 10px 20px;
+            border-radius: 12px;
+            width: 100%; /* پڕکردنەوەی پانی کارتەکە بۆ شیکپۆشی */
+            border: 1px solid rgba(16, 185, 129, 0.15);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .card-footer-btn i {
-            transition: transform 0.3s ease;
-        }
+        .card-footer-btn i { transition: transform 0.3s ease; font-size: 11px; }
 
         .card-footer-btn:hover {
-            color: var(--primary-hover);
+            background: var(--primary);
+            color: #ffffff;
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.25);
+            border-color: var(--primary);
         }
 
-        .card-footer-btn:hover i {
-            transform: translateX(-5px); /* جوڵە بۆ لای چەپ لە زمانی کوردی/عەرەبی */
-        }
+        .card-footer-btn:hover i { transform: translateX(-4px); }
+        :lang(en) .card-footer-btn:hover i { transform: translateX(4px); }
 
-        :lang(en) .card-footer-btn:hover i {
-            transform: translateX(5px); /* جوڵە بۆ لای ڕاست لە زمانی ئینگلیزی */
-        }
-
-        /* 🔻 دیزاین و فەزای مۆدێرنی فووتەر بە ئەنیمەیشنی گەشاوە */
+        /* 🔻 فووتەری بچووککراوە و کەم پان */
         .main-footer {
             background-color: var(--bg-footer);
             color: #f8fafc;
-            padding: 60px 20px;
+            padding: 35px 20px; /* کەمکردنەوەی پادینگی سەر و خوار بۆ نیوە */
             text-align: center;
             border-top: var(--border-nav);
             position: relative;
             overflow: hidden;
         }
 
-        /* گەشەی نەرم و شەپۆلی لە پشتەوەی فووتەر */
         .main-footer::before {
             content: '';
             position: absolute;
             top: -50%; left: -50%; width: 200%; height: 200%;
-            background: radial-gradient(circle, rgba(16,185,129,0.04) 0%, rgba(0,0,0,0) 70%);
-            animation: footerGlow 10s infinite linear;
+            background: radial-gradient(circle, rgba(16,185,129,0.03) 0%, rgba(0,0,0,0) 70%);
             z-index: 1;
         }
 
-        @keyframes footerGlow {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
         .footer-container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             display: flex;
-            flex-direction: column;
-            gap: 12px;
+            flex-direction: row; /* گۆڕینی بۆ دێڕی ڕێک لە جیاتی ستوونی بۆ کەمکردنەوەی پانی */
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
             position: relative;
             z-index: 2;
         }
 
-        .footer-project-name {
-            font-size: 24px;
-            font-weight: 800;
-            color: var(--primary);
-            letter-spacing: -0.5px;
-        }
+        .footer-info-side { text-align: right; display: flex; flex-direction: column; gap: 4px; }
+        :lang(en) .footer-info-side { text-align: left; }
 
-        .footer-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: #f1f5f9;
-        }
-
-        .footer-dept {
-            font-size: 14px;
-            color: #94a3b8;
-        }
+        .footer-project-name { font-size: 20px; font-weight: 800; color: var(--primary); }
+        .footer-title { font-size: 15px; font-weight: 600; color: #e2e8f0; }
+        .footer-dept { font-size: 13px; color: #94a3b8; }
 
         .viewer-counter-box {
             background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(16, 185, 129, 0.2);
-            padding: 10px 22px;
+            border: 1px solid rgba(16, 185, 129, 0.15);
+            padding: 6px 16px;
             border-radius: 30px;
             display: inline-flex;
             align-items: center;
-            gap: 12px;
-            margin: 20px auto 10px auto;
-            width: fit-content;
+            gap: 8px;
             backdrop-filter: blur(5px);
         }
 
-        .viewer-counter-box i { color: var(--primary); font-size: 14px; }
-        .viewer-text { font-size: 13px; color: #cbd5e1; }
-        .viewer-count {
-            font-weight: 700; color: #ffffff; background: #064e3b;
-            padding: 4px 12px; border-radius: 20px; font-size: 13px;
-        }
+        .viewer-counter-box i { color: var(--primary); font-size: 12px; }
+        .viewer-text { font-size: 12px; color: #cbd5e1; }
+        .viewer-count { font-weight: 700; color: #ffffff; background: #064e3b; padding: 2px 10px; border-radius: 20px; font-size: 12px; }
 
         .footer-rights {
-            font-size: 13px;
-            color: #64748b;
-            margin-top: 15px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding-top: 20px;
+            width: 100%;
+            font-size: 12px;
+            color: #475569;
+            margin-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            padding-top: 15px;
+            display: flex;
+            justify-content: space-between;
         }
 
-        .footer-dev {
-            font-size: 13px;
-            color: #a7f3d0;
-            font-weight: 600;
-            margin-top: 4px;
-        }
+        .footer-dev { color: #86efac; font-weight: 600; }
 
-        /* 📱 سیستمی ڕێسپۆنسیڤی تەواو بۆ مۆبایل و تابلێت */
-        @media (max-width: 992px) {
-            .navbar { padding: 14px 4%; }
-            .main-title { font-size: 40px; }
-        }
-
+        /* 📱 مۆبایل */
         @media (max-width: 768px) {
-            /* ڕێکخستنی نەڤبار لە یەک دێڕدا بۆ مۆبایل */
-            .navbar { 
-                padding: 12px 16px; 
-                flex-direction: row; 
-                justify-content: space-between;
-                gap: 10px;
-            }
-            .nav-links { display: none; } /* بەستەرە زیادەکان دەشاردرێنەوە بۆ ڕێگری لە قەرەباڵغی */
+            .navbar { padding: 12px 16px; flex-direction: row; justify-content: space-between; gap: 10px; }
+            .nav-links { display: none; } 
             .logo { font-size: 20px; }
-            .lang-switcher-container { padding: 2px; gap: 2px; }
-            .lang-btn { padding: 4px 8px; font-size: 11px; }
-            .theme-circle-btn { width: 34px; height: 34px; font-size: 14px; }
+            .lang-switcher-container, .theme-switcher-container { padding: 2px; gap: 2px; }
+            .lang-btn, .theme-btn { padding: 4px 10px; font-size: 11px; }
             
             .main-title { font-size: 30px; }
             .subtitle { font-size: 16px; }
             .start-btn { padding: 14px 36px; font-size: 16px; }
             
             .chapters-section { padding: 60px 16px; }
-            .chapters-grid { grid-template-columns: 1fr; gap: 35px; }
+            .chapters-grid { grid-template-columns: 1fr; gap: 50px; }
+            .card-content-box { width: 92%; margin-top: -50px; }
+
+            .footer-container { flex-direction: column; text-align: center; }
+            .footer-info-side { text-align: center; }
+            .footer-rights { flex-direction: column; gap: 6px; align-items: center; }
         }
     </style>
 </head>
@@ -546,14 +457,20 @@
 
     <nav class="navbar">
         <div class="nav-actions">
+            <div class="theme-switcher-container">
+                <button class="theme-btn active" id="theme-light-btn" onclick="setTheme('light')">
+                    <i class="fa-solid fa-sun"></i> Light
+                </button>
+                <button class="theme-btn" id="theme-dark-btn" onclick="setTheme('dark')">
+                    <i class="fa-solid fa-moon"></i> Dark
+                </button>
+            </div>
+
             <div class="lang-switcher-container">
                 <button class="lang-btn active" id="btn-ku" onclick="changeLanguage('ku')">Kurdî</button>
                 <button class="lang-btn" id="btn-en" onclick="changeLanguage('en')">English</button>
                 <button class="lang-btn" id="btn-ar" onclick="changeLanguage('ar')">العربية</button>
             </div>
-            <button class="theme-circle-btn" onclick="toggleTheme()" id="theme-toggle-btn">
-                <i class="fa-solid fa-moon" id="theme-icon"></i>
-            </button>
         </div>
 
         <ul class="nav-links">
@@ -568,7 +485,7 @@
         <div class="hero-overlay"></div>
         
         <div class="hero-content">
-            <span class="badge" id="hero-badge">BIOQUEST PRO</span>
+            <span class="badge" id="hero-badge">NOVAPLANT</span>
             <h1 class="main-title" id="hero-title">ئەتڵەسی پێشکەوتووی زانستی ڕووەک</h1>
             <p class="subtitle" id="hero-subtitle">گەشتێک بۆ ناو جیهانی مۆرفۆلۆژیا، فیزیۆلۆژیا و تاقیگەی بایۆلۆجی</p>
             <a href="#chapters-area" class="start-btn" id="hero-btn">دەستپێبکە <i class="fa-solid fa-chevron-down"></i></a>
@@ -586,9 +503,11 @@
 
     <footer class="main-footer">
         <div class="footer-container">
-            <div class="footer-project-name">NovaPlant Website</div>
-            <div class="footer-title" id="foot-main-title">ئەتڵەسی پێشکەوتووی زانستی ڕووەک</div>
-            <div class="footer-dept" id="foot-dept">بەشی بایۆلوجی - کۆلێژی زانست - زانکۆی ڕاپەڕین</div>
+            <div class="footer-info-side">
+                <div class="footer-project-name">NovaPlant Website</div>
+                <div class="footer-title" id="foot-main-title">ئەتڵەسی پێشکەوتووی زانستی ڕووەک</div>
+                <div class="footer-dept" id="foot-dept">بەشی بایۆلوجی - کۆلێژی زانست - زانکۆی ڕاپەڕین</div>
+            </div>
             
             <div class="viewer-counter-box">
                 <i class="fa-solid fa-eye"></i>
@@ -604,31 +523,19 @@
     </footer>
 
     <script>
-        // 🎞️ لیست و داتای وێنە ڕووەکییە گرافیکییە بەرزەکان بۆ باکگراوندی هێرۆ (3D Cinematic Style)
         const motionImages = [
-            "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&w=1920", // گەڵای تیشکی و ڕووناکی مۆدێرن
-            "https://images.unsplash.com/photo-1463936575829-25148e1db1b8?q=80&w=1920", // فیزیۆلۆژیا و ڕەنگی سروشتی ڕووەک
-            "https://images.unsplash.com/photo-1545239351-ef35f43d514b?q=80&w=1920"  // مایکرۆسکۆپی و بەشەکانی ناوەوە
+            "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&w=1920", 
+            "https://images.unsplash.com/photo-1463936575829-25148e1db1b8?q=80&w=1920", 
+            "https://images.unsplash.com/photo-1545239351-ef35f43d514b?q=80&w=1920"
         ];
 
         const translations = {
             ku: {
-                dir: "rtl",
-                homeNav: "سەرەکی",
-                chaptersNav: "چاپتەرەکان",
-                badge: "BIOQUEST PRO",
-                title: "ئەتڵەسی پێشکەوتووی زانستی ڕووەک",
-                subtitle: "گەشتێک بۆ ناو جیهانی مۆرفۆلۆژیا، فیزیۆلۆژیا و تاقیگەی بایۆلۆجی",
-                btn: "دەستپێبکە",
-                secTitle: "بەشەکانی پلاتفۆرم",
-                secSubtitle: "لێرەوە بڕوانە ناو کایە جیاوازەکانی زانستی ڕووەک و سەرچاوەکان",
-                readMore: "خوێندنەوەی زیاتر",
-                arrow: "fa-arrow-left",
-                footTitle: "ئەتڵەسی پێشکەوتووی زانستی ڕووەک",
-                footDept: "بەشی بایۆلوجی - کۆلێژی زانست - زانکۆی ڕاپەڕین",
-                footViews: "بینەری گشتی:",
-                footRights: "سەرجەم مافەکانی پارێزراوە © 2026",
-                footDev: "گەشەپێدەری وێب: ژیاو یوسف حسین",
+                dir: "rtl", homeNav: "سەرەکی", chaptersNav: "چاپتەرەکان", badge: "NOVAPLANT",
+                title: "ئەتڵەسی پێشکەوتووی زانستی ڕووەک", subtitle: "گەشتێک بۆ ناو جیهانی مۆرفۆلۆژیا، فیزیۆلۆژیا و تاقیگەی بایۆلۆجی",
+                btn: "دەستپێبکە", secTitle: "بەشەکانی پلاتفۆرم", secSubtitle: "لێرەوە بڕوانە ناو کایە جیاوازەکانی زانستی ڕووەک و سەرچاوەکان",
+                readMore: "خوێندنەوەی زیاتر", footTitle: "ئەتڵەسی پێشکەوتووی زانستی ڕووەک", footDept: "بەشی بایۆلوجی - کۆلێژی زانست - زانکۆی ڕاپەڕین",
+                footViews: "بینەری گشتی:", footRights: "سەرجەم مافەکانی پارێزراوە © 2026", footDev: "گەشەپێدەری وێب: ژیاو یوسف حسین",
                 chapters: [
                     { ch: "Chapter 1", icon: "fa-book-bookmark", img: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?q=80&w=600", title: "زانیاری زیاتر", desc: "دەربارەی پڕۆژەکە، ناساندنی تیمەکە، ئامانجەکانمان و پەیوەندی زانکۆیی." },
                     { ch: "Chapter 2", icon: "fa-spell-check", img: "https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?q=80&w=600", title: "فەرهەنگی بایۆلۆجی", desc: "فەرهەنگێکی دەوڵەمەندی کوردی-ئینگلیزی بۆ وەرگێڕان و تێگەیشتنی زاراوە بایۆلۆجییەکان." },
@@ -637,27 +544,16 @@
                     { ch: "Chapter 5", icon: "fa-clapperboard", img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=600", title: "ڕوونکردنەوەی ڤیدیۆیی", desc: "بینینی ڤیدیۆی فێرکاری تاقیگەیی، ئەنیمەیشنی سێ ڕەهەندی و شیکردنەوەی پرۆسەکان." },
                     { ch: "Chapter 6", icon: "fa-seedling", img: "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?q=80&w=600", title: "ئەناتۆمی و مۆرفۆلۆژیای ڕووەک", desc: "تاوتێکردنی پێکهاتە و شێوەی دەرەکی و ناوەوەی ڕەگ، قەد، و گەڵای ڕووەکەکان." },
                     { ch: "Chapter 7", icon: "fa-diagram-project", img: "https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=600", title: "تاکسۆنۆمی و هەمەچەشنی ڕووەک", desc: "پۆلێنکردنی خێزانە ڕووەکییەکان، ناسینەوەی جۆرەکان و فرەچەشنی ڕووەکی." },
-                    { ch: "Chapter 8", icon: "fa-dna", img: "https://images.unsplash.com/photo-1532187863486-abf9d39d6618?q=80&w=600", title: "فیزیۆلۆژیای ڕووەک و بایۆکیمیایی", desc: "میکانیزمەکانی ڕۆشنەپێکهاتن، هۆرمۆنە ڕووەکییەکان و کارلێکە کیمیاییەکانی ناو خانەکان." },
+                    { ch: "Chapter 8", icon: "fa-dna", img: "https://images.unsplash.com/photo-1532187863486-abf9d39d6618?q=80&w=600", title: "فیزیۆلۆژیای ڕووەک و بایۆکیمیایی", desc: "میکانیزمەکانی ڕۆشنەپێکهاتن, هۆرمۆنە ڕووەکییەکان و کارلێکە کیمیاییەکانی ناو خانەکان." },
                     { ch: "Chapter 9", icon: "fa-clipboard-question", img: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=600", title: "کوئیز و تاقیکردنەوە", desc: "خۆت تاقی بکەرەوە! لێرەدا کۆمەڵێک پرسیار و کویزی زانستی ئامادەکراون بۆ هەڵسەنگاندنی زانیارییەکانت." }
                 ]
             },
             en: {
-                dir: "ltr",
-                homeNav: "Home",
-                chaptersNav: "Chapters",
-                badge: "BIOQUEST PRO",
-                title: "Advanced Botanical Science Atlas",
-                subtitle: "A deep journey into the world of plant morphology, physiology, and biological laboratories.",
-                btn: "Get Started",
-                secTitle: "Platform Chapters",
-                secSubtitle: "Explore various domains of plant science and research resources from here.",
-                readMore: "Read More",
-                arrow: "fa-arrow-right",
-                footTitle: "Advanced Botanical Science Atlas",
-                footDept: "Department of Biology - College of Science - University of Raparin",
-                footViews: "Total Views:",
-                footRights: "All Rights Reserved © 2026",
-                footDev: "Web Developer: Zhyaw Yusf Husen",
+                dir: "ltr", homeNav: "Home", chaptersNav: "Chapters", badge: "NOVAPLANT",
+                title: "Advanced Botanical Science Atlas", subtitle: "A deep journey into the world of plant morphology, physiology, and biological laboratories.",
+                btn: "Get Started", secTitle: "Platform Chapters", secSubtitle: "Explore various domains of plant science and research resources from here.",
+                readMore: "Read More", footTitle: "Advanced Botanical Science Atlas", footDept: "Department of Biology - College of Science - University of Raparin",
+                footViews: "Total Views:", footRights: "All Rights Reserved © 2026", footDev: "Web Developer: Zhyaw Yusf Husen",
                 chapters: [
                     { ch: "Chapter 1", icon: "fa-book-bookmark", img: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?q=80&w=600", title: "More Information", desc: "About the project, team introduction, our core objectives, and academic relations." },
                     { ch: "Chapter 2", icon: "fa-spell-check", img: "https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?q=80&w=600", title: "Biological Dictionary", desc: "A rich multilingual dictionary for translating and understanding complex biological terms." },
@@ -671,22 +567,11 @@
                 ]
             },
             ar: {
-                dir: "rtl",
-                homeNav: "الرئيسية",
-                chaptersNav: "الفصول",
-                badge: "بایوکوێست برو",
-                title: "أطلس علوم النبات المتقدم",
-                subtitle: "رحلة عميقة في عالم مورفولوجيا النبات، الفسيولوجيا، والمختبرات البيولوجية.",
-                btn: "ابدأ الآن",
-                secTitle: "أقسام المنصة",
-                secSubtitle: "استكشف المجالات المختلفة لعلوم النبات والموارد العلمية من هنا.",
-                readMore: "اقرأ المزيد",
-                arrow: "fa-arrow-left",
-                footTitle: "أطلس علوم النبات المتقدم",
-                footDept: "قسم الأحياء - كلية العلوم - جامعة رابرين",
-                footViews: "إجمالي المشاهدات:",
-                footRights: "جميع الحقوق محفوظة © 2026",
-                footDev: "مطور الموقع: ژیاو يوسف حسين",
+                dir: "rtl", homeNav: "الرئيسية", chaptersNav: "الفصول", badge: "NOVAPLANT",
+                title: "أطلس علوم النبات المتقدم", subtitle: "رحلة عميقة في عالم مورفولوجيا النبات، الفسيولوجيا، والمختبرات البيولوجية.",
+                btn: "ابدأ الآن", secTitle: "أقسام المنصة", secSubtitle: "استكشف المجالات المختلفة لعلوم النبات والموارد العلمية من هنا.",
+                readMore: "اقرأ المزيد", footTitle: "أطلس علوم النبات المتقدم", footDept: "قسم الأحياء - كلية العلوم - جامعة رابرين",
+                footViews: "إجمالي المشاهدات:", footRights: "جميع الحقوق محفوظة © 2026", footDev: "مطور الموقع: ژیاو يوسف حسين",
                 chapters: [
                     { ch: "الفصل ١", icon: "fa-book-bookmark", img: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?q=80&w=600", title: "مزيد من المعلومات", desc: "حول المشروع، التعريف بالفريق، أهدافنا الأساسية، والعلاقات الأكاديمية." },
                     { ch: "الفصل ٢", icon: "fa-spell-check", img: "https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?q=80&w=600", title: "القاموس البيولوجي", desc: "قاموس غني ومصطلحات متعددة اللغات لترجمة وفهم المصطلحات البيولوجية المعقدة." },
@@ -701,35 +586,26 @@
             }
         };
 
-        // 🎞️ لۆجیکی مۆشنی 3D باکگراوند (هەر ٣ چرکە بە شێوازی سینەمایی دەگۆڕێت بەبێ تێکدانی نووسین)
         function initHeroSlider() {
             const container = document.getElementById("hero-bg-slider");
-            
-            // دروستکردنی چینەکانی باکگراوند پێشوەختە بۆ ڕێگری لە سپی بوونی شاشە
             motionImages.forEach((imgUrl, index) => {
                 const layer = document.createElement("div");
                 layer.className = `hero-bg-layer ${index === 0 ? 'active' : ''}`;
                 layer.style.backgroundImage = `url('${imgUrl}')`;
                 container.appendChild(layer);
             });
-
             let currentSlide = 0;
             const layers = document.querySelectorAll(".hero-bg-layer");
-
             setInterval(() => {
                 layers[currentSlide].classList.remove("active");
                 currentSlide = (currentSlide + 1) % layers.length;
                 layers[currentSlide].classList.add("active");
-            }, 3000); // ٣ چرکە جارێک
+            }, 3000);
         }
 
         function setupViewCounter() {
-            let totalViews = localStorage.getItem("novaplant_total_views");
-            if (totalViews === null) {
-                totalViews = 0;
-                localStorage.setItem("novaplant_total_views", totalViews);
-            }
-            if (sessionStorage.getItem("novaplant_session_visited") === null) {
+            let totalViews = localStorage.getItem("novaplant_total_views") || 0;
+            if (!sessionStorage.getItem("novaplant_session_visited")) {
                 totalViews = parseInt(totalViews) + 1;
                 localStorage.setItem("novaplant_total_views", totalViews);
                 sessionStorage.setItem("novaplant_session_visited", "true");
@@ -739,7 +615,6 @@
 
         function changeLanguage(lang) {
             const data = translations[lang];
-            
             document.getElementById("html-tag").setAttribute("dir", data.dir);
             document.getElementById("html-tag").setAttribute("lang", lang);
             
@@ -748,7 +623,6 @@
 
             document.getElementById("nav-home").innerText = data.homeNav;
             document.getElementById("nav-chapters").innerText = data.chaptersNav;
-
             document.getElementById("hero-badge").innerText = data.badge;
             document.getElementById("hero-title").innerText = data.title;
             document.getElementById("hero-subtitle").innerText = data.subtitle;
@@ -765,7 +639,6 @@
             const container = document.getElementById("grid-container");
             container.innerHTML = ""; 
             
-            // دروستکردنی کارتەکان بە ئایکۆنی هاوپێچ و گۆڕینی فۆتۆی ڕەسەن بەپێی بابەتەکەی
             data.chapters.forEach(item => {
                 const arrowIcon = data.dir === "rtl" ? "fa-arrow-left" : "fa-arrow-right";
                 const cardHTML = `
@@ -787,15 +660,16 @@
             });
         }
 
-        function toggleTheme() {
+        function setTheme(mode) {
             const body = document.body;
-            const icon = document.getElementById("theme-icon");
-            body.classList.toggle("dark-mode");
+            document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
             
-            if (body.classList.contains("dark-mode")) {
-                icon.className = "fa-solid fa-sun";
+            if (mode === 'dark') {
+                body.classList.add("dark-mode");
+                document.getElementById("theme-dark-btn").classList.add("active");
             } else {
-                icon.className = "fa-solid fa-moon";
+                body.classList.remove("dark-mode");
+                document.getElementById("theme-light-btn").classList.add("active");
             }
         }
 
