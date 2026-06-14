@@ -277,7 +277,9 @@
             border-radius: 20px;
             font-size: 12px;
             font-weight: 600;
+            z-index: 5;
         }
+        
         :lang(en) .card-chapter-tag {
             right: auto;
             left: 20px;
@@ -413,12 +415,12 @@
 
         /* 📱 مۆبایل */
         @media (max-width: 768px) {
-            .navbar { padding: 12px 20px; flex-direction: column; gap: 10px; height: auto; position: relative; }
+            .navbar { padding: 12px 20px; flex-direction: column-reverse; gap: 15px; height: auto; position: relative; }
             .nav-links { gap: 15px; }
             .main-title { font-size: 28px; }
             .chapters-section { padding: 60px 15px; }
             .chapters-grid { grid-template-columns: 1fr; gap: 45px; }
-            .hero-container { padding-top: 40px; }
+            .hero-container { padding-top: 40px; min-height: auto; }
         }
     </style>
 </head>
@@ -477,7 +479,7 @@
                 <div class="footer-dev" id="foot-developer">گەشەپێدەری وێب: ژیاو یوسف حسین</div>
             </div>
         </div>
-    </footer>
+    </footer >
 
     <script>
         const translations = {
@@ -504,7 +506,7 @@
                     { ch: "Chapter 3", icon: "fa-feather-alt", img: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=600", title: "لێکۆڵینەوە و وتار", desc: "کۆمەڵێک توێژینەوەی نوێ، وتاری زانستی و بابەتگەلی بڵاوکراوە لەسەر زانستی ڕووەک." },
                     { ch: "Chapter 4", icon: "fa-flask-vial", img: "https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=600", title: "ڕێنمایی تاقیگە و تەکنەلۆژیا", desc: "پڕۆتۆکۆلەکانی تاقیگە، شێوازی کارکردن لەسەر ئامێرەکان و بەکارهێنانی تەکنەلۆژیا لە بایۆلۆجیدا." },
                     { ch: "Chapter 5", icon: "fa-video", img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600", title: "ڕوونکردنەوەی ڤیدیۆیی", desc: "بینینی ڤیدیۆی فێرکاری تاقیگەیی، ئەنیمەیشنی سێ ڕەهەندی و شیکردنەوەی پرۆسەکان." },
-                    { ch: "Chapter 6", icon: "fa-seedling", img: "https://www.google.com/imgres?q=plant%20anatomy%20and%20morphology&imgurl=https%3A%2F%2Fwww.shutterstock.com%2Fimage-illustration%2Fparts-plant-morphology-green-leaves-260nw-2438579243.jpg&imgrefurl=https%3A%2F%2Fwww.shutterstock.com%2Fimage-illustration%2Fparts-plant-morphology-green-leaves-fruits-2438579243&docid=VRr0kECxN5zXpM&tbnid=qNuZ0o3aYOfdNM&vet=12ahUKEwiL8vaBtoSVAxXQBNsEHQ7kCCcQnPAOegQIIhAB..i&w=462&h=280&hcb=2&ved=2ahUKEwiL8vaBtoSVAxXQBNsEHQ7kCCcQnPAOegQIIhAB", title: "ئەناتۆمی و مۆرفۆلۆژیای ڕووەک", desc: "تاوتێکردنی پێکهاتە و شێوەی دەرەکی و ناوەوەی ڕەگ، قەد، و گەڵای ڕووەکەکان." },
+                    { ch: "Chapter 6", icon: "fa-seedling", img: "https://images.unsplash.com/photo-1597033503553-999335a4d334?q=80&w=600", title: "ئەناتۆمی و مۆرفۆلۆژیای ڕووەک", desc: "تاوتێکردنی پێکهاتە و شێوەی دەرەکی و ناوەوەی ڕەگ، قەد، و گەڵای ڕووەکەکان." },
                     { ch: "Chapter 7", icon: "fa-network-wired", img: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=600", title: "تاکسۆنۆمی و هەمەچەشنی ڕووەک", desc: "پۆلێنکردنی خێزانە ڕووەکییەکان، ناسینەوەی جۆرەکان و فرەچەشنی ڕووەکی." },
                     { ch: "Chapter 8", icon: "fa-dna", img: "https://images.unsplash.com/photo-1530026405186-ed1ea0ac7a63?q=80&w=600", title: "فیزیۆلۆژیای ڕووەک و بایۆکیمیایی", desc: "میکانیزمەکانی ڕۆشنەپێکهاتن، هۆرمۆنە ڕووەکییەکان و کارلێکە کیمیاییەکانی ناو خانەکان." },
                     { ch: "Chapter 9", icon: "fa-vial-circle-check", img: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=600", title: "کوئیز و تاقیکردنەوە", desc: "خۆت تاقی بکەرەوە! لێرەدا کۆمەڵێک پرسیار و کویزی زانستی ئامادەکراون بۆ هەڵسەنگاندنی زانیارییەکانت." }
@@ -555,7 +557,7 @@
                 footDept: "قسم الأحياء - كلية العلوم - جامعة رابرين",
                 footViews: "إجمالي المشاهدات:",
                 footRights: "جميع الحقوق محفوظة © 2026",
-                footDev: "مطور الموقع: ژیاو یوسف حسین",
+                footDev: "مطور الموقع: ژیاو يوسف حسين",
                 chapters: [
                     { ch: "الفصل ١", icon: "fa-info-circle", img: "https://images.unsplash.com/photo-1463936575829-25148e1db1b8?q=80&w=600", title: "مزيد من المعلومات", desc: "حول المشروع، التعريف بالفريق، أهدافنا الأساسية، والعلاقات الأكاديمية." },
                     { ch: "الفصل ٢", icon: "fa-book-open", img: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=600", title: "القاموس البيولوجي", desc: "قاموس غني ومصطلحات متعددة اللغات لترجمة وفهم المصطلحات البيولوجية المعقدة." },
@@ -570,15 +572,14 @@
             }
         };
 
-        // 👁️ سیستمی نوێ بۆ ڕێگری لە زیادبوون لە کاتی ڕیفرێش (بەکارهێنانی sessionStorage)
+        // سیستمی بینەران بەکارهێنانی sessionStorage
         function setupViewCounter() {
             let totalViews = localStorage.getItem("novaplant_total_views");
             if (totalViews === null) {
-                totalViews = 0; // دەستپێکردنی گشتی لۆکاڵی
+                totalViews = 0;
                 localStorage.setItem("novaplant_total_views", totalViews);
             }
 
-            // ئەگەر لەم سێشنەدا هێشتا زیاد نەکراوە، با یەک جار زیادی بکات
             if (sessionStorage.getItem("novaplant_session_visited") === null) {
                 totalViews = parseInt(totalViews) + 1;
                 localStorage.setItem("novaplant_total_views", totalViews);
@@ -588,21 +589,19 @@
             document.getElementById("view-count-num").innerText = totalViews;
         }
 
+        // گۆڕینی زمان
         function changeLanguage(lang) {
             const data = translations[lang];
             
             document.getElementById("html-tag").setAttribute("dir", data.dir);
             document.getElementById("html-tag").setAttribute("lang", lang);
             
-            // چالاککردنی ڕەنگی دوگمەی زمانەکان وەک وێبی کتێبخانە
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById(`btn-${lang}`).classList.add('active');
 
-            // وەرگێڕانی دەقەکانی نەڤبار
             document.getElementById("nav-home").innerText = data.homeNav;
             document.getElementById("nav-chapters").innerText = data.chaptersNav;
 
-            // وەرگێڕانی هێرۆ
             document.getElementById("hero-badge").innerText = data.badge;
             document.getElementById("hero-title").innerText = data.title;
             document.getElementById("hero-subtitle").innerText = data.subtitle;
@@ -610,7 +609,6 @@
             document.getElementById("sec-title").innerText = data.secTitle;
             document.getElementById("sec-subtitle").innerText = data.secSubtitle;
             
-            // وەرگێڕانی فووتەر
             document.getElementById("foot-main-title").innerText = data.footTitle;
             document.getElementById("foot-dept").innerText = data.footDept;
             document.getElementById("foot-view-text").innerText = data.footViews;
@@ -632,9 +630,7 @@
                                 <h3 class="card-title"><i class="fa-solid ${item.icon}"></i> ${item.title}</h3>
                                 <p class="card-desc">${item.desc}</p>
                             </div>
-                            <a href="#" class="card-footer-btn">
-                                ${data.readMore} <i class="fa-solid ${data.arrow}"></i>
-                            </a>
+                            <a href="#" class="card-footer-btn">${data.readMore} →</a>
                         </div>
                     </div>
                 `;
@@ -642,20 +638,24 @@
             });
         }
 
+        // لۆجیکی دوگمەی دارک مۆد
         function toggleTheme() {
             const body = document.body;
             const icon = document.getElementById("theme-icon");
             body.classList.toggle("dark-mode");
             
-            if(body.classList.contains("dark-mode")){
+            if (body.classList.contains("dark-mode")) {
                 icon.className = "fa-solid fa-sun";
             } else {
                 icon.className = "fa-solid fa-moon";
             }
         }
 
-        setupViewCounter();
-        changeLanguage('ku');
+        // لۆدبوونی سەرەتایی
+        window.onload = function() {
+            setupViewCounter();
+            changeLanguage('ku'); // زمانەکە بە کوردی دەستپێدەکات
+        };
     </script>
 </body>
 </html>
