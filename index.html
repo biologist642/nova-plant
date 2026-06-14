@@ -10,7 +10,7 @@
         /* 🎨 گۆڕاوە سەرەکییەکان */
         :root {
             --bg-main: #f8fafc;
-            --bg-navbar: rgba(15, 43, 29, 0.92); 
+            --bg-navbar: rgba(15, 43, 29, 0.95); 
             --border-nav: 1px solid rgba(255, 255, 255, 0.08);
             --bg-chapters: #f2fbf5; 
             --card-bg: #ffffff;
@@ -26,7 +26,7 @@
 
         .dark-mode {
             --bg-main: #070c14;
-            --bg-navbar: rgba(11, 18, 30, 0.92);
+            --bg-navbar: rgba(11, 18, 30, 0.95);
             --border-nav: 1px solid rgba(255, 255, 255, 0.05);
             --bg-chapters: #0b1320; 
             --card-bg: #151f32;
@@ -65,7 +65,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 6%;
+            padding: 10px 6%;
             position: fixed;
             top: 0;
             width: 100%;
@@ -83,11 +83,12 @@
             height: 45px;
             width: auto;
             object-fit: contain;
-            filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.15));
+            background: transparent;
+            mix-blend-mode: normal;
         }
 
         .logo {
-            font-size: 25px;
+            font-size: 24px;
             font-weight: 800;
             color: var(--primary);
             letter-spacing: -0.5px;
@@ -486,7 +487,7 @@
         </ul>
 
         <a href="#" class="logo-wrapper">
-            <img src="4bc51081cc23dcd53e16c02e329e3878-294x300.webp" alt="University of Raparin Logo" class="university-logo">
+            <img src="https://raparinm.uor.edu.krd/images/logo/logo.png" alt="University of Raparin Logo" class="university-logo">
             <span class="logo">NovaPlant</span>
         </a>
     </nav>
@@ -560,7 +561,7 @@
                     { ch: "5", img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=600", title: "ڕوونکردنەوەی ڤیدیۆیی", desc: "بینینی ڤیدیۆی فێرکاری تاقیگەیی, ئەنیمەیشنی سێ ڕەهەندی و شیکردنەوەی پرۆسەکان." },
                     { ch: "6", img: "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?q=80&w=600", title: "ئەناتۆمی و مۆرفۆلۆژیای ڕووەک", desc: "تاوتێکردنی پێکهاتە و شێوەی دەرەکی و ناوەوەی ڕەگ، قەد، و گەڵای ڕووەکەکان." },
                     { ch: "7", img: "https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=600", title: "تاکسۆنۆمی و هەمەچەشنی ڕووەک", desc: "پۆلێنکردنی خێزانە ڕووەکییەکان، ناسینەوەی جۆرەکان و فرەچەشنی ڕووەکی." },
-                    { ch: "8", img: "https://images.unsplash.com/photo-1532187863486-abf9d39d6618?q=80&w=600", title: "فیزیۆلۆژیای ڕووەک و بایۆکیمیایی", desc: "میکانیزمەکانی ڕۆشنەپێکهاتن، هۆرمۆنە ڕووەکییەکان و کارلێکە کیمیاییەکانی ناو خانەکان." },
+                    { ch: "8", img: "https://images.unsplash.com/photo-1532187863486-abf9d39d6618?q=80&w=600", title: "فیزیۆلۆژیای ڕووەک و بایۆکیمیایی", desc: "میکانیزمەکانی ڕۆشنەپێکهاتن, هۆرمۆنە ڕووەکییەکان و کارلێکە کیمیاییەکانی ناو خانەکان." },
                     { ch: "9", img: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=600", title: "کوئیز و تاقیکردنەوە", desc: "خۆت تاقی بکەرەوە! لێرەدا کۆمەڵێک پرسیار و کویزی زانستی ئامادەکراون بۆ هەڵسەنگاندنی زانیارییەکانت." }
                 ]
             },
