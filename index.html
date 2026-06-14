@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NovaPlant | ئەتڵەسی زانستی پێشکەوتوو</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     
     <style>
         /* 🎨 گۆڕاوە سەرەکییەکان */
         :root {
             --bg-main: #f8fafc;
-            --bg-navbar: rgba(15, 43, 29, 0.78); 
+            --bg-navbar: rgba(15, 43, 29, 0.85); 
             --border-nav: 1px solid rgba(255, 255, 255, 0.1);
             --bg-chapters: #f2fbf5; 
             --card-bg: #ffffff;
@@ -28,7 +28,7 @@
 
         .dark-mode {
             --bg-main: #070c14;
-            --bg-navbar: rgba(11, 18, 30, 0.8);
+            --bg-navbar: rgba(11, 18, 30, 0.88);
             --border-nav: 1px solid rgba(255, 255, 255, 0.05);
             --bg-chapters: #0b1320; 
             --card-bg: #151f32;
@@ -58,7 +58,7 @@
             overflow-x: hidden;
         }
 
-        /* 🗺️ نەڤبار */
+        /* 🗺️ نەڤبار و لۆگۆ نوێیەکە */
         .navbar {
             background-color: var(--bg-navbar);
             border-bottom: var(--border-nav);
@@ -67,18 +67,31 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 6%;
+            padding: 10px 6%;
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
         }
 
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .university-logo {
+            height: 38px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+        }
+
         .logo {
-            font-size: 26px;
+            font-size: 24px;
             font-weight: 800;
             color: var(--primary);
-            text-decoration: none;
             letter-spacing: -0.5px;
         }
 
@@ -86,16 +99,15 @@
             display: flex;
             list-style: none;
             align-items: center;
-            gap: 30px;
+            gap: 25px;
         }
 
         .nav-links a {
             color: var(--text-nav);
             text-decoration: none;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 600;
             opacity: 0.85;
-            transition: 0.3s;
         }
 
         .nav-links a:hover { color: var(--primary); opacity: 1; }
@@ -103,14 +115,14 @@
         .nav-actions {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .lang-switcher-container, .theme-switcher-container {
             display: flex;
-            gap: 4px;
+            gap: 2px;
             background: rgba(255, 255, 255, 0.06);
-            padding: 4px;
+            padding: 3px;
             border-radius: 30px;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
@@ -119,15 +131,14 @@
             background: none;
             border: none;
             color: #94a3b8;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 700;
             cursor: pointer;
-            padding: 6px 14px;
+            padding: 5px 12px;
             border-radius: 20px;
-            transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 4px;
         }
 
         .lang-btn.active, .theme-btn.active {
@@ -173,27 +184,28 @@
             position: relative;
             z-index: 3;
             max-width: 900px;
-            animation: fadeInHero 1.2s ease-out;
         }
 
-        @keyframes fadeInHero {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
+        /* ✨ مۆشنی پەلکێش و گەورەکردنی ناوی NovaPlant لە ناو بەدجدا */
         .badge {
-            background: rgba(16, 185, 129, 0.2);
-            border: 1px solid rgba(16, 185, 129, 0.5);
-            padding: 8px 28px;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.25), rgba(5, 150, 105, 0.25));
+            border: 1px solid rgba(16, 185, 129, 0.6);
+            padding: 10px 36px;
             border-radius: 30px;
-            font-size: 16px; 
+            font-size: 20px; /* فۆنتی گەورەتر */
             color: #34d399;
-            font-weight: 800;
-            letter-spacing: 1.5px;
+            font-weight: 900;
+            letter-spacing: 2px;
             margin-bottom: 25px;
             display: inline-block;
             backdrop-filter: blur(5px);
-            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+            animation: pulseGlow 2.5s infinite ease-in-out; /* مۆشنی لێدان و درەوشانەوە */
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(16, 185, 129, 0.3); }
+            50% { transform: scale(1.05); box-shadow: 0 0 35px rgba(16, 185, 129, 0.6); color: #6ee7b7; }
         }
 
         .main-title {
@@ -225,29 +237,9 @@
             display: inline-flex;
             align-items: center;
             gap: 12px;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .start-btn::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, #059669, #10b981);
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.4s ease;
         }
 
         .start-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(16, 185, 129, 0.6); }
-        .start-btn:hover::before { opacity: 1; }
-        .start-btn i { animation: bounceArrow 1.6s infinite; }
-
-        @keyframes bounceArrow {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(4px); }
-        }
 
         /* 🖼️ بەشی کارتەکان */
         .chapters-section {
@@ -269,7 +261,6 @@
             position: relative;
             display: flex;
             flex-direction: column;
-            transition: transform 0.4s ease;
         }
 
         .card-image-area {
@@ -292,18 +283,19 @@
         .card-chapter-tag {
             position: absolute;
             top: 15px; right: 15px;
-            background: rgba(15, 23, 42, 0.75);
+            background: rgba(15, 23, 42, 0.8);
             backdrop-filter: blur(5px);
             color: #34d399;
-            padding: 4px 12px;
+            padding: 5px 14px;
             border-radius: 30px;
-            font-size: 11px;
+            font-size: 12px;
             font-weight: 700;
             z-index: 5;
+            direction: ltr; /* بۆ پاراستنی شێوازی دەقەکە */
         }
         :lang(en) .card-chapter-tag { right: auto; left: 15px; }
 
-        /* 📦 شەیپی ناوەڕۆکەکە کە دەکەوێتە سەر وێنەکە */
+        /* شەیپی سەر وێنە */
         .card-content-box {
             background: var(--card-bg);
             border-radius: 20px;
@@ -321,173 +313,175 @@
         }
 
         .card-title {
-            font-size: 19px;
+            font-size: 18px;
             color: var(--text-main);
             font-weight: 700;
             margin-bottom: 12px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 10px; /* مەودای نێوان ئایکۆن و ناونیشان */
         }
 
-        /* 🛠️ چاککردنی شوێن و هێمای ئایکۆن لە ناو ناونیشانی کارتەکان */
+        /* ستایلی جێگیری ئایکۆنی ڕاستەقینە لە پێش ناونیشانەکە */
         .card-title i { 
             color: var(--primary); 
-            font-size: 18px;
+            font-size: 20px;
             display: inline-block;
             flex-shrink: 0;
         }
         
-        .card-desc { font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px; }
+        .card-desc { font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin-bottom: 18px; }
 
-        /* ⚡ دوگمەی نوێکراوەی خوێندنەوەی زیاتر */
+        /* ⚡ دوگمەی ڕوونی خوێندنەوەی زیاتر بە تیرێکی ڕوون */
         .card-footer-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            background: rgba(16, 185, 129, 0.08);
+            gap: 10px;
+            background: rgba(16, 185, 129, 0.06);
             color: var(--primary);
             text-decoration: none;
             font-size: 14px;
             font-weight: 700;
-            padding: 10px 20px;
+            padding: 12px 20px;
             border-radius: 12px;
             width: 100%; 
             border: 1px solid rgba(16, 185, 129, 0.15);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* 🛠️ چارەسەرکردنی کێشەی ئایکۆنی ناو دوگمەکە بۆ هێما جیهانییەکان */
         .card-footer-btn i { 
-            transition: transform 0.3s ease; 
-            font-size: 14px; 
+            font-size: 16px; 
             display: inline-block;
+            transition: transform 0.3s ease;
         }
 
         .card-footer-btn:hover {
             background: var(--primary);
             color: #ffffff;
             box-shadow: 0 8px 20px rgba(16, 185, 129, 0.25);
-            border-color: var(--primary);
         }
 
-        /* مۆشن بۆ زمانە جیاوازەکان بەبێ تێکچوون */
-        :lang(ku) .card-footer-btn:hover i, :lang(ar) .card-footer-btn:hover i { transform: translateX(-4px); }
-        :lang(en) .card-footer-btn:hover i { transform: translateX(4px); }
+        :lang(ku) .card-footer-btn:hover i, :lang(ar) .card-footer-btn:hover i { transform: translateX(-6px); }
+        :lang(en) .card-footer-btn:hover i { transform: translateX(6px); }
 
-        /* 🔻 فووتەری ڕێکخراو لە ناوەڕاست */
+        /* 🔻 فووتەری ناوەڕاستکراو لەگەڵ مۆشنی باکگراوند */
         .main-footer {
             background-color: var(--bg-footer);
             color: #f8fafc;
-            padding: 40px 20px; 
-            text-align: center; /* هەموو شتێک لە ناوەڕاست دەبێت */
+            padding: 45px 20px; 
+            text-align: center; 
             border-top: var(--border-nav);
             position: relative;
             overflow: hidden;
         }
 
+        /* 🌊 دروستکردنی مۆشنی شەپۆلی هێمن لەسەر باکگراوندی فووتەر */
         .main-footer::before {
             content: '';
             position: absolute;
             top: -50%; left: -50%; width: 200%; height: 200%;
-            background: radial-gradient(circle, rgba(16,185,129,0.03) 0%, rgba(0,0,0,0) 70%);
+            background: radial-gradient(circle at center, rgba(16, 185, 129, 0.06) 0%, rgba(0,0,0,0) 60%);
             z-index: 1;
+            animation: waveMotion 12s infinite linear;
+        }
+
+        @keyframes waveMotion {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.1); }
+            100% { transform: rotate(360deg) scale(1); }
         }
 
         .footer-container {
             max-width: 900px;
             margin: 0 auto;
             display: flex;
-            flex-direction: column; /* ڕێکخستنی ستوونی بۆ ئەوەی بکەونە ناوەڕاست */
+            flex-direction: column; 
             justify-content: center;
             align-items: center;
-            gap: 16px;
+            gap: 18px;
             position: relative;
             z-index: 2;
         }
 
         .footer-info-side { 
-            text-align: center; /* هەمیشە ناوەڕاست لە کۆمپیوتەر و مۆبایل */
+            text-align: center; 
             display: flex; 
             flex-direction: column; 
             gap: 6px; 
         }
 
-        .footer-project-name { font-size: 20px; font-weight: 800; color: var(--primary); }
+        .footer-project-name { font-size: 22px; font-weight: 800; color: var(--primary); }
         .footer-title { font-size: 15px; font-weight: 600; color: #e2e8f0; }
         .footer-dept { font-size: 13px; color: #94a3b8; }
 
         .viewer-counter-box {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(16, 185, 129, 0.15);
-            padding: 6px 16px;
+            padding: 6px 18px;
             border-radius: 30px;
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            backdrop-filter: blur(5px);
         }
 
-        .viewer-counter-box i { color: var(--primary); font-size: 12px; }
+        .viewer-counter-box i { color: var(--primary); font-size: 13px; }
         .viewer-text { font-size: 12px; color: #cbd5e1; }
-        .viewer-count { font-weight: 700; color: #ffffff; background: #064e3b; padding: 2px 10px; border-radius: 20px; font-size: 12px; }
+        .viewer-count { font-weight: 700; color: #ffffff; background: #064e3b; padding: 2px 12px; border-radius: 20px; font-size: 13px; }
 
         .footer-rights {
             width: 100%;
-            font-size: 12px;
+            font-size: 13px;
             color: #55657e;
             margin-top: 10px;
-            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
             padding-top: 15px;
             display: flex;
-            flex-direction: column; /* جیاکردنەوەی مافەکان و ناوی گەشەپێدەر لە ناوەڕاستدا */
+            flex-direction: column; 
             align-items: center;
-            gap: 6px;
+            gap: 8px;
         }
 
-        .footer-dev { color: #86efac; font-weight: 600; font-size: 13px; }
+        .footer-dev { color: #86efac; font-weight: 600; font-size: 13.5px; }
 
-        /* 📱 مۆبایل - چاککردنی تەواوی کێشەکانی پانی و درێژی نەڤبار */
+        /* 📱 ڕێکخستنی تایبەتی مۆبایل - ناڤباری زۆر ڕێک و مۆدێرن */
         @media (max-width: 768px) {
             .navbar { 
-                padding: 8px 12px; /* کەمکردنەوەی بۆشایی دەرەکی */
+                padding: 6px 10px; 
                 flex-direction: row; 
-                justify-content: space-between; 
-                gap: 6px; 
+                justify-content: space-between;
+                gap: 4px;
             }
             .nav-links { display: none; } 
             
-            .logo { 
-                font-size: 17px; /* بچووککردنەوەی لۆگۆ بۆ ئەوەی شوێنی ببێتەوە */
-                font-weight: 700;
-            }
+            .logo-wrapper { gap: 6px; }
+            .university-logo { height: 28px; }
+            .logo { font-size: 15px; font-weight: 800; }
 
-            .nav-actions {
-                gap: 6px; /* کەمکردنەوەی مەودای نێوان دوگمەی زمان و تێم */
-            }
+            .nav-actions { gap: 4px; }
 
             .lang-switcher-container, .theme-switcher-container { 
-                padding: 2px; 
-                gap: 2px; 
+                padding: 1px; 
+                gap: 1px; 
                 border-radius: 20px;
             }
             
             .lang-btn, .theme-btn { 
-                padding: 4px 8px; /* بچووککردنەوەی قەبارەی ناوەوەی دوگمەکان */
-                font-size: 10px;  /* بچووککردنەوەی فۆنت */
-                gap: 3px;
+                padding: 4px 6px; 
+                font-size: 9px;  
+                gap: 2px;
+                font-weight: 600;
             }
             
-            .theme-btn i { font-size: 9px; }
+            .theme-btn i { font-size: 8px; }
 
-            .main-title { font-size: 30px; }
-            .subtitle { font-size: 16px; }
-            .start-btn { padding: 14px 36px; font-size: 16px; }
+            .main-title { font-size: 28px; }
+            .subtitle { font-size: 15px; }
+            .start-btn { padding: 12px 32px; font-size: 15px; }
             
-            .chapters-section { padding: 60px 16px; }
-            .chapters-grid { grid-template-columns: 1fr; gap: 50px; }
-            .card-content-box { width: 92%; margin-top: -50px; }
+            .chapters-section { padding: 50px 12px; }
+            .chapters-grid { grid-template-columns: 1fr; gap: 45px; }
+            .card-content-box { width: 92%; margin-top: -45px; padding: 18px; }
+            .card-title { font-size: 16px; }
         }
     </style>
 </head>
@@ -516,7 +510,10 @@
             <li><a href="#chapters-area" id="nav-chapters">چاپتەرەکان</a></li>
         </ul>
 
-        <a href="#" class="logo">NovaPlant</a>
+        <a href="#" class="logo-wrapper">
+            <img src="https://i.imgur.com/K3pU6Xm.png" alt="University of Raparin Logo" class="university-logo">
+            <span class="logo">NovaPlant</span>
+        </a>
     </nav>
 
     <div class="hero-container" id="hero-bg-slider">
@@ -569,57 +566,57 @@
 
         const translations = {
             ku: {
-                dir: "rtl", homeNav: "سەرەکی", chaptersNav: "چاپتەرەکان", badge: "NOVAPLANT",
+                dir: "rtl", homeNav: "سەرەکی", chaptersNav: "چاپتەرەکان", badge: "NOVAPLANT", tagStr: "چاپتەری ",
                 title: "ئەتڵەسی پێشکەوتووی زانستی ڕووەک", subtitle: "گەشتێک بۆ ناو جیهانی مۆرفۆلۆژیا، فیزیۆلۆژیا و تاقیگەی بایۆلۆجی",
                 btn: "دەستپێبکە", secTitle: "بەشەکانی پلاتفۆرم", secSubtitle: "لێرەوە بڕوانە ناو کایە جیاوازەکانی زانستی ڕووەک و سەرچاوەکان",
                 readMore: "خوێندنەوەی زیاتر", footTitle: "ئەتڵەسی پێشکەوتووی زانستی ڕووەک", footDept: "بەشی بایۆلوجی - کۆلێژی زانست - زانکۆی ڕاپەڕین",
                 footViews: "بینەری گشتی:", footRights: "سەرجەم مافەکانی پارێزراوە © 2026", footDev: "ڕێکخەری زانستی و گەشەپێدەری وێب: ژیاو یوسف حسین",
                 chapters: [
-                    { ch: "Chapter 1", icon: "fa-book-open", img: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?q=80&w=600", title: "زانیاری زیاتر", desc: "دەربارەی پڕۆژەکە، ناساندنی تیمەکە، ئامانجەکانمان و پەیوەندی زانکۆیی." },
-                    { ch: "Chapter 2", icon: "fa-language", img: "https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?q=80&w=600", title: "فەرهەنگی بایۆلۆجی", desc: "فەرهەنگێکی دەوڵەمەندی کوردی-ئینگلیزی بۆ وەرگێڕان و تێگەیشتنی زاراوە بایۆلۆجییەکان." },
-                    { ch: "Chapter 3", icon: "fa-newspaper", img: "https://images.unsplash.com/photo-1516962215378-7fa2e137ae93?q=80&w=600", title: "لێکۆڵینەوە و وتار", desc: "کۆمەڵێک توێژینەوەی نوێ، وتاری زانستی و بابەتگەلی بڵاوکراوە لەسەر زانستی ڕووەک." },
-                    { ch: "Chapter 4", icon: "fa-flask-vial", img: "https://images.unsplash.com/photo-1582719471384-894fbb16e074?q=80&w=600", title: "ڕێنمایی تاقیگە و تەکنەلۆژیا", desc: "پڕۆتۆکۆلەکانی تاقیگە، شێوازی کارکردن لەسەر ئامێرەکان و بەکارهێنانی تەکنەلۆژیا لە بایۆلۆجیدا." },
-                    { ch: "Chapter 5", icon: "fa-video", img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=600", title: "ڕوونکردنەوەی ڤیدیۆیی", desc: "بینینی ڤیدیۆی فێرکاری تاقیگەیی، ئەنیمەیشنی سێ ڕەهەندی و شیکردنەوەی پرۆسەکان." },
-                    { ch: "Chapter 6", icon: "fa-seedling", img: "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?q=80&w=600", title: "ئەناتۆمی و مۆرفۆلۆژیای ڕووەک", desc: "تاوتێکردنی پێکهاتە و شێوەی دەرەکی و ناوەوەی ڕەگ، قەد، و گەڵای ڕووەکەکان." },
-                    { ch: "Chapter 7", icon: "fa-tree", img: "https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=600", title: "تاکسۆنۆمی و هەمەچەشنی ڕووەک", desc: "پۆلێنکردنی خێزانە ڕووەکییەکان، ناسینەوەی جۆرەکان و فرەچەشنی ڕووەکی." },
-                    { ch: "Chapter 8", icon: "fa-dna", img: "https://images.unsplash.com/photo-1532187863486-abf9d39d6618?q=80&w=600", title: "فیزیۆلۆژیای ڕووەک و بایۆکیمیایی", desc: "میکانیزمەکانی ڕۆشنەپێکهاتن، هۆرمۆنە ڕووەکییەکان و کارلێکە کیمیاییەکانی ناو خانەکان." },
-                    { ch: "Chapter 9", icon: "fa-circle-question", img: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=600", title: "کوئیز و تاقیکردنەوە", desc: "خۆت تاقی بکەرەوە! لێرەدا کۆمەڵێک پرسیار و کویزی زانستی ئامادەکراون بۆ هەڵسەنگاندنی زانیارییەکانت." }
+                    { ch: "1", icon: "fa-book-open", img: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?q=80&w=600", title: "زانیاری زیاتر", desc: "دەربارەی پڕۆژەکە، ناساندنی تیمەکە، ئامانجەکانمان و پەیوەندی زانکۆیی." },
+                    { ch: "2", icon: "fa-book-atlas", img: "https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?q=80&w=600", title: "فەرهەنگی بایۆلۆجی", desc: "فەرهەنگێکی دەوڵەمەندی کوردی-ئینگلیزی بۆ وەرگێڕان و تێگەیشتنی زاراوە بایۆلۆجییەکان." },
+                    { ch: "3", icon: "fa-pen-nib", img: "https://images.unsplash.com/photo-1516962215378-7fa2e137ae93?q=80&w=600", title: "لێکۆڵینەوە و وتار", desc: "کۆمەڵێک توێژینەوەی نوێ، وتاری زانستی و بابەتگەلی بڵاوکراوە لەسەر زانستی ڕووەک." },
+                    { ch: "4", icon: "fa-flask-vial", img: "https://images.unsplash.com/photo-1582719471384-894fbb16e074?q=80&w=600", title: "ڕێنمایی تاقیگە و تەکنەلۆژیا", desc: "پڕۆتۆکۆلەکانی تاقیگە، شێوازی کارکردن لەسەر ئامێرەکان و بەکارهێنانی تەکنەلۆژیا لە بایۆلۆجیدا." },
+                    { ch: "5", icon: "fa-video", img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=600", title: "ڕوونکردنەوەی ڤیدیۆیی", desc: "بینینی ڤیدیۆی فێرکاری تاقیگەیی، ئەنیمەیشنی سێ ڕەهەندی و شیکردنەوەی پرۆسەکان." },
+                    { ch: "6", icon: "fa-leaf", img: "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?q=80&w=600", title: "ئەناتۆمی و مۆرفۆلۆژیای ڕووەک", desc: "تاوتێکردنی پێکهاتە و شێوەی دەرەکی و ناوەوەی ڕەگ، قەد، و گەڵای ڕووەکەکان." },
+                    { ch: "7", icon: "fa-tree", img: "https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=600", title: "تاکسۆنۆمی و هەمەچەشنی ڕووەک", desc: "پۆلێنکردنی خێزانە ڕووەکییەکان، ناسینەوەی جۆرەکان و فرەچەشنی ڕووەکی." },
+                    { ch: "8", icon: "fa-dna", img: "https://images.unsplash.com/photo-1532187863486-abf9d39d6618?q=80&w=600", title: "فیزیۆلۆژیای ڕووەک و بایۆکیمیایی", desc: "میکانیزمەکانی ڕۆشنەپێکهاتن، هۆرمۆنە ڕووەکییەکان و کارلێکە کیمیاییەکانی ناو خانەکان." },
+                    { ch: "9", icon: "fa-graduation-cap", img: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=600", title: "کوئیز و تاقیکردنەوە", desc: "خۆت تاقی بکەرەوە! لێرەدا کۆمەڵێک پرسیار و کویزی زانستی ئامادەکراون بۆ هەڵسەنگاندنی زانیارییەکانت." }
                 ]
             },
             en: {
-                dir: "ltr", homeNav: "Home", chaptersNav: "Chapters", badge: "NOVAPLANT",
+                dir: "ltr", homeNav: "Home", chaptersNav: "Chapters", badge: "NOVAPLANT", tagStr: "Chapter ",
                 title: "Advanced Botanical Science Atlas", subtitle: "A deep journey into the world of plant morphology, physiology, and biological laboratories.",
                 btn: "Get Started", secTitle: "Platform Chapters", secSubtitle: "Explore various domains of plant science and research resources from here.",
                 readMore: "Read More", footTitle: "Advanced Botanical Science Atlas", footDept: "Department of Biology - College of Science - University of Raparin",
                 footViews: "Total Views:", footRights: "All Rights Reserved © 2026", footDev: "Scientific Coordinator & Web Developer: Zhyaw Yusf Husen",
                 chapters: [
-                    { ch: "Chapter 1", icon: "fa-book-open", img: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?q=80&w=600", title: "More Information", desc: "About the project, team introduction, our core objectives, and academic relations." },
-                    { ch: "Chapter 2", icon: "fa-language", img: "https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?q=80&w=600", title: "Biological Dictionary", desc: "A rich multilingual dictionary for translating and understanding complex biological terms." },
-                    { ch: "Chapter 3", icon: "fa-newspaper", img: "https://images.unsplash.com/photo-1516962215378-7fa2e137ae93?q=80&w=600", title: "Research & Articles", desc: "A collection of modern research papers, scientific articles, and botanical publications." },
-                    { ch: "Chapter 4", icon: "fa-flask-vial", img: "https://images.unsplash.com/photo-1582719471384-894fbb16e074?q=80&w=600", title: "Lab Guide & Technology", desc: "Laboratory protocols, equipment operation methods, and tech integration in biology." },
-                    { ch: "Chapter 5", icon: "fa-video", img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=600", title: "Video Explanations", desc: "Watch educational lab tutorials, 3D animations, and dynamic biological process breakdowns." },
-                    { ch: "Chapter 6", icon: "fa-seedling", img: "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?q=80&w=600", title: "Plant Anatomy & Morphology", desc: "Detailed study of external morphology and internal anatomy of roots, stems, and leaves." },
-                    { ch: "Chapter 7", icon: "fa-tree", img: "https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=600", title: "Taxonomy & Diversity", desc: "Classification of plant families, species identification, and ecological biodiversity." },
-                    { ch: "Chapter 8", icon: "fa-dna", img: "https://images.unsplash.com/photo-1532187863486-abf9d39d6618?q=80&w=600", title: "Plant Physiology & Biochem", desc: "Mechanisms of photosynthesis, plant hormones, and cellular chemical reactions." },
-                    { ch: "Chapter 9", icon: "fa-circle-question", img: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=600", title: "Quiz & Knowledge Evaluation", desc: "Test yourself! Participate in biological quizzes designed to evaluate your botanical knowledge." }
+                    { ch: "1", icon: "fa-book-open", img: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?q=80&w=600", title: "More Information", desc: "About the project, team introduction, our core objectives, and academic relations." },
+                    { ch: "2", icon: "fa-book-atlas", img: "https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?q=80&w=600", title: "Biological Dictionary", desc: "A rich multilingual dictionary for translating and understanding complex biological terms." },
+                    { ch: "3", icon: "fa-pen-nib", img: "https://images.unsplash.com/photo-1516962215378-7fa2e137ae93?q=80&w=600", title: "Research & Articles", desc: "A collection of modern research papers, scientific articles, and botanical publications." },
+                    { ch: "4", icon: "fa-flask-vial", img: "https://images.unsplash.com/photo-1582719471384-894fbb16e074?q=80&w=600", title: "Lab Guide & Technology", desc: "Laboratory protocols, equipment operation methods, and tech integration in biology." },
+                    { ch: "5", icon: "fa-video", img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=600", title: "Video Explanations", desc: "Watch educational lab tutorials, 3D animations, and dynamic biological process breakdowns." },
+                    { ch: "6", icon: "fa-leaf", img: "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?q=80&w=600", title: "Plant Anatomy & Morphology", desc: "Detailed study of external morphology and internal anatomy of roots, stems, and leaves." },
+                    { ch: "7", icon: "fa-tree", img: "https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=600", title: "Taxonomy & Diversity", desc: "Classification of plant families, species identification, and ecological biodiversity." },
+                    { ch: "8", icon: "fa-dna", img: "https://images.unsplash.com/photo-1532187863486-abf9d39d6618?q=80&w=600", title: "Plant Physiology & Biochem", desc: "Mechanisms of photosynthesis, plant hormones, and cellular chemical reactions." },
+                    { ch: "9", icon: "fa-graduation-cap", img: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=600", title: "Quiz & Knowledge Evaluation", desc: "Test yourself! Participate in biological quizzes designed to evaluate your botanical knowledge." }
                 ]
             },
             ar: {
-                dir: "rtl", homeNav: "الرئيسية", chaptersNav: "الفصول", badge: "NOVAPLANT",
+                dir: "rtl", homeNav: "الرئيسية", chaptersNav: "الفصول", badge: "NOVAPLANT", tagStr: "الفصل ",
                 title: "أطلس علوم النبات المتقدم", subtitle: "رحلة عميقة في عالم مورفولوجيا النبات، الفسيولوجيا، والمختبرات البيولوجية.",
                 btn: "ابدأ الآن", secTitle: "أقسام المنصة", secSubtitle: "استكشف المجالات المختلفة لعلوم النبات والموارد العلمية من هنا.",
                 readMore: "اقرأ المزيد", footTitle: "أطلس علوم النبات المتقدم", footDept: "قسم الأحياء - كلية العلوم - جامعة رابرين",
                 footViews: "إجمالي المشاهدات:", footRights: "جميع الحقوق محفوظة © 2026", footDev: "المنسق العلمي ومطور الموقع: ژیاو يوسف حسين",
                 chapters: [
-                    { ch: "الفصل ١", icon: "fa-book-open", img: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?q=80&w=600", title: "مزيد من المعلومات", desc: "حول المشروع، التعريف بالفريق، أهدافنا الأساسية، والعلاقات الأكاديمية." },
-                    { ch: "الفصل ٢", icon: "fa-language", img: "https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?q=80&w=600", title: "القاموس البيولوجي", desc: "قاموس غني ومصطلحات متعددة اللغات لترجمة وفهم المصطلحات البيولوجية المعقدة." },
-                    { ch: "الفصل ٣", icon: "fa-newspaper", img: "https://images.unsplash.com/photo-1516962215378-7fa2e137ae93?q=80&w=600", title: "الأبحاث والمقالات", desc: "مجموعة من الأوراق البحثية الحديثة، المقالات العلمية، والمنشورات البوتانية." },
-                    { ch: "الفصل ٤", icon: "fa-flask-vial", img: "https://images.unsplash.com/photo-1582719471384-894fbb16e074?q=80&w=600", title: "دليل المختبر والتكنولوجيا", desc: "بروتوكولات المختبر، طرق تشغيل الأجهزة، ودمج التكنولوجيا في علم الأحياء." },
-                    { ch: "الفصل ٥", icon: "fa-video", img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=600", title: "شروحات مرئية", desc: "شاهد الدروس التعليمية المختبرية، الرسوم المتحركة ثلاثية الأبعاد، وتفاعلات الخلايا." },
-                    { ch: "الفصل ٦", icon: "fa-seedling", img: "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?q=80&w=600", title: "تشريح وشكل النبات", desc: "دراسة مفصلة للمورفولوجيا الخارجية والتشريح الداخلي للجذور، السيقان، والأوراق." },
-                    { ch: "الفصل ٧", icon: "fa-tree", img: "https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=600", title: "تصنيف وتنوع النبات", desc: "تصنيف العائلات النباتية، تحديد الأنواع، والتنوع البيولوجي البيئي." },
-                    { ch: "الفصل ٨", icon: "fa-dna", img: "https://images.unsplash.com/photo-1532187863486-abf9d39d6618?q=80&w=600", title: "فسيولوجيا النبات والكيمياء الحيوية", desc: "آليات البناء الضوئي، الهرمونات النباتية، والتفاعلات الكيميائية الخلوية." },
-                    { ch: "الفصل ٩", icon: "fa-circle-question", img: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=600", title: "الاختبارات والكويزات", desc: "اختبر نفسك! شارك في الكويزات العلمية المصممة لتقييم وفحص معلوماتك البوتانية والبيولوجية." }
+                    { ch: "١", icon: "fa-book-open", img: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?q=80&w=600", title: "مزيد من المعلومات", desc: "حول المشروع، التعريف بالفريق، أهدافنا الأساسية، والعلاقات الأكاديمية." },
+                    { ch: "٢", icon: "fa-book-atlas", img: "https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?q=80&w=600", title: "القاموس البيولوجي", desc: "قاموس غني ومصطلحات متعددة اللغات لترجمة وفهم المصطلحات البيولوجية المعقدة." },
+                    { ch: "٣", icon: "fa-pen-nib", img: "https://images.unsplash.com/photo-1516962215378-7fa2e137ae93?q=80&w=600", title: "الأبحاث والمقالات", desc: "مجموعة من الأوراق البحثية الحديثة، المقالات العلمية، والمنشورات البوتانية." },
+                    { ch: "٤", icon: "fa-flask-vial", img: "https://images.unsplash.com/photo-1582719471384-894fbb16e074?q=80&w=600", title: "دليل المختبر والتكنولوجيا", desc: "بروتوكولات المختبر، طرق تشغيل الأجهزة، ودمج التكنولوجيا في علم الأحياء." },
+                    { ch: "٥", icon: "fa-video", img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=600", title: "شروحات مرئية", desc: "شاهد الدروس التعليمية المختبرية، الرسوم المتحركة ثلاثية الأبعاد، وتفاعلات الخلايا." },
+                    { ch: "٦", icon: "fa-leaf", img: "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?q=80&w=600", title: "تشريح وشكل النبات", desc: "دراسة مفصلة للمورفولوجيا الخارجية والتشريح الداخلي للجذور، السيقان، والأوراق." },
+                    { ch: "٧", icon: "fa-tree", img: "https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=600", title: "تصنيف وتنوع النبات", desc: "تصنيف العائلات النباتية، تحديد الأنواع، والتنوع البيولوجي البيئي." },
+                    { ch: "٨", icon: "fa-dna", img: "https://images.unsplash.com/photo-1532187863486-abf9d39d6618?q=80&w=600", title: "فسيولوجيا النبات والكيمياء الحيوية", desc: "آليات البناء الضوئي، الهرمونات النباتية، والتفاعلات الكيميائية الخلوية." },
+                    { ch: "٩", icon: "fa-graduation-cap", img: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=600", title: "الاختبارات والكويزات", desc: "اختبر نفسك! شارك في الكويزات العلمية المصممة لتقييم وفحص معلوماتك البوتانية والبيولوجية." }
                 ]
             }
         };
@@ -641,12 +638,16 @@
             }, 3000);
         }
 
+        /* 🔢 بەشی بینەری گشتی کە هەمیشە لە سفرەوە دەستپێدەکات */
         function setupViewCounter() {
-            let totalViews = localStorage.getItem("novaplant_total_views") || 0;
-            if (!sessionStorage.getItem("novaplant_session_visited")) {
+            let totalViews = localStorage.getItem("novaplant_total_views_real");
+            if (totalViews === null) {
+                totalViews = 0; // لێرەدا دەستپێک لە سفردایە بە تەواوی
+            }
+            if (!sessionStorage.getItem("novaplant_session_visited_real")) {
                 totalViews = parseInt(totalViews) + 1;
-                localStorage.setItem("novaplant_total_views", totalViews);
-                sessionStorage.setItem("novaplant_session_visited", "true");
+                localStorage.setItem("novaplant_total_views_real", totalViews);
+                sessionStorage.setItem("novaplant_session_visited_real", "true");
             }
             document.getElementById("view-count-num").innerText = totalViews;
         }
@@ -678,12 +679,12 @@
             container.innerHTML = ""; 
             
             data.chapters.forEach(item => {
-                // بەکارهێنانی هێمای گشتی بۆ ڕێگری لە دروستبوونی چوارگۆشە
-                const arrowIcon = data.dir === "rtl" ? "fa-chevron-left" : "fa-chevron-right";
+                // هێمای مۆدێرنی تێر بۆ دوگمەکە بەپێی ئاڕاستەی زمانەکە
+                const arrowIcon = data.dir === "rtl" ? "fa-arrow-left" : "fa-arrow-right";
                 const cardHTML = `
                     <div class="chapter-card">
                         <div class="card-image-area">
-                            <span class="card-chapter-tag">${item.ch}</span>
+                            <span class="card-chapter-tag">${data.tagStr}${item.ch}</span>
                             <img src="${item.img}" alt="${item.title}">
                         </div>
                         <div class="card-content-box">
