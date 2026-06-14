@@ -76,6 +76,21 @@
             display: flex;
             align-items: center;
             text-decoration: none;
+            gap: 12px; /* Space between logo and NovaPlant text */
+        }
+
+        /* Custom Logo Motion styling rules */
+        .university-logo {
+            height: 42px;
+            width: auto;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), filter 0.4s ease;
+            will-change: transform;
+        }
+
+        /* Hover Interaction triggering the smooth float motion */
+        .logo-wrapper:hover .university-logo {
+            transform: translateY(-4px) scale(1.05);
+            filter: drop-shadow(0 4px 8px rgba(16, 185, 129, 0.4));
         }
 
         .logo {
@@ -438,6 +453,7 @@
             .nav-links { display: none; } 
             
             .logo-wrapper { gap: 8px; }
+            .university-logo { height: 32px; }
             .logo { font-size: 19px; font-weight: 800; }
 
             .nav-actions { gap: 4px; }
@@ -477,6 +493,7 @@
         </ul>
 
         <a href="#" class="logo-wrapper">
+            <img src="image_1b9004.png" alt="University of Raparin Logo" class="university-logo">
             <span class="logo">NovaPlant</span>
         </a>
     </nav>
@@ -549,7 +566,7 @@
                     { ch: "2", img: "https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?q=80&w=600", title: "فەرهەنگی بایۆلۆجی", desc: "فەرهەنگێکی دەوڵەمەندی کوردی-ئینگلیزی بۆ وەرگێڕان و تێگەیشتنی زاراوە بایۆلۆجییەکان." },
                     { ch: "3", img: "https://images.unsplash.com/photo-1516962215378-7fa2e137ae93?q=80&w=600", title: "لێکۆڵینەوە و وتار", desc: "کۆمەڵێک توێژینەوەی نوێ، وتاری زانستی و بابەتگەلی بڵاوکراوە لەسەر زانستی ڕووەک." },
                     { ch: "4", img: "https://images.unsplash.com/photo-1582719471384-894fbb16e074?q=80&w=600", title: "ڕێنمایی تاقیگە و تەکنەلۆژیا", desc: "پڕۆتۆکۆلەکانی تاقیگە، شێوازی کارکردن لەسەر ئامێرەکان و بەکارهێنانی تەکنەلۆژیا لە بایۆلۆجیدا." },
-                    { ch: "5", img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=600", title: "ڕوونکردنەوەی ڤیدیۆیی", desc: "بینینی ڤیدیۆی فێرکاری تاقیگەیی، ئەنیمەیشنی سێ ڕەهەندی و شیکردنەوەی پرۆسەکان." },
+                    { ch: "5", img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=600", title: "ڕوونکردنەوەی ڤیدیۆیی", desc: "بینینی ڤیدیۆیی فێرکاری تاقیگەیی، ئەنیمەیشنی سێ ڕەهەندی و شیکردنەوەی پرۆسەکان." },
                     { ch: "6", img: "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?q=80&w=600", title: "ئەناتۆمی و مۆرفۆلۆژیای ڕووەک", desc: "تاوتێکردنی پێکهاتە و شێوەی دەرەکی و ناوەوەی ڕەگ، قەد، و گەڵای ڕووەکەکان." },
                     { ch: "7", img: "https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=600", title: "تاکسۆنۆمی و هەمەچەشنی ڕووەک", desc: "پۆلێنکردنی خێزانە ڕووەکییەکان، ناسینەوەی جۆرەکان و فرەچەشنی ڕووەکی." },
                     { ch: "8", img: "https://images.unsplash.com/photo-1532187863486-abf9d39d6618?q=80&w=600", title: "Refiziolojiya u Biokimyayi", desc: "میکانیزمەکانی ڕۆشنەپێکهاتن، هۆرمۆنە ڕووەکییەکان و کارلێکە کیمیاییەکانی ناو خانەکان." },
