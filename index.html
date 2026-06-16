@@ -1,1192 +1,163 @@
 <!DOCTYPE html>
-<html lang="ku" dir="rtl" id="html-tag">
+<html lang="ku" dir="rtl" id="mainHtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NovaPlant | ئەتڵەسی زانستی پێشکەوتوو</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        /* 🎨 گۆڕاوە سەرەکییەکان */
-        :root {
-            --bg-main: #f8fafc;
-            --bg-navbar: rgba(15, 43, 29, 0.95); 
-            --border-nav: 1px solid rgba(255, 255, 255, 0.08);
-            --bg-chapters: #f2fbf5; 
-            --card-bg: #ffffff;
-            --text-main: #0f172a;
-            --text-muted: #475569;
-            --text-nav: #f8fafc;
-            --bg-footer: #05140b; 
-            --primary: #10b981;
-            --shadow-sm: 0 10px 25px rgba(0,0,0,0.04);
-            --shadow-md: 0 20px 40px rgba(0,0,0,0.07);
-            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.02);
-            --radius: 16px;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --blur: saturate(180%) blur(15px);
-        }
-
-        .dark-mode {
-            --bg-main: #0b1320;
-            --bg-navbar: rgba(10, 18, 30, 0.95);
-            --border-nav: 1px solid rgba(255, 255, 255, 0.05);
-            --bg-chapters: #0f1d30;
-            --card-bg: #132238;
-            --text-main: #f1f5f9;
-            --text-muted: #94a3b8;
-            --text-nav: #f1f5f9;
-            --bg-footer: #070d16;
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.2);
-            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.2);
-            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.3);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Noto Kufi Arabic', 'Poppins', sans-serif;
-            background-color: var(--bg-main);
-            color: var(--text-main);
-            line-height: 1.7;
-            overflow-x: hidden;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        /* 🗺️ هێڵی ڕێدۆزی (Navbar) */
-        .navbar {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            height: 70px;
-            background: var(--bg-navbar);
-            backdrop-filter: var(--blur);
-            -webkit-backdrop-filter: var(--blur);
-            border-bottom: var(--border-nav);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 6%;
-            z-index: 1000;
-            transition: var(--transition);
-        }
-
-        .logo-wrapper {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-        }
-
-        .nav-logo {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .nav-logo span {
-            color: var(--primary);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 1.5rem;
-            list-style: none;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 0.95rem;
-            font-weight: 600;
-            transition: var(--transition);
-            position: relative;
-            padding: 0.5rem 1rem;
-            border-radius: 10px;
-        }
-
-        .nav-links a:hover, .nav-links a.active {
-            color: #ffffff;
-            background: rgba(16, 185, 129, 0.15);
-        }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .lang-switcher-container, .theme-switcher-container {
-            display: flex;
-            gap: 2px;
-            background: rgba(255, 255, 255, 0.06);
-            padding: 3px;
-            border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .lang-btn, .theme-switcher-btn {
-            background: none;
-            border: none;
-            color: #94a3b8;
-            font-size: 11px;
-            font-weight: 700;
-            cursor: pointer;
-            padding: 5px 12px;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .lang-btn.active, .theme-switcher-btn.active {
-            background: var(--primary);
-            color: #ffffff;
-            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.2);
-        }
-
-        .btn-theme {
-            background: rgba(255, 255, 255, 0.08);
-            border: none;
-            width: 40px; height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #ffffff;
-            transition: var(--transition);
-            font-size: 1.1rem;
-        }
-
-        .btn-theme:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: scale(1.05);
-        }
-
-        .btn-start {
-            background: var(--primary);
-            color: #ffffff;
-            padding: 0.6rem 1.5rem;
-            border-radius: 30px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            border: none;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
-        }
-
-        .btn-start:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
-        }
-
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            background: none;
-            border: none;
-        }
-
-        .menu-toggle span {
-            width: 25px; height: 3px;
-            background: #ffffff;
-            border-radius: 2px;
-            transition: var(--transition);
-        }
-
-        /* 🚀 بەشی سەرەکی (Hero Section) */
-        .hero-section {
-            padding: 140px 6% 80px 6%;
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            min-height: 85vh;
-        }
-
-        .hero-content {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .hero-badge {
-            align-self: flex-start;
-            background: rgba(16, 185, 129, 0.1);
-            color: var(--primary);
-            padding: 0.4rem 1.2rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 700;
-            border: 1px solid rgba(16, 185, 129, 0.2);
-            animation: pulseGlow 2.5s infinite ease-in-out;
-        }
-
-        @keyframes pulseGlow {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 10px rgba(16, 185, 129, 0.1); }
-            50% { transform: scale(1.03); box-shadow: 0 0 20px rgba(16, 185, 129, 0.3); }
-        }
-
-        .hero-title {
-            font-size: 3rem;
-            line-height: 1.4;
-            font-weight: 700;
-        }
-
-        .hero-title span {
-            color: var(--primary);
-            position: relative;
-        }
-
-        .hero-desc {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            max-width: 600px;
-            line-height: 1.8;
-        }
-
-        .hero-btns {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-            padding: 0.8rem 2rem;
-            border-radius: 12px;
-            font-weight: 600;
-            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.2);
-            transition: var(--transition);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 25px rgba(16, 185, 129, 0.3);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-main);
-            border: 2px solid rgba(0, 0, 0, 0.1);
-            padding: 0.8rem 2rem;
-            border-radius: 12px;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-        .dark-mode .btn-secondary {
-            border-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(0, 0, 0, 0.02);
-        }
-
-        .dark-mode .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        /* ئامارەکان */
-        .hero-stats {
-            display: flex;
-            gap: 3rem;
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(0,0,0,0.06);
-        }
-
-        .dark-mode .hero-stats {
-            border-top-color: rgba(255,255,255,0.06);
-        }
-
-        .stat-item h3 {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .stat-item p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        /* بەشی وێنەی لای چەپ */
-        .hero-image-container {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .hero-circle-bg {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
-            z-index: 1;
-        }
-
-        .hero-main-img {
-            width: 100%;
-            max-width: 480px;
-            height: auto;
-            object-fit: cover;
-            border-radius: 24px;
-            z-index: 2;
-            position: relative;
-            box-shadow: var(--shadow-md);
-        }
-
-        /* 🌿 بەشی کارۆسێلی ٣ ڕەهەندی (3D Fan Carousel) */
-        .carousel-section {
-            padding: 80px 0;
-            background: var(--bg-main);
-            overflow: hidden;
-            position: relative;
-        }
-
-        .carousel-section-title {
-            text-align: center;
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .carousel-section-sub {
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 15px;
-            margin-bottom: 50px;
-        }
-
-        .fan-carousel-wrapper {
-            position: relative;
-            width: 100%;
-            height: 420px;
-            perspective: 1400px;
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            padding-bottom: 40px;
-        }
-
-        .fan-stage {
-            position: relative;
-            width: 200px;
-            height: 290px;
-            transform-style: preserve-3d;
-            transform: rotateX(8deg);
-        }
-
-        .fan-card {
-            position: absolute;
-            top: 0; left: 0;
-            width: 200px;
-            height: 290px;
-            border-radius: 18px;
-            overflow: hidden;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
-            border: 2px solid rgba(255,255,255,0.1);
-            cursor: pointer;
-            transform-style: preserve-3d;
-            transform-origin: center bottom;
-            transition: transform 0.5s cubic-bezier(0.25,0.8,0.25,1), box-shadow 0.5s ease, border-color 0.3s ease;
-            backface-visibility: hidden;
-            will-change: transform;
-        }
-
-        .fan-card.is-center {
-            border-color: rgba(16,185,129,0.7);
-            box-shadow: 0 30px 70px rgba(0,0,0,0.4), 0 0 30px rgba(16,185,129,0.25);
-            z-index: 50 !important;
-        }
-
-        .fan-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            pointer-events: none;
-        }
-
-        .fan-card-overlay {
-            position: absolute;
-            bottom: 0; left: 0; right: 0;
-            background: linear-gradient(to top, rgba(4,16,9,0.95) 0%, transparent 60%);
-            padding: 22px 14px 14px;
-        }
-
-        .fan-card-num {
-            font-size: 10px;
-            font-weight: 700;
-            color: #34d399;
-            letter-spacing: 1px;
-            margin-bottom: 4px;
-        }
-
-        .fan-card-title {
-            font-size: 13px;
-            font-weight: 700;
-            color: #f8fafc;
-            line-height: 1.35;
-        }
-
-        .fan-floor-glow {
-            position: absolute;
-            bottom: 0; left: 50%;
-            transform: translateX(-50%);
-            width: 700px;
-            height: 60px;
-            background: radial-gradient(ellipse, rgba(16,185,129,0.15) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .fan-nav {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            margin-top: 28px;
-        }
-
-        .fan-nav-btn {
-            background: rgba(16, 185, 129, 0.12);
-            border: 1px solid rgba(16, 185, 129, 0.35);
-            color: #34d399;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            font-size: 18px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .fan-nav-btn:hover {
-            background: rgba(16, 185, 129, 0.3);
-            transform: scale(1.1);
-        }
-
-        .fan-dots {
-            display: flex;
-            justify-content: center;
-            gap: 7px;
-            margin-top: 20px;
-        }
-
-        .fan-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: rgba(16, 185, 129, 0.25);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(16, 185, 129, 0.3);
-        }
-
-        .fan-dot.active {
-            background: #10b981;
-            transform: scale(1.3);
-        }
-
-        /* 📚 بەشی کارت و بەشەکان (Chapters Section) */
-        .chapters-section {
-            background-color: var(--bg-chapters);
-            padding: 100px 6%;
-            transition: var(--transition);
-        }
-
-        .section-header {
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto 60px auto;
-        }
-
-        .section-header h2 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-        }
-
-        .section-header p {
-            color: var(--text-muted);
-            font-size: 1rem;
-        }
-
-        .chapters-grid {
-            max-width: 1300px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 60px 40px;
-        }
-
-        .chapter-card {
-            background: transparent;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .card-image-area {
-            height: 260px;
-            width: 100%;
-            overflow: hidden;
-            border-radius: 20px; 
-            box-shadow: var(--shadow-sm);
-            position: relative;
-            z-index: 1;
-        }
-
-        .card-image-area img {
-            width: 100%; height: 100%; object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-
-        .chapter-card:hover .card-image-area img { 
-            transform: scale(1.06); 
-        }
-
-        .card-chapter-tag {
-            position: absolute;
-            top: 15px; right: 15px;
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(5px);
-            color: #34d399;
-            padding: 5px 14px;
-            border-radius: 30px;
-            font-size: 12px;
-            font-weight: 700;
-            z-index: 5;
-        }
-
-        .card-content-box {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 26px;
-            width: 90%; 
-            margin: -60px auto 0 auto; 
-            position: relative;
-            z-index: 2; 
-            box-shadow: var(--shadow-md);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            flex-grow: 1;
-            border: 1px solid rgba(16, 185, 129, 0.08);
-            transition: var(--transition);
-        }
-
-        .chapter-card:hover .card-content-box {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-            border-color: rgba(16, 185, 129, 0.2);
-        }
-
-        .card-title {
-            font-size: 1.25rem;
-            color: var(--text-main);
-            font-weight: 700;
-            margin-bottom: 12px;
-            display: block;
-        }
-        
-        .card-desc { 
-            font-size: 13.5px; 
-            color: var(--text-muted); 
-            line-height: 1.6; 
-            margin-bottom: 20px; 
-        }
-
-        .card-footer-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(16, 185, 129, 0.05);
-            color: var(--primary);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 700;
-            padding: 12px 20px;
-            border-radius: 12px;
-            width: 100%; 
-            border: 1px solid rgba(16, 185, 129, 0.15);
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            gap: 0.5rem;
-        }
-
-        .card-footer-btn:hover {
-            background: var(--primary);
-            color: #ffffff;
-            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.2);
-        }
-
-        /* ℹ️ بەشی دەربارە (About Section) */
-        .about-section {
-            padding: 100px 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .about-wrapper {
-            background: var(--card-bg);
-            border-radius: var(--radius);
-            padding: 4rem 3rem;
-            box-shadow: var(--shadow-md);
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-            border: 1px solid rgba(16, 185, 129, 0.05);
-        }
-
-        .about-wrapper h2 {
-            font-size: 2.2rem;
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-        }
-
-        .about-wrapper p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-
-        /* 👣 پێڕەنگ و فووتەری گەڵاڕێزان (Footer) */
-        .main-footer {
-            background-color: var(--bg-footer);
-            color: #f8fafc;
-            padding: 60px 20px; 
-            text-align: center; 
-            border-top: var(--border-nav);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .leaves-container {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .leaf-element {
-            position: absolute;
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(5, 150, 105, 0.05));
-            border-radius: 0px 15px; 
-            animation: leafFallAnimation 9s infinite linear;
-        }
-
-        @keyframes leafFallAnimation {
-            0% { transform: translateY(-30px) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.6; }
-            90% { opacity: 0.6; }
-            100% { transform: translateY(180px) rotate(360deg); opacity: 0; }
-        }
-
-        .leaf-element:nth-child(1) { left: 12%; width: 14px; height: 22px; animation-duration: 8s; animation-delay: 0s; }
-        .leaf-element:nth-child(2) { left: 35%; width: 18px; height: 28px; animation-duration: 11s; animation-delay: 2s; }
-        .leaf-element:nth-child(3) { left: 65%; width: 12px; height: 20px; animation-duration: 7s; animation-delay: 4s; }
-        .leaf-element:nth-child(4) { left: 88%; width: 16px; height: 25px; animation-duration: 10s; animation-delay: 1s; }
-
-        .footer-container {
-            max-width: 900px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column; 
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .footer-info-side { 
-            text-align: center; 
-            display: flex; 
-            flex-direction: column; 
-            gap: 6px; 
-        }
-
-        .footer-project-name { font-size: 23px; font-weight: 800; color: var(--primary); }
-        .footer-title { font-size: 15px; font-weight: 600; color: #e2e8f0; }
-        .footer-dept { font-size: 13px; color: #94a3b8; }
-
-        .viewer-counter-box {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(16, 185, 129, 0.15);
-            padding: 6px 20px;
-            border-radius: 30px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 10px;
-        }
-
-        .viewer-text { font-size: 12px; color: #cbd5e1; }
-        .viewer-count { font-weight: 700; color: #ffffff; background: #064e3b; padding: 2px 14px; border-radius: 20px; font-size: 13px; }
-
-        .footer-rights {
-            width: 100%;
-            font-size: 13px;
-            color: #55657e;
-            margin-top: 10px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding-top: 15px;
-            display: flex;
-            flex-direction: column; 
-            align-items: center;
-            gap: 8px;
-        }
-
-        .footer-dev { color: #86efac; font-weight: 600; font-size: 13.5px; }
-
-        /* 📱 وەڵامدەرەوە (Responsive) */
-        @media (max-width: 1024px) {
-            .hero-section {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 3rem;
-                padding-top: 120px;
-            }
-            .hero-badge { align-self: center; }
-            .hero-desc { margin: 0 auto; }
-            .hero-btns { justify-content: center; }
-            .hero-stats { justify-content: center; }
-            .hero-main-img { max-width: 400px; }
-        }
-
-        @media (max-width: 768px) {
-            .navbar { padding: 0 4%; }
-            .nav-links { display: none; }
-            .menu-toggle { display: flex; }
-            .hero-title { font-size: 2.2rem; }
-            .about-wrapper { padding: 2.5rem 1.5rem; }
-            .chapters-grid { grid-template-columns: 1fr; gap: 45px; }
-            .card-content-box { width: 92%; margin-top: -45px; padding: 20px; }
-            .fan-carousel-wrapper { height: 340px; perspective: 900px; }
-            .fan-stage { width: 155px; height: 230px; }
-            .fan-card { width: 155px; height: 230px; }
-        }
-    </style>
+    <title>BioQuest Pro | ئەتڵەسی ڕوەک</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 </head>
-<body>
+<body class="light-mode">
 
+    <!-- Navbar -->
     <nav class="navbar">
-        <a href="#" class="logo-wrapper">
-            <div class="nav-logo">Nova<span>Plant</span></div>
-        </a>
-        
-        <ul class="nav-links">
-            <li><a href="#" class="nav-link-item active" data-key="nav-home">سەرەکی</a></li>
-            <li><a href="#carousel" class="nav-link-item" data-key="nav-gallery">گەلەری</a></li>
-            <li><a href="#chapters" class="nav-link-item" data-key="nav-chapters">بەشەکان</a></li>
-            <li><a href="#about" class="nav-link-item" data-key="nav-about">دەربارە</a></li>
-        </ul>
-
-        <div class="nav-actions">
-            <div class="lang-switcher-container">
-                <button class="lang-btn active" onclick="setLanguage('ku')">KU</button>
-                <button class="lang-btn" onclick="setLanguage('en')">EN</button>
+        <div class="nav-container">
+            <div class="logo" data-aos="fade-left">Bio<span>Quest</span></div>
+            <div class="nav-controls" data-aos="fade-right">
+                <select id="langSwitcher" onchange="changeLanguage()">
+                    <option value="ku">Kurdî</option>
+                    <option value="en">English</option>
+                    <option value="ar">العربية</option>
+                </select>
+                <button id="themeToggle" class="mode-btn"><i class="fas fa-moon"></i></button>
             </div>
-
-            <div class="theme-switcher-container">
-                <button class="theme-switcher-btn active" id="theme-btn-light">☀️</button>
-                <button class="theme-switcher-btn" id="theme-btn-dark">🌙</button>
-            </div>
-
-            <button class="btn-start" data-key="btn-start">دەستپێبکە</button>
-            <button class="menu-toggle" id="menu-btn">
-                <span></span><span></span><span></span>
-            </button>
         </div>
     </nav>
 
-    <header class="hero-section">
-        <div class="hero-content">
-            <div class="hero-badge" data-key="hero-badge">ئەتڵەسی زانستی پێشکەوتوو</div>
-            <h1 class="hero-title" id="hero-title-text">جیهانی زانست و <span>ڕووەکناسی</span> بە شێوازێکی نوێ</h1>
-            <p class="hero-desc" data-key="hero-desc">لێرەوە گەشتەکەت دەستپێبکە بۆ ناو قووڵایی زانیارییە سروشتییەکان و بەشە جیاوازەکانی زانستی ڕووەک بە گرافیک و ڕوونکردنەوەی مۆدێرن.</p>
-            <div class="hero-btns">
-                <a href="#chapters" class="btn-primary" data-key="btn-explore">گەڕان و گەشتکردن</a>
-                <a href="#about" class="btn-secondary" data-key="btn-learn-more">زیاتر بزانە</a>
-            </div>
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <h3>+١٠k</h3>
-                    <p data-key="stat-readers">خوێنەران</p>
-                </div>
-                <div class="stat-item">
-                    <h3>+٥٠</h3>
-                    <p data-key="stat-sections">بەشی زانستی</p>
-                </div>
-                <div class="stat-item">
-                    <h3>١٠٠٪</h3>
-                    <p data-key="stat-reliable">سەرچاوەی باوەڕپێکراو</p>
-                </div>
-            </div>
+    <header class="hero">
+        <div class="hero-bg" aria-hidden="true"></div>
+        <div class="hero-overlay" aria-hidden="true"></div>
+        <div class="hero-particles" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span>
         </div>
-        <div class="hero-image-container">
-            <div class="hero-circle-bg"></div>
-            <img src="https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?q=80&w=600" alt="NovaPlant Scientific Illustration" class="hero-main-img">
+        <div class="hero-content" data-aos="fade-up" data-aos-duration="1200">
+            <span class="hero-badge">BioQuest Pro</span>
+            <h1 id="mainTitle">ئەتڵەسی پێشکەوتووی زانستی ڕوەک</h1>
+            <p id="mainSub">گەشتێک بۆ ناو جیهانی مۆرفۆلۆژیا، فیسیۆلۆژیا و تاقیگەی بایۆلۆجی</p>
+            <a href="#ch1" class="explore-btn">دەستپێبکە <i class="fas fa-chevron-down"></i></a>
         </div>
     </header>
 
-    <section class="carousel-section" id="carousel">
-        <h2 class="carousel-section-title" data-key="carousel-title">پێشانگای بینراوی ئەتڵەس</h2>
-        <p class="carousel-section-sub" data-key="carousel-sub">بۆ گەڕان بەناو دیمەنە نەخشێنراوەکاندا لای ڕاست و چەپ کلیل بکە</p>
-        
-        <div class="fan-carousel-wrapper">
-            <div class="fan-stage" id="fan-stage">
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" data-aos="fade-left">
+            <div class="sidebar-header">بەشەکان</div>
+            <ul>
+                <li><a href="#ch1" class="side-link"><i class="fas fa-leaf"></i> <span data-key="ch1">مۆرفۆلۆژیا</span></a></li>
+                <li><a href="#ch2" class="side-link"><i class="fas fa-microscope"></i> <span data-key="ch2">فیسیۆلۆژیا</span></a></li>
+                <li><a href="#ch3" class="side-link"><i class="fas fa-flask-vial"></i> <span data-key="ch3">تاقیگە</span></a></li>
+                <li class="sidebar-divider"></li>
+                <li><a href="cell.html" class="side-link side-link--page"><i class="fas fa-dna"></i> <span data-key="cell">خانەناسی</span></a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Chapter 1 -->
+            <section id="ch1" class="chapter-card" data-aos="fade-up">
+                <div class="card-head">
+                    <span class="badge">Chapter 01</span>
+                    <h2 data-key="ch1Title">مۆرفۆلۆژیای ڕوەک</h2>
                 </div>
-            <div class="fan-floor-glow"></div>
-        </div>
-
-        <div class="fan-nav">
-            <button class="fan-nav-btn" onclick="fanMove(-1)">➔</button>
-            <button class="fan-nav-btn" onclick="fanMove(1)">➔</button>
-        </div>
-
-        <div class="fan-dots" id="fan-dots"></div>
-    </section>
-
-    <section class="chapters-section" id="chapters">
-        <div class="section-header">
-            <h2 data-key="chapters-title">بەشەکانی ئەتڵەسەکە</h2>
-            <p data-key="chapters-sub">تەوەرە سەرەکییەکانی زانستی ڕووەکناسی و پۆلێنکردنە ژینگەییەکان لێرەوە بخوێنەوە.</p>
-        </div>
-        
-        <div class="chapters-grid">
-            <div class="chapter-card">
-                <div class="card-image-area">
-                    <div class="card-chapter-tag">CH 01</div>
-                    <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=500" alt="Plant Structure">
+                <div class="card-body ch1-layout">
+                    <div class="text-block">
+                        <p>مۆرفۆلۆژیا لێکۆڵینەوەیە لە شێوە و پێکهاتەی دەرەوەی ڕوەک. لێرەدا باس لە جۆرەکانی ڕەگ، قەد، و گەڵا دەکەین.</p>
+                        <ul class="feat-list">
+                            <li><i class="fas fa-check-circle"></i> پێکهاتەی خانەیی گەڵا</li>
+                            <li><i class="fas fa-check-circle"></i> سیستەمی ڕەگی سەرەکی و لاوەکی</li>
+                        </ul>
+                    </div>
+                    <div class="media-showcase" id="ch1Media">
+                        <div class="media-toolbar">
+                            <span class="media-label"><i class="fas fa-image"></i> <span data-key="mediaLabel">وێنەی مۆرفۆلۆژیا</span></span>
+                            <button type="button" class="media-expand-btn" id="openLightbox" aria-label="View full image">
+                                <i class="fas fa-expand"></i>
+                                <span data-key="viewImage">بینینی گەورە</span>
+                            </button>
+                        </div>
+                        <button type="button" class="media-frame" id="ch1ImageTrigger" aria-label="Open image viewer">
+                            <img
+                                src="https://images.unsplash.com/photo-1592150621744-aca64f48394a?w=1200&q=80"
+                                data-full="https://images.unsplash.com/photo-1592150621744-aca64f48394a?w=1920&q=90"
+                                alt="Plant morphology"
+                                id="ch1PreviewImg">
+                            <span class="media-zoom-hint">
+                                <i class="fas fa-search-plus"></i>
+                                <span data-key="clickZoom">کلیک بکە بۆ گەورەکردن</span>
+                            </span>
+                        </button>
+                        <p class="media-caption" data-key="imageCaption">نموونەی گەڵا و پێکهاتەی ڕەگی ڕوەک لە ژێر میکرۆسکۆپ</p>
+                    </div>
                 </div>
-                <div class="card-content-box">
-                    <h3 class="card-title" data-key="ch1-title">شانە و پێکهاتەی ڕووەک</h3>
-                    <p class="card-desc" data-key="ch1-desc">لێکۆڵینەوە لە پێکهاتەی مایکرۆسکۆپی و جۆرەکانی شانەی ڕووەکی.</p>
-                    <a href="#" class="card-footer-btn"><span data-key="read-btn">خوێندنەوە</span> ←</a>
-                </div>
-            </div>
+            </section>
 
-            <div class="chapter-card">
-                <div class="card-image-area">
-                    <div class="card-chapter-tag">CH 02</div>
-                    <img src="https://images.unsplash.com/photo-1463936575829-25148e1db1b8?q=80&w=500" alt="Photosynthesis">
+            <!-- Chapter 2 -->
+            <section id="ch2" class="chapter-card" data-aos="fade-up">
+                <div class="card-head">
+                    <span class="badge">Chapter 02</span>
+                    <h2 data-key="ch2Title">فیسیۆلۆژیا و وزە</h2>
                 </div>
-                <div class="card-content-box">
-                    <h3 class="card-title" data-key="ch2-title">کرداری ڕۆشنەپێکهاتن</h3>
-                    <p class="card-desc" data-key="ch2-desc">چۆنیەتی بەرهەمهێنانی وزە و خۆراک لەلایەن ڕووەکەکانەوە بە درێژی.</p>
-                    <a href="#" class="card-footer-btn"><span data-key="read-btn">خوێندنەوە</span> ←</a>
+                <div class="grid-container">
+                    <div class="grid-card">
+                        <i class="fas fa-sun"></i>
+                        <h3>Photosynthesis</h3>
+                        <p>چۆنیەتی گۆڕینی تیشکی خۆر بۆ وزەی کیمیایی لەناو کلۆرۆپلاستدا.</p>
+                    </div>
+                    <div class="grid-card">
+                        <i class="fas fa-tint"></i>
+                        <h3>Salinity Stress</h3>
+                        <p>کاریگەری خوێ و پەستانی ئۆسمۆزی لەسەر گەشەی ڕوەک.</p>
+                    </div>
                 </div>
-            </div>
+            </section>
 
-            <div class="chapter-card">
-                <div class="card-image-area">
-                    <div class="card-chapter-tag">CH 03</div>
-                    <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=500" alt="Plant Classification">
+            <!-- Chapter 3 -->
+            <section id="ch3" class="chapter-card" data-aos="fade-up">
+                <div class="card-head">
+                    <span class="badge">Chapter 03</span>
+                    <h2 data-key="ch3Title">تاقیگەی کرداری</h2>
                 </div>
-                <div class="card-content-box">
-                    <h3 class="card-title" data-key="ch3-title">پۆلێنکردنی ڕووەکەکان</h3>
-                    <p class="card-desc" data-key="ch3-desc">تێگەیشتن لە خێزان و جۆرە جیاوازەکانی شانشینی ڕووەک.</p>
-                    <a href="#" class="card-footer-btn"><span data-key="read-btn">خوێندنەوە</span> ←</a>
+                <div class="video-section">
+                    <p>بینەری تاقیکردنەوەی دەرکێشانی کلۆرۆفیل بە شێوازی زانستی بەرز:</p>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/D1Yj6H6I7lE" title="Plant Lab" frameborder="0" allowfullscreen></iframe>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </section>
+            </section>
+        </main>
+    </div>
 
-    <section class="about-section" id="about">
-        <div class="about-wrapper">
-            <h2 data-key="about-title">دەربارەی پڕۆژەکە</h2>
-            <p data-key="about-desc">ئەم سەکۆیە هۆکارێکی یارمەتیدەرە بۆ قوتابییان و ئارەزوومەندانی زانست بۆ ئەوەی بە شێوازێکی بینراو و ئاسان لە ئاڵۆزترین بابەتەکانی زیندەوەرناسی و ڕووەکناسی تێبگەن.</p>
-            <button class="btn-start" data-key="btn-contact">پەیوەندیمان پێوە بکە</button>
-        </div>
-    </section>
-
-    <footer class="main-footer">
-        <div class="leaves-container">
-            <div class="leaf-element"></div>
-            <div class="leaf-element"></div>
-            <div class="leaf-element"></div>
-            <div class="leaf-element"></div>
-        </div>
-        <div class="footer-container">
-            <div class="footer-info-side">
-                <div class="footer-project-name">NovaPlant</div>
-                <div class="footer-title" data-key="footer-title">ئەتڵەسی زانستی پێشکەوتووی ڕووەکناسی</div>
-                <div class="footer-dept" data-key="footer-dept">پڕۆژەی پەرەپێدراوی زیندەوەرناسی کورتخایەن</div>
-            </div>
-            
-            <div class="viewer-counter-box">
-                <span class="viewer-text" data-key="viewer-text">ژمارەی سەردانیکەران:</span>
-                <span class="viewer-count">14,258</span>
-            </div>
-
-            <div class="footer-rights">
-                <p>© 2026 NovaPlant. <span data-key="footer-copy">هەموو مافەکان پارێزراون.</span></p>
-                <p>Developed with 💚 by <span class="footer-dev">NovaPlant Team</span></p>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <h3>Atlas of Plant</h3>
+            <p>گەشەپێدەری وێب: <span>ژیاو یوسف حسین</span></p>
+            <div class="socials">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
             </div>
         </div>
     </footer>
 
-    <script>
-        // 🌐 وەرگێڕان و فرەزمانی (Localization System)
-        const translations = {
-            ku: {
-                "nav-home": "سەرەکی", "nav-gallery": "گەلەری", "nav-chapters": "بەشەکان", "nav-about": "دەربارە",
-                "btn-start": "دەستپێبکە", "hero-badge": "ئەتڵەسی زانستی پێشکەوتوو",
-                "hero-desc": "لێرەوە گەشتەکەت دەستپێبکە بۆ ناو قووڵایی زانیارییە سروشتییەکان و بەشە جیاوازەکانی زانستی ڕووەک بە گرافیک و ڕوونکردنەوەی مۆدێرن.",
-                "btn-explore": "گەڕان و گەشتکردن", "btn-learn-more": "زیاتر بزانە",
-                "stat-readers": "خوێنەران", "stat-sections": "بەشی زانستی", "stat-reliable": "سەرچاوەی باوەڕپێکراو",
-                "carousel-title": "پێشانگای بینراوی ئەتڵەس", "carousel-sub": "بۆ گەڕان بەناو دیمەنە نەخشێنراوەکاندا لای ڕاست و چەپ کلیل بکە",
-                "chapters-title": "بەشەکانی ئەتڵەسەکە", "chapters-sub": "تەوەرە سەرەکییەکانی زانستی ڕووەکناسی و پۆلێنکردنە ژینگەییەکان لێرەوە بخوێنەوە.",
-                "ch1-title": "شانە و پێکهاتەی ڕووەک", "ch1-desc": "لێکۆڵینەوە لە پێکهاتەی مایکرۆسکۆپی و جۆرەکانی شانەی ڕووەکی.",
-                "ch2-title": "کرداری ڕۆشنەپێکهاتن", "ch2-desc": "چۆنیەتی بەرهەمهێنانی وزە و خۆراک لەلایەن ڕووەکەکانەوە بە درێژی.",
-                "ch3-title": "پۆلێنکردنی ڕووەکەکان", "ch3-desc": "تێگەیشتن لە خێزان و جۆرە جیاوازەکانی شانشینی ڕووەک.",
-                "read-btn": "خوێندنەوە", "about-title": "دەربارەی پڕۆژەکە",
-                "about-desc": "ئەم سەکۆیە هۆکارێکی یارمەتیدەرە بۆ قوتابییان و ئارەزوومەندانی زانست بۆ ئەوەی بە شێوازێکی بینراو و ئاسان لە ئاڵۆزترین بابەتەکانی زیندەوەرناسی و ڕووەکناسی تێبگەن.",
-                "btn-contact": "پەیوەندیمان پێوە بکە", "footer-title": "ئەتڵەسی زانستی پێشکەوتووی ڕووەکناسی",
-                "footer-dept": "پڕۆژەی پەرەپێدراوی زیندەوەرناسی کورتخایەن", "viewer-text": "ژمارەی سەردانیکەران:", "footer-copy": "هەموو مافەکان پارێزراون."
-            },
-            en: {
-                "nav-home": "Home", "nav-gallery": "Gallery", "nav-chapters": "Chapters", "nav-about": "About",
-                "btn-start": "Get Started", "hero-badge": "Advanced Scientific Atlas",
-                "hero-desc": "Start your journey here into the depths of natural knowledge and explore the diverse fields of botany with modern graphics and illustrations.",
-                "btn-explore": "Explore Now", "btn-learn-more": "Learn More",
-                "stat-readers": "Active Readers", "stat-sections": "Scientific Sections", "stat-reliable": "Reliable Sources",
-                "carousel-title": "Visual Atlas Showcase", "carousel-sub": "Click arrows or drag to explore 3D structured botanical elements",
-                "chapters-title": "Atlas Chapters", "chapters-sub": "Read and study the core pillars of botanical sciences and ecosystems here.",
-                "ch1-title": "Plant Tissue & Structure", "ch1-desc": "Investigation into the microscopic structures and types of plant tissues.",
-                "ch2-title": "Photosynthesis Process", "ch2-desc": "Detailed overview of how plants produce chemical energy and nutrients.",
-                "ch3-title": "Plant Classification", "ch3-desc": "Understanding families and distinct divisions within the plant kingdom.",
-                "read-btn": "Read Chapter", "about-title": "About the Project",
-                "about-desc": "This platform serves as an interactive catalyst for students and science enthusiasts to easily grasp the most complex topics of biology and botany visually.",
-                "btn-contact": "Contact Us", "footer-title": "Advanced Botanical Scientific Atlas",
-                "footer-dept": "Short-term Biology Development Initiative", "viewer-text": "Total Visitors:", "footer-copy": "All Rights Reserved."
-            }
-        };
+    <div class="image-lightbox" id="imageLightbox" aria-hidden="true" role="dialog" aria-modal="true" hidden>
+        <div class="lightbox-backdrop" id="lightboxBackdrop"></div>
+        <div class="lightbox-panel">
+            <div class="lightbox-header">
+                <span class="lightbox-title" data-key="lightboxTitle">مۆرفۆلۆژیای ڕوەک</span>
+                <button type="button" class="lightbox-close" id="closeLightbox" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="lightbox-body">
+                <img src="" alt="" id="lightboxImg">
+            </div>
+            <p class="lightbox-caption" data-key="imageCaption">نموونەی گەڵا و پێکهاتەی ڕەگی ڕوەک لە ژێر میکرۆسکۆپ</p>
+        </div>
+    </div>
 
-        function setLanguage(lang) {
-            document.getElementById("html-tag").setAttribute("lang", lang);
-            document.getElementById("html-tag").setAttribute("dir", lang === "ku" ? "rtl" : "ltr");
-            
-            // گۆڕینی لای دوگمەکانی فلوور بۆ لای گونجاو بەپێی ئاڕاستە
-            const navBtn = document.querySelectorAll('.fan-nav-btn');
-            if(lang === 'en') {
-                navBtn[0].style.transform = 'rotate(180deg)';
-                navBtn[1].style.transform = 'rotate(180deg)';
-                document.getElementById("hero-title-text").innerHTML = "The World of Science & <span>Botany</span> in a New Way";
-            } else {
-                navBtn[0].style.transform = 'rotate(0deg)';
-                navBtn[1].style.transform = 'rotate(0deg)';
-                document.getElementById("hero-title-text").innerHTML = "جیهانی زانست و <span>ڕووەکناسی</span> بە شێوازێکی نوێ";
-            }
-
-            document.querySelectorAll("[data-key]").forEach(elem => {
-                const key = elem.getAttribute("data-key");
-                if (translations[lang][key]) {
-                    elem.textContent = translations[lang][key];
-                }
-            });
-
-            document.querySelectorAll(".lang-btn").forEach(btn => {
-                btn.classList.toggle("active", btn.getAttribute("onclick").includes(`'${lang}'`));
-            });
-            localStorage.setItem("lang", lang);
-            renderFan(); 
-        }
-
-        // 🌓 ڕێکخستنی دۆخی تاریک و ڕوون (Theme Toggle System)
-        const htmlTag = document.getElementById("html-tag");
-        const btnLight = document.getElementById("theme-btn-light");
-        const btnDark = document.getElementById("theme-btn-dark");
-
-        function updateThemeUI(isDark) {
-            if (isDark) {
-                htmlTag.classList.add("dark-mode");
-                btnDark.classList.add("active");
-                btnLight.classList.remove("active");
-            } else {
-                htmlTag.classList.remove("dark-mode");
-                btnLight.classList.add("active");
-                btnDark.classList.remove("active");
-            }
-        }
-
-        btnLight.addEventListener("click", () => {
-            updateThemeUI(false);
-            localStorage.setItem("theme", "light");
-        });
-
-        btnDark.addEventListener("click", () => {
-            updateThemeUI(true);
-            localStorage.setItem("theme", "dark");
-        });
-
-        if (localStorage.getItem("theme") === "dark") {
-            updateThemeUI(true);
-        }
-
-        // 📱 مێنووی مۆبایل
-        const menuBtn = document.getElementById("menu-btn");
-        const navLinks = document.querySelector(".nav-links");
-
-        menuBtn.addEventListener("click", () => {
-            navLinks.style.display = navLinks.style.display === "flex" ? "none" : "flex";
-            if(navLinks.style.display === "flex") {
-                navLinks.style.flexDirection = "column";
-                navLinks.style.position = "absolute";
-                navLinks.style.top = "70px";
-                navLinks.style.left = "0";
-                navLinks.style.right = "0";
-                navLinks.style.background = "var(--bg-navbar)";
-                navLinks.style.padding = "2rem";
-                navLinks.style.textAlign = "center";
-            }
-        });
-
-        // 🌿 پێکهاتەی داتاکانی کارۆسێل (3D Fan Carousel Logic)
-        const fanData = [
-            { id: "01", titleKu: "پێکهاتەی خانە", titleEn: "Cell Anatomy", img: "https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=400" },
-            { id: "02", titleKu: "شانەی نێرگزلۆجی", titleEn: "Plant Histology", img: "https://images.unsplash.com/photo-1532187863486-abf9d39d6618?q=80&w=400" },
-            { id: "03", titleKu: "میکانیزمی ڕەگ", titleEn: "Root System", img: "https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=400" },
-            { id: "04", titleKu: "سیستەمی گەڵا", titleEn: "Leaf Morphology", img: "https://images.unsplash.com/photo-1463936575829-25148e1db1b8?q=80&w=400" },
-            { id: "05", titleKu: "پۆلێنی ژینگەیی", titleEn: "Ecology Classification", img: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=400" },
-            { id: "06", titleKu: "سەرچاوەی ئاو", titleEn: "Water Transport", img: "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&w=400" },
-            { id: "07", titleKu: "گەشەی ڕووەک", titleEn: "Hormonal Growth", img: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?q=80&w=400" }
-        ];
-
-        let fanIndex = 2; 
-        const fanTotal = fanData.length;
-        let fanAutoTimer = null;
-
-        function renderFan() {
-            const stage = document.getElementById("fan-stage");
-            if (!stage) return;
-            stage.innerHTML = "";
-            const currentLang = document.getElementById("html-tag").getAttribute("lang") || "ku";
-
-            const isRTL = currentLang === "ku";
-
-            fanData.forEach((item, i) => {
-                let diff = i - fanIndex;
-                
-                // ڕێکخستنی جیاوازی بازدان بۆ پاراستنی شێوازی کارۆسێلەکە
-                if (diff < -fanTotal / 2) diff += fanTotal;
-                if (diff > fanTotal / 2) diff -= fanTotal;
-
-                const d = document.createElement("div");
-                d.className = `fan-card ${diff === 0 ? "is-center" : ""}`;
-                
-                // ڕێکخستنی زەواوی بیرکاری بۆ دەرکەوتنی سێ ڕەهەندی
-                let angleStep = 22; 
-                let transXStep = 135; 
-                let transZStep = 75; 
-
-                if (isRTL) {
-                    angleStep = -22;
-                    transXStep = -135;
-                }
-
-                const angle = diff * angleStep;
-                const transX = diff * transXStep;
-                const transZ = (Math.abs(diff) * -transZStep);
-                const rotY = diff * -8; 
-
-                d.style.transform = `translateX(${transX}px) translateZ(${transZ}px) rotateY(${angle}deg) rotateZ(${rotY}deg)`;
-                d.style.zIndex = 100 - Math.abs(diff);
-
-                const titleText = currentLang === "en" ? item.titleEn : item.titleKu;
-
-                d.innerHTML = `
-                    <img src="${item.img}" alt="${titleText}">
-                    <div class="fan-card-overlay">
-                        <div class="fan-card-num">SEC ${item.id}</div>
-                        <div class="fan-card-title">${titleText}</div>
-                    </div>
-                `;
-                d.onclick = () => { fanIndex = i; renderFan(); updateDots(); resetFanAuto(); };
-                stage.appendChild(d);
-            });
-        }
-
-        function initDots() {
-            const dots = document.getElementById("fan-dots");
-            if (!dots) return;
-            dots.innerHTML = "";
-            for (let i = 0; i < fanTotal; i++) {
-                const d = document.createElement("div");
-                d.className = "fan-dot";
-                d.onclick = () => { fanIndex = i; renderFan(); updateDots(); resetFanAuto(); };
-                dots.appendChild(d);
-            }
-        }
-
-        function updateDots() {
-            document.querySelectorAll(".fan-dot").forEach((d, i) => {
-                d.classList.toggle("active", i === fanIndex);
-            });
-        }
-
-        function fanMove(dir) {
-            fanIndex = ((fanIndex + dir) % fanTotal + fanTotal) % fanTotal;
-            renderFan();
-            updateDots();
-            resetFanAuto();
-        }
-
-        function startFanAuto() {
-            if (fanAutoTimer) clearInterval(fanAutoTimer);
-            fanAutoTimer = setInterval(() => { fanMove(1); }, 3000);
-        }
-
-        function resetFanAuto() {
-            clearInterval(fanAutoTimer);
-            fanAutoTimer = setInterval(() => { fanMove(1); }, 3000);
-        }
-
-        // پشتگیری جووڵە لەڕێی دەست لێدان لەسەر مۆبایل (Touch swipe support)
-        let fanTouchX = 0;
-        document.addEventListener("touchstart", e => { fanTouchX = e.touches[0].clientX; }, { passive: true });
-        document.addEventListener("touchend", e => {
-            const dx = e.changedTouches[0].clientX - fanTouchX;
-            if (Math.abs(dx) > 40 && document.getElementById("fan-stage")) {
-                const currentLang = document.getElementById("html-tag").getAttribute("lang") || "ku";
-                if(currentLang === 'ku') {
-                    fanMove(dx > 0 ? -1 : 1);
-                } else {
-                    fanMove(dx > 0 ? 1 : -1);
-                }
-            }
-        }, { passive: true });
-
-        // بارکردنی سەرەتایی پەیج
-        window.onload = () => {
-            const savedLang = localStorage.getItem("lang") || "ku";
-            setLanguage(savedLang);
-            initDots();
-            renderFan();
-            updateDots();
-            startFanAuto();
-        };
-    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
