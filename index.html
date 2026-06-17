@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* 🎨 گۆڕاوە سەرەکییەکان */
+        /* 🎨 گۆڕاوە سەرەکییەکان و بنچینەی ئەسڵی وێب سایتەکەت */
         :root {
             --bg-main: #f8fafc;
             --bg-navbar: rgba(15, 43, 29, 0.95); 
@@ -39,14 +39,14 @@
             --shadow-lg: 0 20px 40px rgba(0,0,0,0.4);
         }
 
-        /* 🚀 ستایلی تایبەت بە سپڵاش سکرین */
+        /* 🚀 ستایلی تایبەت بە سپڵاش سکرینە نوێیەکە بە مۆشنەوە */
         #splash-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at center, #0b2116 0%, #050a06 100%);
+            background: radial-gradient(circle at center, #07170f 0%, #030705 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -61,18 +61,18 @@
         }
         .splash-wrapper {
             text-align: center;
-            max-width: 500px;
+            max-width: 550px;
             width: 100%;
-            animation: splashFadeIn 1s ease-out forwards;
+            animation: splashFadeIn 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
         }
         .logo-bounce {
-            font-size: 65px;
-            margin-bottom: 15px;
+            font-size: 60px;
+            margin-bottom: 10px;
             animation: floatLogo 3s ease-in-out infinite;
             color: #10b981;
         }
         @keyframes splashFadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(25px); }
             to { opacity: 1; transform: translateY(0); }
         }
         @keyframes floatLogo {
@@ -83,14 +83,14 @@
             to { transform: rotate(360deg); }
         }
         .animate-spin-custom {
-            animation: spinLoader 1s linear infinite;
+            animation: spinLoader 1.2s linear infinite;
         }
         body.splash-active {
             overflow: hidden !important;
             height: 100vh;
         }
 
-        /* 📄 بنچینەی گشتی ماڵپەڕەکە */
+        /* 📄 بنچینەی گشتی ماڵپەڕەکەت (وەک خۆی) */
         * {
             margin: 0;
             padding: 0;
@@ -105,7 +105,6 @@
             overflow-x: hidden;
         }
 
-        /* 🧭 نێڤبار و دیزاین */
         .navbar {
             position: fixed;
             top: 0;
@@ -207,7 +206,6 @@
             display: none;
         }
 
-        /* 📱 مۆبایل مینیو */
         .mobile-menu {
             position: fixed;
             top: 80px;
@@ -243,7 +241,6 @@
             color: var(--primary);
         }
 
-        /* 🎬 هێرۆ و دیزاینی سەرەکی */
         .hero {
             padding: 160px 4% 80px;
             max-width: 1400px;
@@ -311,7 +308,6 @@
             border-color: var(--primary);
         }
 
-        /* 🎡 سەکۆی جووڵاوی کارتەکان (Fan Carousel) */
         .fan-container {
             position: relative;
             width: 100%;
@@ -347,7 +343,7 @@
         .fan-card img {
             width: 100%;
             height: 55%;
-            object-cover: cover;
+            object-fit: cover;
         }
 
         .fan-card-info {
@@ -420,7 +416,6 @@
             border-radius: 10px;
         }
 
-        /* 🌟 بەشی تایبەتمەندییەکان */
         .features {
             padding: 80px 4%;
             max-width: 1400px;
@@ -510,7 +505,6 @@
             line-height: 1.7;
         }
 
-        /* 📚 بەشی بەشەکان (Chapters) */
         .chapters-sec {
             background: var(--bg-chapters);
             padding: 90px 4%;
@@ -607,7 +601,6 @@
             text-decoration: underline;
         }
 
-        /* 📊 بەشی ئامارەکان (Counters) */
         .counters {
             padding: 60px 4%;
             background: var(--bg-main);
@@ -757,7 +750,7 @@
             color: #64748b;
         }
 
-        /* 📱 سیستەمی ڕیسپۆنسڤ و شاشە جیاوازەکان */
+        /* 📱 سیستەمی ڕیسپۆنسڤ */
         @media (max-width: 1024px) {
             .nav-links, .nav-actions .btn-primary { display: none; }
             .menu-toggle { display: flex; }
@@ -780,36 +773,31 @@
     <div id="splash-screen">
         <div class="splash-wrapper">
             <div class="logo-bounce">🌿</div>
-            <div style="font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: #94a3b8; margin-bottom: 5px; font-family: 'Poppins', sans-serif;">Botany & Plant Science</div>
-            <div style="font-size: 38px; font-weight: 700; color: #10b981; margin-bottom: 5px; font-family: 'Poppins', sans-serif;">NovaPlant</div>
-            <div style="font-size: 18px; color: #e2e8f0; margin-bottom: 25px;">ڕێبەری ئەتڵەسی ڕووەکناسی 🍃</div>
+            <div style="font-size: 42px; font-weight: 700; color: #10b981; margin-bottom: 2px; font-family: 'Poppins', sans-serif;">NovaPlant Website</div>
+            <div style="font-size: 14px; letter-spacing: 2px; color: #a7f3d0; margin-bottom: 12px; font-family: 'Poppins', sans-serif;">Biology and Scientific Website</div>
+            <div style="font-size: 22px; font-weight: 600; color: #ffffff; margin-bottom: 8px;">ئەتڵەسی زانستی و دیجیتاڵی ڕووەک</div>
+            <div style="font-size: 15px; color: #94a3b8; margin-bottom: 25px;">ڕوونکردنەوەی زانستی و ئەکادیمی زانستی ڕووەک</div>
 
-            <div style="border: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.02); border-radius: 16px; padding: 25px 20px; backdrop-filter: blur(10px); margin-bottom: 30px;">
-                <p style="font-size: 13px; line-height: 1.7; color: #94a3b8; margin-bottom: 20px;">
-                    ماڵپەڕێکی زانستی پێشکەوتوو تایبەت بە لێکۆڵینەوە و ناساندنی پێکهاتەی مایکرۆسکۆپی ڕووەکەکان بە شێوازێکی مۆدێرن.
-                </p>
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
-                    <div style="background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.1); border-radius: 12px; padding: 12px 5px;">
-                        <span style="font-size: 20px; font-weight: 700; color: #10b981; display: block; font-family: 'Poppins';">4</span>
-                        <span style="font-size: 10px; color: #94a3b8;">تیم / Team</span>
+            <div style="border: 1px solid rgba(16, 185, 129, 0.15); background: rgba(16, 185, 129, 0.03); border-radius: 16px; padding: 22px; backdrop-filter: blur(8px); margin-bottom: 25px;">
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 18px;">
+                    <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 10px;">
+                        <span style="font-size: 18px; font-weight: 700; color: #10b981; display: block;">3</span>
+                        <span style="font-size: 12px; color: #cbd5e1;">زمان / Languages</span>
                     </div>
-                    <div style="background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.1); border-radius: 12px; padding: 12px 5px;">
-                        <span style="font-size: 20px; font-weight: 700; color: #10b981; display: block; font-family: 'Poppins';">10</span>
-                        <span style="font-size: 10px; color: #94a3b8;">بەش / Chapters</span>
-                    </div>
-                    <div style="background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.1); border-radius: 12px; padding: 12px 5px;">
-                        <span style="font-size: 20px; font-weight: 700; color: #10b981; display: block; font-family: 'Poppins';">200+</span>
-                        <span style="font-size: 10px; color: #94a3b8;">سلايد / Slides</span>
+                    <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 10px;">
+                        <span style="font-size: 18px; font-weight: 700; color: #10b981; display: block;">9</span>
+                        <span style="font-size: 12px; color: #cbd5e1;">چاپتەر / Chapters</span>
                     </div>
                 </div>
+                <p style="font-size: 13px; color: #e2e8f0; margin-bottom: 6px; font-weight: 600;">زانکۆی ڕاپەڕین - کۆلێژی زانست - بەشی بایۆلۆجی</p>
+                <p style="font-size: 12px; color: #94a3b8;">ڕێکخەری زانستی و گەشەپێدەری وێب : ژیاو یوسف حسین</p>
             </div>
 
-            <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
-                <div style="position: relative; width: 55px; height: 55px; display: flex; align-items: center; justify-content: center;">
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                <div style="position: relative; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;">
                     <div class="animate-spin-custom" style="width: 100%; height: 100%; border: 3px solid rgba(255,255,255,0.05); border-radius: 50%; border-top-color: #10b981; position: absolute;"></div>
-                    <div id="splash-timer" style="font-size: 15px; font-weight: 700; color: #fff; font-family: 'Poppins';">3</div>
+                    <div id="splash-timer" style="font-size: 14px; font-weight: 700; color: #fff; font-family: 'Poppins';">3</div>
                 </div>
-                <span style="font-size: 12px; color: #64748b;">چوونە ناوەوە...</span>
             </div>
         </div>
     </div>
@@ -879,7 +867,7 @@
             <div class="f-card">
                 <div class="f-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
                 <h3 id="f3-title">تەواو ڕیسپۆنسڤ</h3>
-                <p id="f3-desc">دیزاین کراوە بۆ ئەوەی بە شێوازێکی نایاب لەسەر شاشەی مۆبایل، تابلێت و کۆمپیوتەر کاربکات.</p>
+                <p id="f3-desc">دیزاین کراوە بۆ ئەوەی بە شێوازێکی نایاب لەسەر شاشەی مۆبایل, تابلێت و کۆمپیوتەر کاربکات.</p>
             </div>
         </div>
     </section>
@@ -971,7 +959,7 @@
     </footer>
 
     <script>
-        // 🌍 داتای وەرگێڕانی زمانەکان
+        // 🌍 داتای وەرگێڕانی زمانەکان و کۆدە جاڤاسکڕیپتە ئەسڵییەکانی ماڵپەڕەکەت
         const langData = {
             ku: {
                 title: "NovaPlant | ئەتڵەسی زانستی پێشکەوتوو",
@@ -985,7 +973,7 @@
                 f2T: "١٠ بەشی ئەکادیمی", f2D: "بابەتەکان بە تەواوی دابەشکراون بەسەر بەشە جیاوازەکانی ڕووەکناسیدا بۆ گەیشتنی خێرا.",
                 f3T: "تەواو ڕیسپۆنسڤ", f3D: "دیزاین کراوە بۆ ئەوەی بە شێوازێکی نایاب لەسەر شاشەی مۆبایل، تابلێت و کۆمپیوتەر کاربکات.",
                 chSecTitle: "ناوەڕۆکی بەشە زانستییەکان", chSecDesc: "لێرەوە دەتوانیت ڕاستەوخۆ بچیتە ناو هەر بەشێک و سلايدەکان بخوێنیتەوە.",
-                c1: "بەشی تەوا", c2: "سلايدی زانستی", c3: "گەشەپێدەران", c4: "بێبەرامبەر و کراوە",
+                c1: "بەشی تەواو", c2: "سلايدی زانستی", c3: "گەشەپێدەران", c4: "بێبەرامبەر و کراوە",
                 tSecTitle: "تیمی پڕۆژە", tSecDesc: "ئەو گەشەپێدەر و لێکۆڵەرانەی کە کاریان لەسەر دروستکردنی ئەم سەکۆیە کردووە.",
                 t1: "سەرپەرشتیار و لێکۆڵەر", t2: "گەشەپێدەر (Frontend)", t3: "دیزاینەری ناوەڕۆک", t4: "بەڕێوبەری داتا",
                 footTxt: "سەکۆیەکی زانستی هۆشیاری و پەروەردەیی تایبەت بە زانستی ڕووەکناسی بۆ پێشکەشکردنی باشترین سلايدی شیکاری.",
@@ -1042,7 +1030,6 @@
         let fanTotal = 3;
         let fanAutoTimer = null;
 
-        // 🌗 مۆدی تاریک و ڕوون
         const themeBtn = document.getElementById("theme-btn");
         themeBtn.addEventListener("click", () => {
             const html = document.getElementById("html-tag");
@@ -1051,7 +1038,6 @@
             themeBtn.innerHTML = isDark ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
         });
 
-        // 📱 مینیوی مۆبایل
         const menuBtn = document.getElementById("menu-btn");
         const mobileMenu = document.getElementById("mobile-menu");
         menuBtn.addEventListener("click", () => {
@@ -1059,7 +1045,6 @@
             menuBtn.innerHTML = mobileMenu.classList.contains("open") ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
         });
 
-        // 🔄 ڕێندەرکردنی زمانی ماڵپەڕەکە
         function setLanguage(lang) {
             currentLang = lang;
             const d = langData[lang];
@@ -1069,7 +1054,6 @@
             html.setAttribute("dir", lang === "ku" ? "rtl" : "ltr");
             document.title = d.title;
 
-            // نێڤبار
             document.getElementById("lnk-home").innerText = d.home;
             document.getElementById("lnk-features").innerText = d.features;
             document.getElementById("lnk-chapters").innerText = d.chapters;
@@ -1081,14 +1065,12 @@
             document.getElementById("btn-explore").innerText = d.explore;
             document.getElementById("m-btn-explore").innerText = d.explore;
 
-            // هێرۆ
             document.getElementById("hero-badge").innerHTML = `<i class="fa-solid fa-wand-magic-sparkles"></i> ${d.badge}`;
             document.getElementById("hero-title").innerHTML = d.heroH1;
             document.getElementById("hero-desc").innerText = d.heroP;
             document.getElementById("hero-btn-start").innerText = d.heroStart;
             document.getElementById("hero-btn-more").innerText = d.heroMore;
 
-            // تایبەتمەندییەکان
             document.getElementById("f-sec-title").innerText = d.fSecTitle;
             document.getElementById("f-sec-desc").innerText = d.fSecDesc;
             document.getElementById("f1-title").innerText = d.f1T;
@@ -1098,17 +1080,14 @@
             document.getElementById("f3-title").innerText = d.f3T;
             document.getElementById("f3-desc").innerText = d.f3D;
 
-            // بەشەکان
             document.getElementById("ch-sec-title").innerText = d.chSecTitle;
             document.getElementById("ch-sec-desc").innerText = d.chSecDesc;
             
-            // ئامارەکان
             document.getElementById("c1-txt").innerText = d.c1;
             document.getElementById("c2-txt").innerText = d.c2;
             document.getElementById("c3-txt").innerText = d.c3;
             document.getElementById("c4-txt").innerText = d.c4;
 
-            // تیم و فووتەر
             document.getElementById("team-sec-title").innerText = d.tSecTitle;
             document.getElementById("team-sec-desc").innerText = d.tSecDesc;
             document.getElementById("t1-role").innerText = d.t1;
@@ -1122,7 +1101,6 @@
             buildFanDots();
         }
 
-        // 📚 دروستکردنی کارتی بەشەکان
         function renderChapters(data, unitTxt, slideTxt, viewTxt) {
             const area = document.getElementById("chapters-area");
             area.innerHTML = "";
@@ -1148,7 +1126,6 @@
             });
         }
 
-        // 🎡 کارپێکردنی سەکۆی جووڵاوی کارتەکان (Fan Carousel)
         function renderFan() {
             const stage = document.getElementById("fan-stage");
             if (!stage) return;
@@ -1234,7 +1211,6 @@
             fanAutoTimer = setInterval(() => { fanMove(1); }, 3000);
         }
 
-        // پشتگیری سووپ کردن بۆ مۆبایل
         let fanTouchX = 0;
         document.addEventListener("touchstart", e => { fanTouchX = e.touches[0].clientX; }, { passive: true });
         document.addEventListener("touchend", e => {
@@ -1244,14 +1220,7 @@
             }
         }, { passive: true });
 
-        // 🌍 گۆڕینی زمان
-        document.getElementById("lang-btn").addEventListener("click", () => {
-            const next = currentLang === "ku" ? "en" : "ku";
-            document.getElementById("lang-btn").innerText = next === "ku" ? "EN" : "KU";
-            setLanguage(next);
-        });
-
-        // ⏱️ لۆجیکی چالاککردنی سپڵاش سکرین
+        // ⏱️ کارپێکردنی کۆنترۆڵی سپڵاش سکرین
         window.onload = () => {
             setLanguage("ku");
             startFanAuto();
@@ -1260,7 +1229,6 @@
             const timerElement = document.getElementById("splash-timer");
             let timeLeft = 3; 
 
-            // کەمکردنەوەی ژمارەی چرکەکان لەسەر شاشە
             const countdownInterval = setInterval(() => {
                 timeLeft--;
                 if (timeLeft >= 0) {
@@ -1271,7 +1239,6 @@
                 }
             }, 1000);
 
-            // لادانی لاپەڕەکە دوای ٣ چرکە بە فەرمی
             setTimeout(() => {
                 splashScreen.classList.add("fade-out");
                 document.body.classList.remove("splash-active"); 
